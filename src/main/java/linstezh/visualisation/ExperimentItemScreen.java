@@ -9,8 +9,8 @@ import javafx.scene.layout.VBox;
 import linstezh.Main;
 
 public class ExperimentItemScreen {
-    private ExpItemAdapter item;
-    private Main sceneSwapper;
+    private final ExpItemAdapter item;
+    private final Main sceneSwapper;
 
     public ExperimentItemScreen(ExpItemAdapter item, Main sceneSwapper){
         this.item = item;
@@ -30,8 +30,7 @@ public class ExperimentItemScreen {
     }
 
     private Node createEvalLabel() {
-        Label results = new Label(item.readEvalText());
-        return results;
+        return new Label(item.readEvalText());
     }
 
     private void setEval(Boolean value) {

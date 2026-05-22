@@ -1,8 +1,8 @@
 package linstezh.visualisation;
 
 public class ExpItemAdapter {
-    private String evalText;
-    private Boolean correctEval;
+    private final String evalText;
+    private final Boolean correctEval;
     private Boolean userEval;
 
     public ExpItemAdapter(String evalText, boolean correctEval){
