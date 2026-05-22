@@ -6,7 +6,17 @@ import javafx.stage.Stage;
 import linstezh.visualisation.ExpItemAdapter;
 import linstezh.visualisation.ExperimentItemScreen;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main extends Application {
+    private final List<ExpItemAdapter> items = new ArrayList<>(Arrays.asList(
+            new ExpItemAdapter("Question 1", false),
+            new ExpItemAdapter("Question 2", false)
+    ));
+    private int currentItem = 0;
+    private Stage primaryStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -14,11 +24,20 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        ExpItemAdapter exampleItem = new ExpItemAdapter("Test text", false);
-        Region newItem = new ExperimentItemScreen(exampleItem).createContent();
+        this.primaryStage = primaryStage;
 
-        Scene scene = new Scene(newItem, 400, 200);
-        primaryStage.setScene(scene);
+        ExpItemAdapter newItem = items.get(currentItem);
+        Region newScene = new ExperimentItemScreen(newItem, this).createContent();
+        primaryStage.setScene(new Scene(newScene, 400, 200));
+        primaryStage.show();
+    }
+
+    public void loadNextScene(){
+        currentItem += 1;
+        ExpItemAdapter newItem = items.get(currentItem);
+        Region newScene = new ExperimentItemScreen(newItem, this).createContent();
+
+        primaryStage.setScene(new Scene(newScene, 400, 200));
         primaryStage.show();
     }
 

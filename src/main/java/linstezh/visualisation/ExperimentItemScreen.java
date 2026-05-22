@@ -6,12 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import linstezh.Main;
 
 public class ExperimentItemScreen {
     private ExpItemAdapter item;
+    private Main sceneSwapper;
 
-    public ExperimentItemScreen(ExpItemAdapter item){
+    public ExperimentItemScreen(ExpItemAdapter item, Main sceneSwapper){
         this.item = item;
+        this.sceneSwapper = sceneSwapper;
     }
 
     public Region createContent() {
@@ -34,5 +37,6 @@ public class ExperimentItemScreen {
     private void setEval(Boolean value) {
         item.reportUserEval(value);
         System.out.println("User was: " + item.isUserCorrect());
+        sceneSwapper.loadNextScene();
     }
 }
