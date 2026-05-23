@@ -10,9 +10,9 @@ import linstezh.Main;
 
 public class ExperimentItemScreen {
     private final ExpItemAdapter item;
-    private final Main sceneSwapper;
+    private final WindowManager sceneSwapper;
 
-    public ExperimentItemScreen(ExpItemAdapter item, Main sceneSwapper){
+    public ExperimentItemScreen(ExpItemAdapter item, WindowManager sceneSwapper){
         this.item = item;
         this.sceneSwapper = sceneSwapper;
     }

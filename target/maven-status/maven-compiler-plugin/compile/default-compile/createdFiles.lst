@@ -1,2 +1,10 @@
-linstezh\Main.class
 module-info.class
+linstezh\database\ConnectDB.class
+linstezh\Main.class
+linstezh\database\dao\ItemDAO.class
+linstezh\database\mapper\ItemMapper.class
+linstezh\visualisation\ExperimentItemScreen.class
+linstezh\visualisation\ExpItemAdapter.class
+linstezh\visualisation\WindowManager.class
+linstezh\database\DatabaseCreator.class
+linstezh\logic\ExperimentItem.class
