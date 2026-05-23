@@ -17,10 +17,6 @@ public class WindowManager extends Application {
     private int currentItem = 0;
     private Stage primaryStage;
 
-    public static void launch() {
-        launch();
-    }
-
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;

@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import linstezh.Main;
 
 public class ExperimentItemScreen {
     private final ExpItemAdapter item;
