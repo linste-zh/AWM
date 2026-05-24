@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.ExperimentItem;
+import linstezh.logic.Item;
 import linstezh.logic.Section;
 
 import java.util.ArrayList;
@@ -17,9 +18,12 @@ public class WindowManager {
     
     public WindowManager(Section section){
         this.section = section;
-        List<ExperimentItem> dbItems = section.getItemsAsList();
-        for(ExperimentItem item : dbItems){
-            items.add(new ExpItemAdapter(item));
+        List<Item> dbItems = section.getItemsAsList();
+        for(Item item : dbItems){
+            if(item.getClass() == ExperimentItem.class){
+                ExperimentItem expItem = (ExperimentItem) item;
+                items.add(new ExpItemAdapter(expItem));
+            }
         }
     }
 
