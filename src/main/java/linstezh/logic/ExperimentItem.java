@@ -9,7 +9,7 @@ public class ExperimentItem {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField (canBeNull = false, foreign = true)
+    @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Section section;
 
     @DatabaseField (canBeNull = false)

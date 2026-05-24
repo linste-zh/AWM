@@ -3,7 +3,6 @@ package linstezh.database.dao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
-import linstezh.database.DatabaseManager;
 import linstezh.logic.ExperimentItem;
 
 import java.util.ArrayList;

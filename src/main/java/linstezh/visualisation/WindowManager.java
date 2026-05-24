@@ -4,17 +4,21 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.ExperimentItem;
+import linstezh.logic.Section;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WindowManager {
+    private final Section section;
     private final List<ExpItemAdapter> items = new ArrayList<>();
     private int currentItem = 0;
     private Stage primaryStage;
     
-    public WindowManager(List<ExperimentItem> experimentItems){
-        for(ExperimentItem item : experimentItems){
+    public WindowManager(Section section){
+        this.section = section;
+        List<ExperimentItem> dbItems = section.getItemsAsList();
+        for(ExperimentItem item : dbItems){
             items.add(new ExpItemAdapter(item));
         }
     }

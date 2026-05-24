@@ -4,13 +4,14 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import linstezh.database.DatabaseManager;
 import linstezh.logic.ExperimentItem;
+import linstezh.logic.Section;
 import linstezh.visualisation.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
-    private static List<ExperimentItem> items = new ArrayList<>();
+    private static List<Section> sections = new ArrayList<>();
 
     public static void main(String[] args) {
         try{
@@ -18,7 +19,7 @@ public class Main extends Application {
             db.initTables();
             //ExperimentItem experimentItem = new ExperimentItem("1", 1, "Example Text", "Text", "happy", true);
             //itemDAO.create(experimentItem);
-            items = db.items().getAll();
+            sections = db.sections().getAll();
             launch(args);
 
             db.close();
@@ -30,7 +31,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        WindowManager wm = new WindowManager(items);
+        WindowManager wm = new WindowManager(sections.get(0));
         wm.display(primaryStage);
     }
 }

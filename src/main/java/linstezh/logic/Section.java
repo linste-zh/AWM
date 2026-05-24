@@ -1,7 +1,12 @@
 package linstezh.logic;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @DatabaseTable(tableName = "sections")
 public class Section {
@@ -16,6 +21,9 @@ public class Section {
 
     @DatabaseField(columnName = "name", canBeNull = false)
     private String name;
+
+    @ForeignCollectionField(eager = true)
+    private ForeignCollection<ExperimentItem> items;
 
     public Section(){}
 
@@ -55,5 +63,17 @@ public class Section {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ForeignCollection<ExperimentItem> getItems() {
+        return items;
+    }
+
+    public List<ExperimentItem> getItemsAsList() {
+        return new ArrayList<>(items);
+    }
+
+    public void setItems(ForeignCollection<ExperimentItem> items) {
+        this.items = items;
     }
 }
