@@ -86,7 +86,7 @@ public class ExperimentItem {
         this.affectiveValue = affectiveValue;
     }
 
-    public boolean isCorrectEvaluation() {
+    public boolean getCorrectEvaluation() {
         return correctEvaluation;
     }
 

@@ -1,13 +1,15 @@
 package linstezh.visualisation;
 
+import linstezh.logic.ExperimentItem;
+
 public class ExpItemAdapter {
     private final String evalText;
     private final Boolean correctEval;
     private Boolean userEval;
 
-    public ExpItemAdapter(String evalText, boolean correctEval){
-        this.evalText = evalText;
-        this.correctEval = correctEval;
+    public ExpItemAdapter(ExperimentItem item){
+        this.evalText = item.getDisplayText();
+        this.correctEval = item.getCorrectEvaluation();
     }
 
     public String readEvalText(){

@@ -4,21 +4,24 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import linstezh.logic.ExperimentItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class WindowManager extends Application {
-    private final List<ExpItemAdapter> items = new ArrayList<>(Arrays.asList(
-            new ExpItemAdapter("Question 1", false),
-            new ExpItemAdapter("Question 2", false)
-    ));
+public class WindowManager {
+    private final List<ExpItemAdapter> items = new ArrayList<>();
     private int currentItem = 0;
     private Stage primaryStage;
+    
+    public WindowManager(List<ExperimentItem> experimentItems){
+        for(ExperimentItem item : experimentItems){
+            items.add(new ExpItemAdapter(item));
+        }
+    }
 
-    @Override
-    public void start(Stage primaryStage) {
+    public void display(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
         ExpItemAdapter newItem = items.get(currentItem);
