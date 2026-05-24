@@ -1,13 +1,11 @@
 package linstezh.visualisation;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.ExperimentItem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class WindowManager {
@@ -32,8 +30,13 @@ public class WindowManager {
 
     public void loadNextScene(){
         currentItem += 1;
-        ExpItemAdapter newItem = items.get(currentItem);
-        Region newScene = new ExperimentItemScreen(newItem, this).createContent();
+        Region newScene;
+        if(currentItem < items.size()){
+            ExpItemAdapter newItem = items.get(currentItem);
+            newScene = new ExperimentItemScreen(newItem, this).createContent();
+        }else{
+            newScene = new ExperimentRecallScreen(items, this).createContent();
+        }
 
         primaryStage.setScene(new Scene(newScene, 400, 200));
         primaryStage.show();

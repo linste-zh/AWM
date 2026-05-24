@@ -10,8 +10,6 @@ import linstezh.visualisation.WindowManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javafx.application.Application.launch;
-
 public class Main extends Application {
     private static List<ExperimentItem> items = new ArrayList<>();
 
