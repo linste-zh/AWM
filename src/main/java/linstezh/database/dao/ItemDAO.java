@@ -11,9 +11,10 @@ import java.util.List;
 
 public class ItemDAO {
     private final Dao<ExperimentItem, Integer> itemDao;
+    ConnectionSource src;
 
-    public ItemDAO(DatabaseManager dbm) throws Exception {
-        ConnectionSource src = dbm.getConnectionSource();
+    public ItemDAO(ConnectionSource src) throws Exception {
+        this.src = src;
         itemDao = DaoManager.createDao(src, ExperimentItem.class);
     }
 

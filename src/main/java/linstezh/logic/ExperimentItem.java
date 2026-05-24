@@ -9,8 +9,8 @@ public class ExperimentItem {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField (canBeNull = false)
-    private String sectionID;
+    @DatabaseField (canBeNull = false, foreign = true)
+    private Section section;
 
     @DatabaseField (canBeNull = false)
     private int position;
@@ -29,8 +29,8 @@ public class ExperimentItem {
 
     public ExperimentItem() {}
 
-    public ExperimentItem(String sectionID, int position, String displayText, String memoryChunk, String affectiveValue, boolean correctEvaluation) {
-        this.sectionID = sectionID;
+    public ExperimentItem(Section section, int position, String displayText, String memoryChunk, String affectiveValue, boolean correctEvaluation) {
+        this.section = section;
         this.position = position;
         this.displayText = displayText;
         this.memoryChunk = memoryChunk;
@@ -46,12 +46,12 @@ public class ExperimentItem {
         this.id = id;
     }
 
-    public String getSectionID() {
-        return sectionID;
+    public Section getSection() {
+        return section;
     }
 
-    public void setSectionID(String sectionID) {
-        this.sectionID = sectionID;
+    public void setSection(Section section) {
+        this.section = section;
     }
 
     public int getPosition() {
@@ -96,6 +96,6 @@ public class ExperimentItem {
 
     @Override
     public String toString() {
-        return "Item{id=" + id + ", Section = " + sectionID + ", Text ='" + displayText + "', Memory ='" + memoryChunk + "', Affective ='" + affectiveValue +"', correct evaluation ='" + correctEvaluation + "'}";
+        return "Item{id=" + id + ", Section = " + section.getName() + ", Text ='" + displayText + "', Memory ='" + memoryChunk + "', Affective ='" + affectiveValue +"', correct evaluation ='" + correctEvaluation + "'}";
     }
 }

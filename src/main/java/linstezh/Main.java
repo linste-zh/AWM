@@ -3,7 +3,6 @@ package linstezh;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import linstezh.database.DatabaseManager;
-import linstezh.database.dao.ItemDAO;
 import linstezh.logic.ExperimentItem;
 import linstezh.visualisation.WindowManager;
 
@@ -17,13 +16,13 @@ public class Main extends Application {
         try{
             DatabaseManager db = new DatabaseManager();
             db.initTables();
-            ItemDAO itemDAO = new ItemDAO(db);
             //ExperimentItem experimentItem = new ExperimentItem("1", 1, "Example Text", "Text", "happy", true);
             //itemDAO.create(experimentItem);
-            items = itemDAO.getAll();
+            items = db.items().getAll();
             launch(args);
 
             db.close();
+            System.exit(1);
         }catch(Exception e){
             e.printStackTrace();
         }
