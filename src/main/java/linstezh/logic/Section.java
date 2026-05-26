@@ -23,7 +23,7 @@ public class Section {
     private String name;
 
     @ForeignCollectionField(eager = true)
-    private ForeignCollection<Item> items;
+    private ForeignCollection<ExperimentItem> items;
 
     public Section(){}
 
@@ -65,7 +65,7 @@ public class Section {
         this.name = name;
     }
 
-    public ForeignCollection<Item> getItems() {
+    public ForeignCollection<ExperimentItem> getItems() {
         return items;
     }
 
@@ -73,7 +73,7 @@ public class Section {
         return new ArrayList<>(items);
     }
 
-    public void setItems(ForeignCollection<Item> items) {
+    public void setItems(ForeignCollection<ExperimentItem> items) {
         this.items = items;
     }
 }

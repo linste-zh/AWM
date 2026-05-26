@@ -1,10 +1,13 @@
-C:\Users\stein\Documents\AWM\src\main\java\linstezh\database\DatabaseCreator.java
+C:\Users\stein\Documents\AWM\src\main\java\linstezh\logic\Item.java
 C:\Users\stein\Documents\AWM\src\main\java\module-info.java
-C:\Users\stein\Documents\AWM\src\main\java\linstezh\Main.java
 C:\Users\stein\Documents\AWM\src\main\java\linstezh\visualisation\WindowManager.java
+C:\Users\stein\Documents\AWM\src\main\java\linstezh\database\dao\SectionDAO.java
+C:\Users\stein\Documents\AWM\src\main\java\linstezh\Main.java
+C:\Users\stein\Documents\AWM\src\main\java\linstezh\logic\SectionTypes.java
 C:\Users\stein\Documents\AWM\src\main\java\linstezh\logic\ExperimentItem.java
+C:\Users\stein\Documents\AWM\src\main\java\linstezh\logic\Section.java
+C:\Users\stein\Documents\AWM\src\main\java\linstezh\database\DatabaseManager.java
 C:\Users\stein\Documents\AWM\src\main\java\linstezh\visualisation\ExpItemAdapter.java
-C:\Users\stein\Documents\AWM\src\main\java\linstezh\database\mapper\ItemMapper.java
+C:\Users\stein\Documents\AWM\src\main\java\linstezh\visualisation\ExperimentRecallScreen.java
 C:\Users\stein\Documents\AWM\src\main\java\linstezh\visualisation\ExperimentItemScreen.java
-C:\Users\stein\Documents\AWM\src\main\java\linstezh\database\ConnectDB.java
 C:\Users\stein\Documents\AWM\src\main\java\linstezh\database\dao\ItemDAO.java
