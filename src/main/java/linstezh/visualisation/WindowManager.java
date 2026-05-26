@@ -5,20 +5,20 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.ExperimentItem;
 import linstezh.logic.Item;
-import linstezh.logic.Section;
+import linstezh.logic.ExperimentSection;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WindowManager {
-    private final Section section;
+    private final ExperimentSection experimentSection;
     private final List<ExpItemAdapter> items = new ArrayList<>();
     private int currentItem = 0;
     private Stage primaryStage;
     
-    public WindowManager(Section section){
-        this.section = section;
-        List<Item> dbItems = section.getItemsAsList();
+    public WindowManager(ExperimentSection experimentSection){
+        this.experimentSection = experimentSection;
+        List<Item> dbItems = experimentSection.getItemsAsList();
         for(Item item : dbItems){
             if(item.getClass() == ExperimentItem.class){
                 ExperimentItem expItem = (ExperimentItem) item;

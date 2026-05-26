@@ -3,33 +3,33 @@ package linstezh.database.dao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
-import linstezh.logic.Section;
+import linstezh.logic.ExperimentSection;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SectionDAO {
-    private final Dao<Section, Integer> sectionDao;
+    private final Dao<ExperimentSection, Integer> sectionDao;
     ConnectionSource src;
 
     public SectionDAO(ConnectionSource src) throws Exception {
         this.src = src;
-        sectionDao = DaoManager.createDao(src, Section.class);
+        sectionDao = DaoManager.createDao(src, ExperimentSection.class);
     }
 
-    public void create(Section section) throws Exception {
-        sectionDao.create(section);
-        System.out.println("Created item: " + section);
+    public void create(ExperimentSection experimentSection) throws Exception {
+        sectionDao.create(experimentSection);
+        System.out.println("Created item: " + experimentSection);
     }
 
-    public List<Section> getAll(){
-        ArrayList<Section> allSections = new ArrayList<>();
+    public List<ExperimentSection> getAll(){
+        ArrayList<ExperimentSection> allExperimentSections = new ArrayList<>();
 
-        for (Section section : sectionDao) {
-            allSections.add(section);
+        for (ExperimentSection experimentSection : sectionDao) {
+            allExperimentSections.add(experimentSection);
         }
 
-        return allSections;
+        return allExperimentSections;
     }
 
 }

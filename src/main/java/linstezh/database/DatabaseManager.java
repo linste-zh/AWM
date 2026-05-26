@@ -5,7 +5,7 @@ import com.j256.ormlite.table.TableUtils;
 import linstezh.database.dao.ItemDAO;
 import linstezh.database.dao.SectionDAO;
 import linstezh.logic.ExperimentItem;
-import linstezh.logic.Section;
+import linstezh.logic.ExperimentSection;
 
 import java.sql.SQLException;
 
@@ -36,7 +36,7 @@ public class DatabaseManager {
 
     public void initTables() throws SQLException {
         TableUtils.createTableIfNotExists(connectionSource, ExperimentItem.class);
-        TableUtils.createTableIfNotExists(connectionSource, Section.class);
+        TableUtils.createTableIfNotExists(connectionSource, ExperimentSection.class);
     }
 
     public void close() throws Exception {

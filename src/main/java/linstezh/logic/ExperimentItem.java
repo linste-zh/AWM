@@ -10,7 +10,7 @@ public class ExperimentItem implements Item{
     private int id;
 
     @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    private Section section;
+    private ExperimentSection experimentSection;
 
     @DatabaseField (canBeNull = false)
     private int position;
@@ -29,8 +29,8 @@ public class ExperimentItem implements Item{
 
     public ExperimentItem() {}
 
-    public ExperimentItem(Section section, int position, String displayText, String memoryChunk, String affectiveValue, boolean correctEvaluation) {
-        this.section = section;
+    public ExperimentItem(ExperimentSection experimentSection, int position, String displayText, String memoryChunk, String affectiveValue, boolean correctEvaluation) {
+        this.experimentSection = experimentSection;
         this.position = position;
         this.displayText = displayText;
         this.memoryChunk = memoryChunk;
@@ -46,12 +46,12 @@ public class ExperimentItem implements Item{
         this.id = id;
     }
 
-    public Section getSection() {
-        return section;
+    public ExperimentSection getSection() {
+        return experimentSection;
     }
 
-    public void setSection(Section section) {
-        this.section = section;
+    public void setSection(ExperimentSection experimentSection) {
+        this.experimentSection = experimentSection;
     }
 
     public int getPosition() {
@@ -96,6 +96,6 @@ public class ExperimentItem implements Item{
 
     @Override
     public String toString() {
-        return "Item{id=" + id + ", Section = " + section.getName() + ", Text ='" + displayText + "', Memory ='" + memoryChunk + "', Affective ='" + affectiveValue +"', correct evaluation ='" + correctEvaluation + "'}";
+        return "Item{id=" + id + ", Section = " + experimentSection.getName() + ", Text ='" + displayText + "', Memory ='" + memoryChunk + "', Affective ='" + affectiveValue +"', correct evaluation ='" + correctEvaluation + "'}";
     }
 }
