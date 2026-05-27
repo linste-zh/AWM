@@ -4,20 +4,23 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.ExperimentItem;
+import linstezh.logic.ExperimentManager;
 import linstezh.logic.Item;
 import linstezh.logic.ExperimentSection;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WindowManager {
+public class SectionWindowManager {
     private final ExperimentSection experimentSection;
+    private final ExperimentManager manager;
     private final List<ExpItemAdapter> items = new ArrayList<>();
-    private int currentItem = 0;
+    private int nextItem = 0;
     private Stage primaryStage;
     
-    public WindowManager(ExperimentSection experimentSection){
+    public SectionWindowManager(ExperimentSection experimentSection, ExperimentManager manager){
         this.experimentSection = experimentSection;
+        this.manager = manager;
         List<Item> dbItems = experimentSection.getItemsAsList();
         for(Item item : dbItems){
             if(item.getClass() == ExperimentItem.class){
@@ -29,18 +32,14 @@ public class WindowManager {
 
     public void display(Stage primaryStage) {
         this.primaryStage = primaryStage;
-
-        ExpItemAdapter newItem = items.get(currentItem);
-        Region newScene = new ExperimentItemScreen(newItem, this).createContent();
-        primaryStage.setScene(new Scene(newScene, 400, 200));
-        primaryStage.show();
+        nextItem = 0;
+        loadNextScene();
     }
 
     public void loadNextScene(){
-        currentItem += 1;
         Region newScene;
-        if(currentItem < items.size()){
-            ExpItemAdapter newItem = items.get(currentItem);
+        if(nextItem < items.size()){
+            ExpItemAdapter newItem = items.get(nextItem);
             newScene = new ExperimentItemScreen(newItem, this).createContent();
         }else{
             newScene = new ExperimentRecallScreen(items, this).createContent();
@@ -48,6 +47,12 @@ public class WindowManager {
 
         primaryStage.setScene(new Scene(newScene, 400, 200));
         primaryStage.show();
+
+        nextItem += 1;
+    }
+
+    public void concludeSection() throws Exception {
+        manager.nextSection();
     }
 
 }

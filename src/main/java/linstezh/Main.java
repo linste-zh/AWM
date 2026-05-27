@@ -1,34 +1,19 @@
 package linstezh;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+
 import linstezh.database.DatabaseManager;
-import linstezh.logic.ExperimentSection;
-import linstezh.visualisation.WindowManager;
+import linstezh.logic.ExperimentManager;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Main{
+    public static void main(String[] args) throws Exception {
+        DatabaseManager.getInstance().initTables();
 
-public class Main extends Application {
-    private static List<ExperimentSection> experimentSections = new ArrayList<>();
-
-    public static void main(String[] args) {
-        try{
-            DatabaseManager db = DatabaseManager.getInstance();
-            db.initTables();
-            experimentSections = db.sections().getAll();
-            launch(args);
-
-            db.close();
-            System.exit(1);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        ExperimentManager em = new ExperimentManager();
+        em.launchExperiment(args);
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        WindowManager wm = new WindowManager(experimentSections.get(0));
-        wm.display(primaryStage);
+    public static void finish() throws Exception {
+        DatabaseManager.getInstance().close();
+        System.exit(1);
     }
 }

@@ -9,9 +9,9 @@ import javafx.scene.layout.VBox;
 
 public class ExperimentItemScreen {
     private final ExpItemAdapter item;
-    private final WindowManager sceneSwapper;
+    private final SectionWindowManager sceneSwapper;
 
-    public ExperimentItemScreen(ExpItemAdapter item, WindowManager sceneSwapper){
+    public ExperimentItemScreen(ExpItemAdapter item, SectionWindowManager sceneSwapper){
         this.item = item;
         this.sceneSwapper = sceneSwapper;
     }

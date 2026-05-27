@@ -12,10 +12,10 @@ import java.util.List;
 
 public class ExperimentRecallScreen {
     private final List<ExpItemAdapter> items;
-    private final WindowManager sceneSwapper;
+    private final SectionWindowManager sceneSwapper;
     GridPane grid = new GridPane();
 
-    public ExperimentRecallScreen(List<ExpItemAdapter> items, WindowManager sceneSwapper){
+    public ExperimentRecallScreen(List<ExpItemAdapter> items, SectionWindowManager sceneSwapper){
         this.items = items;
         this.sceneSwapper = sceneSwapper;
     }
@@ -48,11 +48,17 @@ public class ExperimentRecallScreen {
 
     private Button createSubmitButton(){
         Button submit = new Button("Submit");
-        submit.setOnAction(evt -> submitMemoryChunks());
+        submit.setOnAction(evt -> {
+            try {
+                submitMemoryChunks();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         return submit;
     }
 
-    private void submitMemoryChunks() {
+    private void submitMemoryChunks() throws Exception {
         for(Node field : grid.getChildren()){
             if(field.getClass() == TextField.class){
                 TextField textField = (TextField) field;
@@ -62,5 +68,7 @@ public class ExperimentRecallScreen {
         for(ExpItemAdapter item : items){
             item.didUserRemember();
         }
+
+        sceneSwapper.concludeSection();
     }
 }
