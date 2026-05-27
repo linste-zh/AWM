@@ -13,6 +13,9 @@ public class ExperimentItem implements Item{
     private ExperimentSection experimentSection;
 
     @DatabaseField (canBeNull = false)
+    private ItemTypes type;
+
+    @DatabaseField (canBeNull = false)
     private int position;
 
     @DatabaseField(columnName = "displayText", canBeNull = false)
@@ -52,6 +55,15 @@ public class ExperimentItem implements Item{
 
     public void setSection(ExperimentSection experimentSection) {
         this.experimentSection = experimentSection;
+    }
+
+    @Override
+    public ItemTypes getType() {
+        return type;
+    }
+
+    public void setType(ItemTypes type) {
+        this.type = type;
     }
 
     public int getPosition() {
