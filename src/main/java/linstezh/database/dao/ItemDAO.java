@@ -4,6 +4,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import linstezh.logic.ExperimentItem;
+import linstezh.logic.Section;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,18 @@ public class ItemDAO {
     public void create(ExperimentItem item) throws Exception {
         itemDao.create(item);
         System.out.println("Created item: " + item);
+    }
+
+    public List<ExperimentItem> getAllOfSection(Section section){
+        ArrayList<ExperimentItem> allExperimentItems = new ArrayList<>();
+
+        for (ExperimentItem item : itemDao) {
+            if(item.getSection() == section) {
+                allExperimentItems.add(item);
+            }
+        }
+
+        return allExperimentItems;
     }
 
     public List<ExperimentItem> getAll(){

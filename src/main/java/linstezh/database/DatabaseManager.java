@@ -39,7 +39,6 @@ public class DatabaseManager {
         TableUtils.createTableIfNotExists(connectionSource, ParticipantEvalResponse.class);
         TableUtils.createTableIfNotExists(connectionSource, ParticipantMemResponse.class);
         TableUtils.createTableIfNotExists(connectionSource, Participant.class);
-
     }
 
     public void close() throws Exception {
