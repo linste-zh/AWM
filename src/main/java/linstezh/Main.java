@@ -14,7 +14,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         try{
-            DatabaseManager db = new DatabaseManager();
+            DatabaseManager db = DatabaseManager.getInstance();
             db.initTables();
             experimentSections = db.sections().getAll();
             launch(args);
