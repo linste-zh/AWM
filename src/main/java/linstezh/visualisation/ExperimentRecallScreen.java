@@ -12,12 +12,12 @@ import java.util.List;
 
 public class ExperimentRecallScreen {
     private final List<ExpItemAdapter> items;
-    private final SectionWindowManager sceneSwapper;
+    private final SectionWindowManager manager;
     GridPane grid = new GridPane();
 
-    public ExperimentRecallScreen(List<ExpItemAdapter> items, SectionWindowManager sceneSwapper){
+    public ExperimentRecallScreen(List<ExpItemAdapter> items, SectionWindowManager manager){
         this.items = items;
-        this.sceneSwapper = sceneSwapper;
+        this.manager = manager;
     }
 
     public Region createContent() {
@@ -69,6 +69,7 @@ public class ExperimentRecallScreen {
             item.didUserRemember();
         }
 
-        sceneSwapper.concludeSection();
+        manager.reportMemorisedChunks(items);
+        manager.concludeSection();
     }
 }

@@ -22,7 +22,6 @@ public class ExperimentManager extends Application {
 
     public void launchExperiment(String[] args){
         try{
-            currentParticipant = new Participant("Trial Participant");
             launch(args);
         }catch(Exception e){
             e.printStackTrace();
@@ -31,6 +30,9 @@ public class ExperimentManager extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        currentParticipant = new Participant("Trial Participant");
+        db.participants().create(currentParticipant);
+
         this.primaryStage = primaryStage;
         nextSection = 0;
         nextSection();
@@ -44,5 +46,18 @@ public class ExperimentManager extends Application {
         }else{
             Main.finish();
         }
+    }
+
+    public void saveEvalResponse(ExperimentItem item, boolean response) throws Exception {
+        System.out.println(item);
+        System.out.println(currentParticipant);
+        System.out.println(response);
+        ParticipantEvalResponse newPER = new ParticipantEvalResponse(item, currentParticipant, response);
+        db.participantEvalResponses().create(newPER);
+    }
+
+    public void saveMemResponse(ExperimentItem item, String response) throws Exception {
+        ParticipantMemResponse newPMR = new ParticipantMemResponse(item, currentParticipant, response);
+        db.participantMemResponses().create(newPMR);
     }
 }

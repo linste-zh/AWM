@@ -9,11 +9,11 @@ import javafx.scene.layout.VBox;
 
 public class ExperimentItemScreen {
     private final ExpItemAdapter item;
-    private final SectionWindowManager sceneSwapper;
+    private final SectionWindowManager manager;
 
-    public ExperimentItemScreen(ExpItemAdapter item, SectionWindowManager sceneSwapper){
+    public ExperimentItemScreen(ExpItemAdapter item, SectionWindowManager manager){
         this.item = item;
-        this.sceneSwapper = sceneSwapper;
+        this.manager = manager;
     }
 
     public Region createContent() {
@@ -24,7 +24,13 @@ public class ExperimentItemScreen {
 
     private Node evalButton(Boolean value) {
         Button results = new Button(value.toString());
-        results.setOnAction(evt -> setEval(value));
+        results.setOnAction(evt -> {
+            try {
+                setEval(value);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         return results;
     }
 
@@ -32,9 +38,10 @@ public class ExperimentItemScreen {
         return new Label(item.readEvalText());
     }
 
-    private void setEval(Boolean value) {
+    private void setEval(Boolean value) throws Exception {
         item.reportUserEval(value);
         System.out.println("User was: " + item.isUserCorrect());
-        sceneSwapper.loadNextScene();
+        manager.reportEval(item);
+        manager.loadNextScene();
     }
 }

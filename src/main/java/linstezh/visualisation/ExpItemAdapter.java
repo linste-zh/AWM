@@ -37,8 +37,16 @@ public class ExpItemAdapter {
         userEval = eval;
     }
 
+    public boolean readUserEval(){
+        return userEval;
+    }
+
     public void reportUserMemoryChunk(String memo){
         userMemoryChunk = memo;
+    }
+
+    public String readUserMemoryChunk(){
+        return userMemoryChunk;
     }
 
     public Boolean isUserCorrect(){
@@ -49,5 +57,4 @@ public class ExpItemAdapter {
         System.out.println("User reported " + userMemoryChunk + "; was supposed to report " + memoryChunk);
         return userMemoryChunk.equals(memoryChunk);
     }
-
 }

@@ -14,20 +14,15 @@ import java.util.List;
 public class SectionWindowManager {
     private final ExperimentSection experimentSection;
     private final ExperimentManager manager;
-    private final List<ExpItemAdapter> items = new ArrayList<>();
+    private List<Item> items;
+    private ExperimentItem currentItem;
     private int nextItem = 0;
     private Stage primaryStage;
     
     public SectionWindowManager(ExperimentSection experimentSection, ExperimentManager manager){
         this.experimentSection = experimentSection;
         this.manager = manager;
-        List<Item> dbItems = experimentSection.getItemsAsList();
-        for(Item item : dbItems){
-            if(item.getClass() == ExperimentItem.class){
-                ExperimentItem expItem = (ExperimentItem) item;
-                items.add(new ExpItemAdapter(expItem));
-            }
-        }
+        items = experimentSection.getItemsAsList();
     }
 
     public void display(Stage primaryStage) {
@@ -36,19 +31,35 @@ public class SectionWindowManager {
         loadNextScene();
     }
 
+    public void reportEval(ExpItemAdapter itemAdapter) throws Exception {
+        manager.saveEvalResponse(currentItem, itemAdapter.readCorrectEval());
+    }
+
+    public void reportMemorisedChunks(List<ExpItemAdapter> itemAdapters) throws Exception {
+        for(int i = 0; i < itemAdapters.size(); i++){
+            manager.saveMemResponse((ExperimentItem) items.get(i), itemAdapters.get(i).readUserMemoryChunk());
+        }
+    }
+
     public void loadNextScene(){
         Region newScene;
         if(nextItem < items.size()){
-            ExpItemAdapter newItem = items.get(nextItem);
+            currentItem = (ExperimentItem) items.get(nextItem);
+            ExpItemAdapter newItem = new ExpItemAdapter(currentItem);
             newScene = new ExperimentItemScreen(newItem, this).createContent();
+            nextItem += 1;
         }else{
-            newScene = new ExperimentRecallScreen(items, this).createContent();
+            List<ExpItemAdapter> adaptedItems = new ArrayList<>();
+            for(Item item : items){
+                if(item.getClass() == ExperimentItem.class){
+                    adaptedItems.add(new ExpItemAdapter((ExperimentItem) item));
+                }
+            }
+            newScene = new ExperimentRecallScreen(adaptedItems, this).createContent();
         }
 
         primaryStage.setScene(new Scene(newScene, 400, 200));
         primaryStage.show();
-
-        nextItem += 1;
     }
 
     public void concludeSection() throws Exception {
