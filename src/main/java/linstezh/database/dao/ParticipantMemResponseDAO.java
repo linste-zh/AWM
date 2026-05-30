@@ -6,7 +6,6 @@ import com.j256.ormlite.support.ConnectionSource;
 import linstezh.logic.ExperimentItem;
 import linstezh.logic.Participant;
 import linstezh.logic.ParticipantMemResponse;
-import linstezh.logic.Section;
 
 import java.util.ArrayList;
 import java.util.List;

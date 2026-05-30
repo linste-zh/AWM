@@ -69,7 +69,7 @@ public class ExperimentSection implements Section{
         return items;
     }
 
-    public List<Item> getItemsAsList() {
+    public List<ExperimentItem> getItemsAsList() {
         return new ArrayList<>(items);
     }
 

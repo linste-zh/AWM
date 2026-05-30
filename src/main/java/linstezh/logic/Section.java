@@ -7,5 +7,5 @@ public interface Section {
     SectionTypes getType();
     int getPosition();
     String getName();
-    List<Item> getItemsAsList();
+    List<ExperimentItem> getItemsAsList();
 }
