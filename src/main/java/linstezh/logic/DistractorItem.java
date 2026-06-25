@@ -4,7 +4,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "experimentItems")
-public class ExperimentItem extends Item{
+public class DistractorItem extends Item{
 
     @DatabaseField(generatedId = true)
     private int id;
@@ -18,9 +18,9 @@ public class ExperimentItem extends Item{
     @DatabaseField(columnName = "correctEvaluation")
     private boolean correctEvaluation;
 
-    public ExperimentItem() {}
+    public DistractorItem() {}
 
-    public ExperimentItem(Item baseItem, String memoryChunk, boolean correctEvaluation) {
+    public DistractorItem(Item baseItem, String memoryChunk, boolean correctEvaluation) {
         this.baseItem = baseItem;
         this.memoryChunk = memoryChunk;
         this.correctEvaluation = correctEvaluation;
