@@ -2,26 +2,32 @@ package linstezh.logic;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import linstezh.database.dbObjects.ItemDBO;
 
-@DatabaseTable(tableName = "items")
-public class Item {
-    @DatabaseField(generatedId = true)
+
+public class Item implements ItemInterface{
     private int id;
-
-    @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Section section;
-
-    @DatabaseField (canBeNull = false)
     private ItemTypes type;
-
-    @DatabaseField (canBeNull = false)
     private int position;
-
-    @DatabaseField(columnName = "displayText", canBeNull = false)
     private String displayText;
-
-    @DatabaseField(columnName = "affectiveValue")
     private String affectiveValue;
+
+    public Item(Section section, ItemTypes type, int position, String displayText, String affectiveValue){
+        this.section = section;
+        this.type = type;
+        this.position = position;
+        this.displayText = displayText;
+        this.affectiveValue = affectiveValue;
+    }
+
+    public Item(ItemDBO item){
+        //this.section = item.getSectionID();
+        this.type = item.getType();
+        this.position = item.getPosition();
+        this.displayText = item.getDisplayText();
+        this.affectiveValue = item.getAffectiveValue();
+    }
 
     public int getId() {
         return id;
@@ -37,6 +43,10 @@ public class Item {
 
     public void setSection (Section section) {
         this.section = section;
+    }
+
+    public int getSectionID(){
+        return this.section.getID();
     }
 
     public ItemTypes getType() {
