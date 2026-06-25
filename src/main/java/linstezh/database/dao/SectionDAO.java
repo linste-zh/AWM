@@ -4,7 +4,6 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import linstezh.database.dbObjects.SectionDBO;
-import linstezh.logic.ExperimentSection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +23,13 @@ public class SectionDAO {
     }
 
     public List<SectionDBO> getAll(){
-        ArrayList<SectionDBO> allExperimentSections = new ArrayList<>();
+        ArrayList<SectionDBO> allSections = new ArrayList<>();
 
-        for (SectionDBO experimentSection : sectionDao) {
-            allExperimentSections.add(experimentSection);
+        for (SectionDBO section : sectionDao) {
+            allSections.add(section);
         }
 
-        return allExperimentSections;
+        return allSections;
     }
 
 }

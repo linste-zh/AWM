@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExperimentManager extends Application {
-    private List<ExperimentSection> experimentSections;
+    private List<Section> experimentSections;
     private Participant currentParticipant;
     DatabaseManager db;
     Stage primaryStage;
