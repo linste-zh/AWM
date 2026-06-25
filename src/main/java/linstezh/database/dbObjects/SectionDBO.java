@@ -2,7 +2,8 @@ package linstezh.database.dbObjects;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import linstezh.logic.*;
+import linstezh.logic.SectionInterface;
+import linstezh.logic.SectionTypes;
 
 @DatabaseTable(tableName = "sections")
 public class SectionDBO {

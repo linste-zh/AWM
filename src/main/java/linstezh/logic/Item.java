@@ -1,7 +1,5 @@
 package linstezh.logic;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 import linstezh.database.dbObjects.ItemDBO;
 
 
@@ -13,7 +11,8 @@ public class Item implements ItemInterface{
     private String displayText;
     private String affectiveValue;
 
-    public Item(Section section, ItemTypes type, int position, String displayText, String affectiveValue){
+    public Item(int id, Section section, ItemTypes type, int position, String displayText, String affectiveValue){
+        this.id = id;
         this.section = section;
         this.type = type;
         this.position = position;
@@ -22,6 +21,7 @@ public class Item implements ItemInterface{
     }
 
     public Item(ItemDBO item){
+        this.id = item.getID();
         //this.section = item.getSectionID();
         this.type = item.getType();
         this.position = item.getPosition();

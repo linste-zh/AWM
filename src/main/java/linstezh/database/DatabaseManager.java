@@ -1,13 +1,16 @@
 package linstezh.database;
+
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import linstezh.database.dao.*;
+import linstezh.database.dao.ExperimentDAO;
+import linstezh.database.dao.ExperimentItemDAO;
+import linstezh.database.dao.ItemDAO;
+import linstezh.database.dao.SectionDAO;
 import linstezh.database.dbObjects.ExperimentDBO;
 import linstezh.database.dbObjects.ExperimentItemDBO;
 import linstezh.database.dbObjects.ItemDBO;
 import linstezh.database.dbObjects.SectionDBO;
-import linstezh.logic.*;
 
 import java.sql.SQLException;
 

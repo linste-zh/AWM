@@ -1,45 +1,46 @@
 package linstezh.logic;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import linstezh.database.dbObjects.ExperimentItemDBO;
+import linstezh.database.dbObjects.ItemDBO;
 
-@DatabaseTable(tableName = "experimentItems")
 public class ExperimentItem extends Item{
-
-    @DatabaseField(generatedId = true)
     private int id;
-
-    @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    private Item baseItem;
-
-    @DatabaseField(columnName = "memoryChunk", canBeNull = false)
+    private int baseItemID;
     private String memoryChunk;
-
-    @DatabaseField(columnName = "correctEvaluation")
     private boolean correctEvaluation;
 
-    public ExperimentItem() {}
-
-    public ExperimentItem(Item baseItem, String memoryChunk, boolean correctEvaluation) {
-        this.baseItem = baseItem;
+    public ExperimentItem(int id, int baseItemID, Section section, ItemTypes type, int position, String displayText, String affectiveValue, String memoryChunk, boolean correctEvaluation) {
+        super(baseItemID, section, type, position, displayText, affectiveValue);
+        this.id = id;
+        this.baseItemID = baseItemID;
         this.memoryChunk = memoryChunk;
         this.correctEvaluation = correctEvaluation;
     }
 
+    public ExperimentItem(ItemDBO baseItem, ExperimentItemDBO experimentItemInfo){
+        super(baseItem);
+        this.baseItemID = baseItem.getID();
+        this.id = experimentItemInfo.getId();
+        this.memoryChunk = experimentItemInfo.getMemoryChunk();
+        this.correctEvaluation = experimentItemInfo.getCorrectEvaluation();
+    }
+
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    public Item getBaseItem() {
-        return baseItem;
+    public int getBaseItemID() {
+        return baseItemID;
     }
 
-    public void setBaseItem(Item baseItem) {
-        this.baseItem = baseItem;
+    public void setBaseItemID(int baseItemID) {
+        this.baseItemID = baseItemID;
     }
 
     public String getMemoryChunk() {
