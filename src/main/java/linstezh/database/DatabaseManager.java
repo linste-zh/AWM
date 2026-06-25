@@ -3,6 +3,10 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import linstezh.database.dao.*;
+import linstezh.database.dbObjects.ExperimentDBO;
+import linstezh.database.dbObjects.ExperimentItemDBO;
+import linstezh.database.dbObjects.ItemDBO;
+import linstezh.database.dbObjects.SectionDBO;
 import linstezh.logic.*;
 
 import java.sql.SQLException;
@@ -13,19 +17,17 @@ public class DatabaseManager {
     private final ConnectionSource connectionSource;
     private static DatabaseManager INSTANCE;
 
-    private final ItemDAO itemDAO;
+    private final ExperimentDAO experimentDAO;
     private final SectionDAO sectionDAO;
-    private final ParticipantDAO participantDAO;
-    private final ParticipantEvalResponseDAO perDAO;
-    private final ParticipantMemResponseDAO pmrDAO;
+    private final ItemDAO itemDAO;
+    private final ExperimentItemDAO experimentItemDAO;
 
     private DatabaseManager() throws Exception {
         connectionSource = new JdbcConnectionSource(DB_URL);
-        itemDAO = new ItemDAO(connectionSource);
+        experimentDAO = new ExperimentDAO(connectionSource);
         sectionDAO = new SectionDAO(connectionSource);
-        participantDAO = new ParticipantDAO(connectionSource);
-        perDAO = new ParticipantEvalResponseDAO(connectionSource);
-        pmrDAO = new ParticipantMemResponseDAO(connectionSource);
+        itemDAO = new ItemDAO(connectionSource);
+        experimentItemDAO = new ExperimentItemDAO(connectionSource);
     }
 
     public static DatabaseManager getInstance() throws Exception {
@@ -39,32 +41,27 @@ public class DatabaseManager {
         return connectionSource;
     }
 
-    public ItemDAO items(){
-        return itemDAO;
+    public ExperimentDAO experiments(){
+        return experimentDAO;
     }
 
     public SectionDAO sections(){
         return sectionDAO;
     }
 
-    public ParticipantDAO participants() {
-        return participantDAO;
+    public ItemDAO items(){
+        return itemDAO;
     }
 
-    public ParticipantEvalResponseDAO participantEvalResponses() {
-        return perDAO;
-    }
-
-    public ParticipantMemResponseDAO participantMemResponses() {
-        return pmrDAO;
+    public ExperimentItemDAO experimentItems(){
+        return experimentItemDAO;
     }
 
     public void initTables() throws SQLException {
-        TableUtils.createTableIfNotExists(connectionSource, ExperimentItem.class);
-        TableUtils.createTableIfNotExists(connectionSource, ExperimentSection.class);
-        TableUtils.createTableIfNotExists(connectionSource, ParticipantEvalResponse.class);
-        TableUtils.createTableIfNotExists(connectionSource, ParticipantMemResponse.class);
-        TableUtils.createTableIfNotExists(connectionSource, Participant.class);
+        TableUtils.createTableIfNotExists(connectionSource, ExperimentDBO.class);
+        TableUtils.createTableIfNotExists(connectionSource, SectionDBO.class);
+        TableUtils.createTableIfNotExists(connectionSource, ItemDBO.class);
+        TableUtils.createTableIfNotExists(connectionSource, ExperimentItemDBO.class);
     }
 
     public void close() throws Exception {

@@ -6,6 +6,7 @@ import linstezh.Main;
 import linstezh.database.DatabaseManager;
 import linstezh.visualisation.SectionWindowManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExperimentManager extends Application {
@@ -17,7 +18,7 @@ public class ExperimentManager extends Application {
 
     public ExperimentManager() throws Exception {
         db = DatabaseManager.getInstance();
-        experimentSections = db.sections().getAll();
+        experimentSections = new ArrayList<>(); //PLACEHOLDER
     }
 
     public void launchExperiment(String[] args){
@@ -31,7 +32,7 @@ public class ExperimentManager extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         currentParticipant = new Participant("Trial Participant");
-        db.participants().create(currentParticipant);
+        //db.participants().create(currentParticipant);
 
         this.primaryStage = primaryStage;
         nextSection = 0;
@@ -53,11 +54,11 @@ public class ExperimentManager extends Application {
         System.out.println(currentParticipant);
         System.out.println(response);
         ParticipantEvalResponse newPER = new ParticipantEvalResponse(item, currentParticipant, response);
-        db.participantEvalResponses().create(newPER);
+        //db.participantEvalResponses().create(newPER);
     }
 
     public void saveMemResponse(ExperimentItem item, String response) throws Exception {
         ParticipantMemResponse newPMR = new ParticipantMemResponse(item, currentParticipant, response);
-        db.participantMemResponses().create(newPMR);
+        //db.participantMemResponses().create(newPMR);
     }
 }
