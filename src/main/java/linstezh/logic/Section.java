@@ -24,14 +24,6 @@ public class Section implements SectionInterface{
         this.name = name;
     }
 
-    public Section(SectionDBO section){
-        this.id = section.getID();
-        this.type = section.getType();
-        //this.experimentID = section.getExperimentID();
-        this.position = section.getPosition();
-        this.name = section.getName();
-    }
-
     public int getID() {
         return id;
     }

@@ -1,7 +1,5 @@
 package linstezh.logic;
 
-import linstezh.database.dbObjects.ExperimentItemDBO;
-import linstezh.database.dbObjects.ItemDBO;
 
 public class ExperimentItem extends Item{
     private int id;
@@ -15,14 +13,6 @@ public class ExperimentItem extends Item{
         this.baseItemID = baseItemID;
         this.memoryChunk = memoryChunk;
         this.correctEvaluation = correctEvaluation;
-    }
-
-    public ExperimentItem(ItemDBO baseItem, ExperimentItemDBO experimentItemInfo){
-        super(baseItem);
-        this.baseItemID = baseItem.getID();
-        this.id = experimentItemInfo.getId();
-        this.memoryChunk = experimentItemInfo.getMemoryChunk();
-        this.correctEvaluation = experimentItemInfo.getCorrectEvaluation();
     }
 
     @Override

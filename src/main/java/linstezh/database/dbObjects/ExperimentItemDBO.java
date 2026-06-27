@@ -2,15 +2,14 @@ package linstezh.database.dbObjects;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import linstezh.logic.ExperimentItem;
 
 @DatabaseTable(tableName = "experimentItems")
 public class ExperimentItemDBO {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField (canBeNull = false)
-    private int baseItemID;
+    @DatabaseField (canBeNull = false, foreign = true)
+    private ItemDBO baseItemID;
 
     @DatabaseField(columnName = "memoryChunk", canBeNull = false)
     private String memoryChunk;
@@ -20,16 +19,10 @@ public class ExperimentItemDBO {
 
     public ExperimentItemDBO(){}
 
-    public ExperimentItemDBO(int baseItemID, String memoryChunk, boolean correctEvaluation){
+    public ExperimentItemDBO(ItemDBO baseItemID, String memoryChunk, boolean correctEvaluation){
         this.baseItemID = baseItemID;
         this.memoryChunk = memoryChunk;
         this.correctEvaluation = correctEvaluation;
-    }
-
-    public ExperimentItemDBO(ExperimentItem experimentItem){
-        this.baseItemID = experimentItem.getBaseItemID();
-        this.memoryChunk = experimentItem.getMemoryChunk();
-        this.correctEvaluation = experimentItem.getCorrectEvaluation();
     }
 
     public int getId() {
@@ -40,11 +33,11 @@ public class ExperimentItemDBO {
         this.id = id;
     }
 
-    public int getBaseItemID() {
+    public ItemDBO getBaseItemID() {
         return baseItemID;
     }
 
-    public void setBaseItemID(int baseItemID) {
+    public void setBaseItemID(ItemDBO baseItemID) {
         this.baseItemID = baseItemID;
     }
 

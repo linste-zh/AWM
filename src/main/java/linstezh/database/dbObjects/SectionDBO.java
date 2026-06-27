@@ -10,8 +10,8 @@ public class SectionDBO {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField (canBeNull = false)
-    private int experimentID;
+    @DatabaseField (canBeNull = false, foreign = true)
+    private ExperimentDBO experimentID;
 
     @DatabaseField (columnName = "type", canBeNull = false)
     private SectionTypes type;
@@ -24,19 +24,11 @@ public class SectionDBO {
 
     public SectionDBO(){}
 
-    public SectionDBO(int experimentID, SectionTypes type, int position, String name){
+    public SectionDBO(ExperimentDBO experimentID, SectionTypes type, int position, String name){
         this.type = type;
         this.experimentID = experimentID;
         this.position = position;
         this.name = name;
-    }
-
-    public SectionDBO(SectionInterface section){
-        this.id = section.getID();
-        this.type = section.getType();
-        this.experimentID = section.getExperimentID();
-        this.position = section.getPosition();
-        this.name = section.getName();
     }
 
     public int getID() {
@@ -47,11 +39,11 @@ public class SectionDBO {
         this.id = id;
     }
 
-    public int getExperimentID() {
+    public ExperimentDBO getExperimentID() {
         return experimentID;
     }
 
-    public void setExperimentID(int experimentID) {
+    public void setExperimentID(ExperimentDBO experimentID) {
         this.experimentID = experimentID;
     }
 

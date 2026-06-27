@@ -20,15 +20,6 @@ public class Item implements ItemInterface{
         this.affectiveValue = affectiveValue;
     }
 
-    public Item(ItemDBO item){
-        this.id = item.getID();
-        //this.section = item.getSectionID();
-        this.type = item.getType();
-        this.position = item.getPosition();
-        this.displayText = item.getDisplayText();
-        this.affectiveValue = item.getAffectiveValue();
-    }
-
     public int getId() {
         return id;
     }

@@ -2,7 +2,6 @@ package linstezh.database.dbObjects;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import linstezh.logic.ItemInterface;
 import linstezh.logic.ItemTypes;
 
 @DatabaseTable(tableName = "items")
@@ -10,8 +9,8 @@ public class ItemDBO {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField (canBeNull = false)
-    private int sectionID;
+    @DatabaseField (canBeNull = false, foreign = true)
+    private SectionDBO sectionID;
 
     @DatabaseField (canBeNull = false)
     private ItemTypes type;
@@ -27,20 +26,12 @@ public class ItemDBO {
 
     public ItemDBO(){}
 
-    public ItemDBO(int sectionID, ItemTypes type, int position, String displayText, String affectiveValue){
+    public ItemDBO(SectionDBO sectionID, ItemTypes type, int position, String displayText, String affectiveValue){
         this.sectionID = sectionID;
         this.type = type;
         this.position = position;
         this.displayText = displayText;
         this.affectiveValue = affectiveValue;
-    }
-
-    public ItemDBO(ItemInterface item){
-        this.sectionID = item.getSectionID();
-        this.type = item.getType();
-        this.position = item.getPosition();
-        this.displayText = item.getDisplayText();
-        this.affectiveValue = item.getAffectiveValue();
     }
 
     public int getID() {
@@ -51,11 +42,11 @@ public class ItemDBO {
         this.id = id;
     }
 
-    public int getSectionID() {
+    public SectionDBO getSectionID() {
         return sectionID;
     }
 
-    public void setSectionID(int sectionID) {
+    public void setSectionID(SectionDBO sectionID) {
         this.sectionID = sectionID;
     }
 
