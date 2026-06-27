@@ -1,6 +1,5 @@
 package linstezh;
 
-
 import linstezh.database.DatabaseManager;
 import linstezh.logic.ExperimentManager;
 
@@ -9,7 +8,7 @@ public class Main{
         DatabaseManager.getInstance().initTables();
 
         ExperimentManager em = new ExperimentManager();
-        em.launchExperiment(args);
+        //em.launchExperiment(args);
     }
 
     public static void finish() throws Exception {

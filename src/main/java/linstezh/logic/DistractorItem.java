@@ -1,4 +1,4 @@
-package linstezh.logic;
+/*package linstezh.logic;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -57,4 +57,4 @@ public class DistractorItem extends Item{
     public void setCorrectEvaluation(boolean correctEvaluation) {
         this.correctEvaluation = correctEvaluation;
     }
-}
+}*/

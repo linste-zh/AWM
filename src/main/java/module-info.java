@@ -7,5 +7,9 @@ module linstezh {
     requires ormlite.jdbc;
 
     exports linstezh;  // your main package
+    exports linstezh.database.dbObjects;
+    opens linstezh.database.dbObjects;
     opens linstezh.logic;
+    opens linstezh.database;
+    opens linstezh.visualisation;
 }

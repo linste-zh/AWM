@@ -9,7 +9,7 @@ public class ExperimentItemDBO {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    @DatabaseField (canBeNull = false)
     private int baseItemID;
 
     @DatabaseField(columnName = "memoryChunk", canBeNull = false)
