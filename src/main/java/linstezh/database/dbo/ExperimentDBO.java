@@ -1,4 +1,4 @@
-package linstezh.database.dbObjects;
+package linstezh.database.dbo;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

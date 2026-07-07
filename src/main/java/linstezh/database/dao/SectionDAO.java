@@ -3,7 +3,7 @@ package linstezh.database.dao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
-import linstezh.database.dbObjects.SectionDBO;
+import linstezh.database.dbo.SectionDBO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,14 @@ public class SectionDAO {
         }
 
         return allSections;
+    }
+
+    public List<SectionDBO> getByExperimentId(int experimentID) throws Exception {
+        return sectionDao.query(
+                sectionDao.queryBuilder()
+                        .where().eq("experimentID", experimentID)
+                        .prepare()
+        );
     }
 
 }

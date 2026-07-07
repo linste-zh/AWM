@@ -1,7 +1,5 @@
 package linstezh.logic;
 
-import linstezh.database.dbObjects.ExperimentDBO;
-
 import java.util.List;
 
 public class Experiment {
@@ -9,15 +7,11 @@ public class Experiment {
     private String name;
     private List<SectionInterface> sections;
 
-    public Experiment(int id, String name, List<SectionInterface> sections){
+    public Experiment(){}
+
+    public Experiment(int id, String name){
         this.id = id;
         this.name = name;
-        this.sections = sections;
-    }
-
-    public Experiment(ExperimentDBO experiment){
-        this.id = experiment.getID();
-        this.name = experiment.getName();
     }
 
     public int getID() {

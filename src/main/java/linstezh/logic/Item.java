@@ -1,8 +1,5 @@
 package linstezh.logic;
 
-import linstezh.database.dbObjects.ItemDBO;
-
-
 public class Item implements ItemInterface{
     private int id;
     private Section section;
@@ -10,6 +7,8 @@ public class Item implements ItemInterface{
     private int position;
     private String displayText;
     private String affectiveValue;
+
+    public Item(){};
 
     public Item(int id, Section section, ItemTypes type, int position, String displayText, String affectiveValue){
         this.id = id;
@@ -20,24 +19,20 @@ public class Item implements ItemInterface{
         this.affectiveValue = affectiveValue;
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setID(int id) {
         this.id = id;
-    }
-
-    public Section getSection() {
-        return this.section;
     }
 
     public void setSection (Section section) {
         this.section = section;
     }
 
-    public int getSectionID(){
-        return this.section.getID();
+    public Section getSection(){
+        return this.section;
     }
 
     public ItemTypes getType() {

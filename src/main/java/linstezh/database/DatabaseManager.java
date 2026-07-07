@@ -7,10 +7,10 @@ import linstezh.database.dao.ExperimentDAO;
 import linstezh.database.dao.ExperimentItemDAO;
 import linstezh.database.dao.ItemDAO;
 import linstezh.database.dao.SectionDAO;
-import linstezh.database.dbObjects.ExperimentDBO;
-import linstezh.database.dbObjects.ExperimentItemDBO;
-import linstezh.database.dbObjects.ItemDBO;
-import linstezh.database.dbObjects.SectionDBO;
+import linstezh.database.dbo.ExperimentDBO;
+import linstezh.database.dbo.ExperimentItemDBO;
+import linstezh.database.dbo.ItemDBO;
+import linstezh.database.dbo.SectionDBO;
 
 import java.sql.SQLException;
 

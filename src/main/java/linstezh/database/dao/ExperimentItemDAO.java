@@ -3,7 +3,7 @@ package linstezh.database.dao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
-import linstezh.database.dbObjects.ExperimentItemDBO;
+import linstezh.database.dbo.ExperimentItemDBO;
 
 public class ExperimentItemDAO {
     private final Dao<ExperimentItemDBO, Integer> experimentItemDao;

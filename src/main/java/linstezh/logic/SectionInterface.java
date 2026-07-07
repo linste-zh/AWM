@@ -8,5 +8,5 @@ public interface SectionInterface {
     SectionTypes getType();
     int getPosition();
     String getName();
-    List<Item> getItems();
+    List<ItemInterface> getItems();
 }

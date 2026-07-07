@@ -1,7 +1,8 @@
 package linstezh.logic;
 
 public interface ItemInterface {
-        int getSectionID();
+        int getID();
+        Section getSection();
         ItemTypes getType();
         int getPosition();
         String getDisplayText();

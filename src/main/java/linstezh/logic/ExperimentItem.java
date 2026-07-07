@@ -7,6 +7,12 @@ public class ExperimentItem extends Item{
     private String memoryChunk;
     private boolean correctEvaluation;
 
+    public ExperimentItem(){};
+
+    public ExperimentItem(Item baseItem){
+        super(baseItem.getID(), baseItem.getSection(), baseItem.getType(), baseItem.getPosition(), baseItem.getDisplayText(), baseItem.getAffectiveValue());
+    }
+
     public ExperimentItem(int id, int baseItemID, Section section, ItemTypes type, int position, String displayText, String affectiveValue, String memoryChunk, boolean correctEvaluation) {
         super(baseItemID, section, type, position, displayText, affectiveValue);
         this.id = id;
@@ -16,12 +22,12 @@ public class ExperimentItem extends Item{
     }
 
     @Override
-    public int getId() {
+    public int getID() {
         return id;
     }
 
     @Override
-    public void setId(int id) {
+    public void setID(int id) {
         this.id = id;
     }
 
