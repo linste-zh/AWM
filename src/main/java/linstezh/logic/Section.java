@@ -1,5 +1,6 @@
 package linstezh.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Section implements SectionInterface{
@@ -13,7 +14,7 @@ public class Section implements SectionInterface{
 
     private String name;
 
-    private List<ItemInterface> items;
+    private List<ItemInterface> items = new ArrayList<>();
 
     public Section(){}
 
@@ -87,9 +88,10 @@ public class Section implements SectionInterface{
         StringBuilder string = new StringBuilder();
 
         string.append(this.position + ". " + this.name + "(" + this.id + ")\n");
-        for(ItemInterface item : this.items){
+        for(ItemInterface item : this.items) {
             string.append("\t" + item + "\n");
         }
+
 
         return string.toString();
     }

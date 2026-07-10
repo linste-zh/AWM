@@ -9,7 +9,7 @@ public class ItemDBO implements DBO{
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField (canBeNull = false, foreign = true)
+    @DatabaseField (canBeNull = false, foreign = true, columnName = "sectionID")
     private SectionDBO sectionID;
 
     @DatabaseField (canBeNull = false)

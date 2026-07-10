@@ -9,7 +9,7 @@ public class SectionDBO implements DBO{
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField (canBeNull = false, foreign = true)
+    @DatabaseField (canBeNull = false, foreign = true, columnName = "experimentID")
     private ExperimentDBO experimentID;
 
     @DatabaseField (columnName = "type", canBeNull = false)

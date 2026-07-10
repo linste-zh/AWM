@@ -5,7 +5,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.ExperimentItem;
 import linstezh.logic.ExperimentManager;
-import linstezh.logic.Item;
+import linstezh.logic.ItemInterface;
 import linstezh.logic.Section;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
 public class SectionWindowManager {
     private final Section section;
     private final ExperimentManager manager;
-    private List<Item> items;
+    private List<ItemInterface> items;
     private ExperimentItem currentItem;
     private int nextItem = 0;
     private Stage primaryStage;
@@ -50,7 +50,7 @@ public class SectionWindowManager {
             nextItem += 1;
         }else{
             List<ExpItemAdapter> adaptedItems = new ArrayList<>();
-            for(Item item : items){
+            for(ItemInterface item : items){
                 adaptedItems.add(new ExpItemAdapter((ExperimentItem) item)); //todo: fix
             }
             newScene = new ExperimentRecallScreen(adaptedItems, this).createContent();

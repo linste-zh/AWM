@@ -1,11 +1,12 @@
 package linstezh.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Experiment {
     private int id;
     private String name;
-    private List<SectionInterface> sections;
+    private List<SectionInterface> sections = new ArrayList<>();
 
     public Experiment(){}
 
@@ -51,6 +52,7 @@ public class Experiment {
             string.append(section + "\n");
             string.append("-".repeat(10) + "\n");
         }
+
         return string.toString();
     }
 }
