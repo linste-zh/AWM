@@ -1,7 +1,9 @@
-package linstezh.logic;
+package linstezh.logic.Item;
 
 
-public class ExperimentItem extends Item{
+import linstezh.logic.Section.Section;
+
+public class ExperimentItem extends Item {
     private int id;
     private int baseItemID;
     private String memoryChunk;

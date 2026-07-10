@@ -3,14 +3,10 @@ package linstezh.database.dao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
-import linstezh.database.dbo.DBO;
-import linstezh.database.dbo.ExperimentDBO;
 import linstezh.database.dbo.ItemDBO;
-import linstezh.database.dbo.SectionDBO;
 import linstezh.exceptions.databaseIdException;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDAO implements DAO{

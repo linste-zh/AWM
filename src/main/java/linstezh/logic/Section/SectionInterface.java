@@ -1,4 +1,6 @@
-package linstezh.logic;
+package linstezh.logic.Section;
+
+import linstezh.logic.Item.ItemInterface;
 
 import java.util.List;
 

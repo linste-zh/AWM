@@ -1,6 +1,8 @@
-package linstezh.logic;
+package linstezh.logic.Item;
 
-public class Item implements ItemInterface{
+import linstezh.logic.Section.Section;
+
+public class Item implements ItemInterface {
     private int id;
     private Section section;
     private ItemTypes type;

@@ -1,4 +1,4 @@
-package linstezh.logic;
+package linstezh.logic.Section;
 
 public enum SectionTypes {
     START,

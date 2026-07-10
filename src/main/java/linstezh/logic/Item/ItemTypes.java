@@ -1,4 +1,4 @@
-package linstezh.logic;
+package linstezh.logic.Item;
 
 public enum ItemTypes {
     INFORMATION,

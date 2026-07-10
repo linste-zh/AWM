@@ -3,23 +3,25 @@ package linstezh.visualisation;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import linstezh.logic.ExperimentItem;
 import linstezh.logic.ExperimentManager;
-import linstezh.logic.ItemInterface;
-import linstezh.logic.Section;
+import linstezh.logic.Item.ExperimentItem;
+import linstezh.logic.Item.ItemInterface;
+import linstezh.logic.Item.ItemTypes;
+import linstezh.logic.Section.Section;
+import linstezh.logic.Section.SectionInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SectionWindowManager {
-    private final Section section;
+    private final SectionInterface section;
     private final ExperimentManager manager;
     private List<ItemInterface> items;
-    private ExperimentItem currentItem;
+    private ItemInterface currentItem;
     private int nextItem = 0;
     private Stage primaryStage;
     
-    public SectionWindowManager(Section experimentSection, ExperimentManager manager){
+    public SectionWindowManager(SectionInterface experimentSection, ExperimentManager manager){
         this.section = experimentSection;
         this.manager = manager;
         items = experimentSection.getItems();
@@ -32,32 +34,43 @@ public class SectionWindowManager {
     }
 
     public void reportEval(ExpItemAdapter itemAdapter) throws Exception {
-        manager.saveEvalResponse(currentItem, itemAdapter.readCorrectEval());
+        manager.saveEvalResponse(itemAdapter.getBaseItem(), itemAdapter.readCorrectEval());
     }
 
     public void reportMemorisedChunks(List<ExpItemAdapter> itemAdapters) throws Exception {
         for(int i = 0; i < itemAdapters.size(); i++){
-            manager.saveMemResponse((ExperimentItem) items.get(i), itemAdapters.get(i).readUserMemoryChunk());
+            manager.saveMemResponse(itemAdapters.get(i).getBaseItem(), itemAdapters.get(i).readUserMemoryChunk());
         }
     }
 
     public void loadNextScene(){
-        Region newScene;
-        if(nextItem < items.size()){
-            currentItem = (ExperimentItem) items.get(nextItem);
-            ExpItemAdapter newItem = new ExpItemAdapter(currentItem);
-            newScene = new ExperimentItemScreen(newItem, this).createContent();
-            nextItem += 1;
+        Region newScene = null;
+        if(nextItem < items.size()) {
+            currentItem = items.get(nextItem);
+            if (currentItem.getType() == ItemTypes.EXPERIMENT){
+                ExpItemAdapter newItem = new ExpItemAdapter((ExperimentItem) currentItem);
+                newScene = new ExperimentItemScreen(newItem, this).createContent();
+                nextItem += 1;
+            }
+
         }else{
             List<ExpItemAdapter> adaptedItems = new ArrayList<>();
             for(ItemInterface item : items){
-                adaptedItems.add(new ExpItemAdapter((ExperimentItem) item)); //todo: fix
+                if(item.getType() == ItemTypes.EXPERIMENT) {
+                    adaptedItems.add(new ExpItemAdapter((ExperimentItem) item));
+                }
             }
             newScene = new ExperimentRecallScreen(adaptedItems, this).createContent();
         }
 
-        primaryStage.setScene(new Scene(newScene, 400, 200));
-        primaryStage.show();
+        if(newScene != null){
+            primaryStage.setScene(new Scene(newScene, 400, 200));
+            primaryStage.show();
+        }else{
+            nextItem += 1;
+            loadNextScene();
+        }
+
     }
 
     public void concludeSection() throws Exception {

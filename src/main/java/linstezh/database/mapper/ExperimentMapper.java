@@ -1,7 +1,7 @@
 package linstezh.database.mapper;
 
 import linstezh.database.dbo.ExperimentDBO;
-import linstezh.logic.Experiment;
+import linstezh.logic.Experiment.Experiment;
 
 /*
     Note: Sections need to be transformed and added to DB/extracted from DB separately

@@ -2,8 +2,7 @@ package linstezh.database.dbo;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import linstezh.database.dao.DAO;
-import linstezh.logic.Experiment;
+import linstezh.logic.Experiment.Experiment;
 
 @DatabaseTable(tableName = "experiments")
 public class ExperimentDBO implements DBO {

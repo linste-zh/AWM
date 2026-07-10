@@ -15,7 +15,11 @@ import linstezh.database.mapper.ExperimentItemMapper;
 import linstezh.database.mapper.ExperimentMapper;
 import linstezh.database.mapper.ItemMapper;
 import linstezh.database.mapper.SectionMapper;
-import linstezh.logic.*;
+import linstezh.logic.Experiment.Experiment;
+import linstezh.logic.Item.Item;
+import linstezh.logic.Item.ItemInterface;
+import linstezh.logic.Item.ItemTypes;
+import linstezh.logic.Section.Section;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

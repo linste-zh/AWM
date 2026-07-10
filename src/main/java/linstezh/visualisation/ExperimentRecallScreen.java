@@ -26,7 +26,7 @@ public class ExperimentRecallScreen {
         grid.setHgap(5);
 
         for(int i = 0; i < items.size(); i++){
-            TextField current = createInputBox(items.get(i).readPosition());
+            TextField current = createInputBox(i);
             GridPane.setConstraints(current, 0, i);
             grid.getChildren().add(current);
         }
@@ -62,7 +62,7 @@ public class ExperimentRecallScreen {
         for(Node field : grid.getChildren()){
             if(field.getClass() == TextField.class){
                 TextField textField = (TextField) field;
-                items.get(Integer.parseInt(textField.getId()) - 1).reportUserMemoryChunk(textField.getText());
+                items.get(Integer.parseInt(textField.getId())).reportUserMemoryChunk(textField.getText());
             }
         }
         for(ExpItemAdapter item : items){

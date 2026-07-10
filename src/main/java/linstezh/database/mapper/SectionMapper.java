@@ -1,8 +1,8 @@
 package linstezh.database.mapper;
 
 import linstezh.database.dbo.SectionDBO;
-import linstezh.logic.Experiment;
-import linstezh.logic.Section;
+import linstezh.logic.Experiment.Experiment;
+import linstezh.logic.Section.Section;
 
 /*
     Note: Items need to be transformed and added to DB/extracted from DB separately

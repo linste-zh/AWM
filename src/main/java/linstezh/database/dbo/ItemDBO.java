@@ -2,7 +2,7 @@ package linstezh.database.dbo;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import linstezh.logic.ItemTypes;
+import linstezh.logic.Item.ItemTypes;
 
 @DatabaseTable(tableName = "items")
 public class ItemDBO implements DBO{

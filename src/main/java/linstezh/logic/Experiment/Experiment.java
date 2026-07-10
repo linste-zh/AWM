@@ -1,4 +1,6 @@
-package linstezh.logic;
+package linstezh.logic.Experiment;
+
+import linstezh.logic.Section.SectionInterface;
 
 import java.util.ArrayList;
 import java.util.List;

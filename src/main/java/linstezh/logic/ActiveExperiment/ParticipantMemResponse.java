@@ -1,7 +1,8 @@
-package linstezh.logic;
+package linstezh.logic.ActiveExperiment;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import linstezh.logic.Item.ExperimentItem;
 
 @DatabaseTable(tableName = "memResponses")
 public class ParticipantMemResponse {

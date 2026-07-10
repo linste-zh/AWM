@@ -4,37 +4,34 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import linstezh.Main;
 import linstezh.database.DatabaseManager;
+import linstezh.logic.ActiveExperiment.Participant;
+import linstezh.logic.ActiveExperiment.ParticipantEvalResponse;
+import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
+import linstezh.logic.Experiment.Experiment;
+import linstezh.logic.Item.ExperimentItem;
+
+import linstezh.logic.Section.SectionInterface;
 import linstezh.visualisation.SectionWindowManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ExperimentManager extends Application {
-    private List<Section> experimentSections;
+public class ExperimentManager{
+    final private Experiment experiment;
+    final private Stage primaryStage;
+    private List<SectionInterface> experimentSections;
     private Participant currentParticipant;
     DatabaseManager db;
-    Stage primaryStage;
     int nextSection = 0;
 
-    public ExperimentManager() throws Exception {
-        db = DatabaseManager.getInstance();
-        experimentSections = new ArrayList<>(); //PLACEHOLDER
-    }
-
-    public void launchExperiment(String[] args){
-        try{
-            launch(args);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        currentParticipant = new Participant("Trial Participant");
-        //db.participants().create(currentParticipant);
-
+    public ExperimentManager(Experiment experiment, DatabaseManager db, Stage primaryStage) throws Exception {
+        this.experiment = experiment;
         this.primaryStage = primaryStage;
+        this.db = db;
+        experimentSections = experiment.getSections(); //PLACEHOLDER
+    }
+
+    public void start() throws Exception {
+        currentParticipant = new Participant("Trial Participant");
         nextSection = 0;
         nextSection();
     }
@@ -54,11 +51,9 @@ public class ExperimentManager extends Application {
         System.out.println(currentParticipant);
         System.out.println(response);
         ParticipantEvalResponse newPER = new ParticipantEvalResponse(item, currentParticipant, response);
-        //db.participantEvalResponses().create(newPER);
     }
 
     public void saveMemResponse(ExperimentItem item, String response) throws Exception {
         ParticipantMemResponse newPMR = new ParticipantMemResponse(item, currentParticipant, response);
-        //db.participantMemResponses().create(newPMR);
     }
 }

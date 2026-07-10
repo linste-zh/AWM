@@ -1,4 +1,6 @@
-package linstezh.logic;
+package linstezh.logic.Item;
+
+import linstezh.logic.Section.Section;
 
 public interface ItemInterface {
         int getID();

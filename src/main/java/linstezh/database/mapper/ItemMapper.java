@@ -1,9 +1,9 @@
 package linstezh.database.mapper;
 
 import linstezh.database.dbo.ItemDBO;
-import linstezh.logic.Item;
-import linstezh.logic.ItemInterface;
-import linstezh.logic.Section;
+import linstezh.logic.Item.Item;
+import linstezh.logic.Item.ItemInterface;
+import linstezh.logic.Section.Section;
 
 public class ItemMapper {
     public static ItemDBO toDBO(ItemInterface item){

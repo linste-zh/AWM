@@ -2,8 +2,8 @@ package linstezh.database.mapper;
 
 import linstezh.database.dbo.ExperimentItemDBO;
 import linstezh.database.dbo.ItemDBO;
-import linstezh.logic.ExperimentItem;
-import linstezh.logic.Item;
+import linstezh.logic.Item.ExperimentItem;
+import linstezh.logic.Item.Item;
 
 
 public class ExperimentItemMapper {

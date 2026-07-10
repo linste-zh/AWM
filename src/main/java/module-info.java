@@ -12,4 +12,8 @@ module linstezh {
     opens linstezh.logic;
     opens linstezh.database;
     opens linstezh.visualisation;
+    opens linstezh.logic.Experiment;
+    opens linstezh.logic.Item;
+    opens linstezh.logic.ActiveExperiment;
+    opens linstezh.logic.Section;
 }
