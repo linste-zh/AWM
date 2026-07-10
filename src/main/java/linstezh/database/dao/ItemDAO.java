@@ -44,4 +44,9 @@ public class ItemDAO implements DAO{
         itemDao.update(item);
         return item;
     }
+
+    public ItemDBO delete(ItemDBO item) throws SQLException{
+        itemDao.delete(item);
+        return item;
+    }
 }

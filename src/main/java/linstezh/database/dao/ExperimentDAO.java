@@ -7,6 +7,7 @@ import linstezh.database.dbo.ExperimentDBO;
 import linstezh.exceptions.databaseIdException;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class ExperimentDAO implements DAO{
     private final Dao<ExperimentDBO, Integer> experimentDao;
@@ -26,6 +27,10 @@ public class ExperimentDAO implements DAO{
         return experiment;
     }
 
+    public List<ExperimentDBO> getAll() throws SQLException {
+        return experimentDao.queryForAll();
+    }
+
     public ExperimentDBO create(ExperimentDBO experiment) throws Exception {
         experimentDao.create(experiment);
         return experiment;
@@ -33,6 +38,11 @@ public class ExperimentDAO implements DAO{
 
     public ExperimentDBO update(ExperimentDBO experiment) throws SQLException {
         experimentDao.update(experiment);
+        return experiment;
+    }
+
+    public ExperimentDBO delete(ExperimentDBO experiment) throws SQLException{
+        experimentDao.delete(experiment);
         return experiment;
     }
 }

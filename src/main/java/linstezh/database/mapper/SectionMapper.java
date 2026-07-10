@@ -20,7 +20,7 @@ public class SectionMapper {
         return dbo;
     }
 
-    public static Section fromDBO(SectionDBO sectionDBO, Experiment experiment) throws Exception {
+    public static Section fromDBO(SectionDBO sectionDBO, Experiment experiment) {
         Section sect = new Section();
 
         sect.setID(sectionDBO.getID());

@@ -77,4 +77,8 @@ public class Section implements SectionInterface{
     public void setItems(List<ItemInterface> items) {
         this.items = items;
     }
+
+    public void addItem(ItemInterface item){
+        this.items.add(item);
+    }
 }

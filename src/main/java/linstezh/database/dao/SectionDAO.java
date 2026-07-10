@@ -42,4 +42,9 @@ public class SectionDAO implements DAO{
         sectionDao.update(section);
         return section;
     }
+
+    public SectionDBO delete(SectionDBO section) throws SQLException{
+        sectionDao.delete(section);
+        return section;
+    }
 }

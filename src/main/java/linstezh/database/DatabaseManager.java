@@ -11,8 +11,15 @@ import linstezh.database.dbo.ExperimentDBO;
 import linstezh.database.dbo.ExperimentItemDBO;
 import linstezh.database.dbo.ItemDBO;
 import linstezh.database.dbo.SectionDBO;
+import linstezh.database.mapper.ExperimentItemMapper;
+import linstezh.database.mapper.ExperimentMapper;
+import linstezh.database.mapper.ItemMapper;
+import linstezh.database.mapper.SectionMapper;
+import linstezh.logic.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DatabaseManager {
@@ -44,7 +51,14 @@ public class DatabaseManager {
         return connectionSource;
     }
 
-    public ExperimentDAO experiments(){
+    public void initTables() throws SQLException {
+        TableUtils.createTableIfNotExists(connectionSource, ExperimentDBO.class);
+        TableUtils.createTableIfNotExists(connectionSource, SectionDBO.class);
+        TableUtils.createTableIfNotExists(connectionSource, ItemDBO.class);
+        TableUtils.createTableIfNotExists(connectionSource, ExperimentItemDBO.class);
+    }
+
+    /*public ExperimentDAO experiments(){
         return experimentDAO;
     }
 
@@ -58,13 +72,40 @@ public class DatabaseManager {
 
     public ExperimentItemDAO experimentItems(){
         return experimentItemDAO;
+    }*/
+
+    public List<Experiment> getAllExperiments() throws SQLException {
+        List<ExperimentDBO> expDBOs = experimentDAO.getAll();
+        List<Experiment> allExps = new ArrayList<>();
+        for(ExperimentDBO dbo : expDBOs){
+            allExps.add(ExperimentMapper.fromDBO(dbo));
+        }
+        return allExps;
     }
 
-    public void initTables() throws SQLException {
-        TableUtils.createTableIfNotExists(connectionSource, ExperimentDBO.class);
-        TableUtils.createTableIfNotExists(connectionSource, SectionDBO.class);
-        TableUtils.createTableIfNotExists(connectionSource, ItemDBO.class);
-        TableUtils.createTableIfNotExists(connectionSource, ExperimentItemDBO.class);
+    public Experiment loadExperiment(Experiment experiment) throws SQLException {
+        List<SectionDBO> expSections = sectionDAO.getByExperimentID(experiment.getID());
+        for(SectionDBO sectionDBO : expSections){
+            Section section = SectionMapper.fromDBO(sectionDBO, experiment);
+            experiment.addSection(section);
+
+            List<ItemDBO> sectionItems = itemDAO.getBySectionID(section.getID());
+            for(ItemDBO itemDBO : sectionItems){
+                section.addItem(transformItemDBO(itemDBO, section));
+            }
+        }
+
+        return experiment;
+    }
+
+    public ItemInterface transformItemDBO(ItemDBO itemDBO, Section section) throws SQLException {
+        Item item = ItemMapper.fromDBO(itemDBO, section);
+        if(item.getType() == ItemTypes.EXPERIMENT){
+            ExperimentItemDBO experimentInfo = experimentItemDAO.getByItemID(item.getID());
+            return ExperimentItemMapper.fromDBO(experimentInfo, item);
+        }else{
+            return item;
+        }
     }
 
     public void close() throws Exception {

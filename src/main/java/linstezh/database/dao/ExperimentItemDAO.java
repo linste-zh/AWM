@@ -29,8 +29,16 @@ public class ExperimentItemDAO implements DAO{
         return expItem;
     }
 
-    public List<ExperimentItemDBO> getByItemID(int itemID) throws SQLException {
-        return experimentItemDao.queryForEq("baseItemID", itemID);
+    public ExperimentItemDBO getByItemID(int itemID) throws SQLException {
+        List<ExperimentItemDBO> allExpItems = experimentItemDao.queryForEq("baseItemID", itemID);
+        if(allExpItems.isEmpty()){
+            throw new databaseIdException("BaseID not found");
+        }else if(allExpItems.size() > 1){
+            throw new databaseIdException("BaseID not unique");
+        }else{
+            return allExpItems.getFirst();
+        }
+
     }
 
     public ExperimentItemDBO create(ExperimentItemDBO expItem) throws Exception {
@@ -40,6 +48,11 @@ public class ExperimentItemDAO implements DAO{
 
     public ExperimentItemDBO update(ExperimentItemDBO expItem) throws SQLException {
         experimentItemDao.update(expItem);
+        return expItem;
+    }
+
+    public ExperimentItemDBO delete(ExperimentItemDBO expItem) throws SQLException{
+        experimentItemDao.delete(expItem);
         return expItem;
     }
 }

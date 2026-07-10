@@ -14,7 +14,7 @@ public class ExperimentMapper {
         return dbo;
     }
 
-    public static Experiment fromDBO(ExperimentDBO experimentDBO) throws Exception {
+    public static Experiment fromDBO(ExperimentDBO experimentDBO) {
         Experiment exp = new Experiment();
 
         exp.setID(experimentDBO.getID());

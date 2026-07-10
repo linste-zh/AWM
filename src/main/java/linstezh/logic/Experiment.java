@@ -37,4 +37,8 @@ public class Experiment {
     public void setSections(List<SectionInterface> sections) {
         this.sections = sections;
     }
+
+    public void addSection(SectionInterface section){
+        this.sections.add(section);
+    }
 }
