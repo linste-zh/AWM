@@ -2,10 +2,11 @@ package linstezh.database.dbo;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import linstezh.database.dao.DAO;
 import linstezh.logic.Experiment;
 
 @DatabaseTable(tableName = "experiments")
-public class ExperimentDBO {
+public class ExperimentDBO implements DBO {
     @DatabaseField(generatedId = true)
     private int id;
 

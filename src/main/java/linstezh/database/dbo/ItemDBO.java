@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import linstezh.logic.ItemTypes;
 
 @DatabaseTable(tableName = "items")
-public class ItemDBO {
+public class ItemDBO implements DBO{
     @DatabaseField(generatedId = true)
     private int id;
 

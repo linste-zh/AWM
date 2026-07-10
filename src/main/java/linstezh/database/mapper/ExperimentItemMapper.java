@@ -10,7 +10,7 @@ public class ExperimentItemMapper {
     public static ExperimentItemDBO toDBO(ExperimentItem item, ItemDBO baseItem){
         ExperimentItemDBO dbo = new ExperimentItemDBO();
 
-        dbo.setId(item.getID());
+        dbo.setID(item.getID());
         dbo.setBaseItemID(baseItem);
         dbo.setMemoryChunk(item.getMemoryChunk());
         dbo.setCorrectEvaluation(item.getCorrectEvaluation());
@@ -21,7 +21,7 @@ public class ExperimentItemMapper {
     public static ExperimentItem fromDBO(ExperimentItemDBO itemDBO, Item baseItem){
         ExperimentItem item = new ExperimentItem(baseItem);
 
-        item.setID(itemDBO.getId());
+        item.setID(itemDBO.getID());
         item.setMemoryChunk(itemDBO.getMemoryChunk());
         item.setCorrectEvaluation(itemDBO.getCorrectEvaluation());
 

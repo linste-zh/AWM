@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import linstezh.logic.SectionTypes;
 
 @DatabaseTable(tableName = "sections")
-public class SectionDBO {
+public class SectionDBO implements DBO{
     @DatabaseField(generatedId = true)
     private int id;
 

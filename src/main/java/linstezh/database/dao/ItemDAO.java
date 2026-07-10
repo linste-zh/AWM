@@ -3,13 +3,17 @@ package linstezh.database.dao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
+import linstezh.database.dbo.DBO;
+import linstezh.database.dbo.ExperimentDBO;
 import linstezh.database.dbo.ItemDBO;
+import linstezh.database.dbo.SectionDBO;
+import linstezh.exceptions.databaseIdException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemDAO {
+public class ItemDAO implements DAO{
     private final Dao<ItemDBO, Integer> itemDao;
     ConnectionSource src;
 
@@ -18,26 +22,26 @@ public class ItemDAO {
         itemDao = DaoManager.createDao(src, ItemDBO.class);
     }
 
-    public void create(ItemDBO item) throws Exception {
-        itemDao.create(item);
-        System.out.println("Created item: " + item);
-    }
+    public ItemDBO getByID(int id) throws databaseIdException, SQLException {
+        ItemDBO item = itemDao.queryForId(id);
 
-    public List<ItemDBO> getBySectionId(int sectionID) throws SQLException {
-        return itemDao.query(
-                itemDao.queryBuilder()
-                        .where().eq("sectionID", sectionID)
-                        .prepare()
-        );
-    }
-
-    public List<ItemDBO> getAll(){
-        ArrayList<ItemDBO> allExperimentItems = new ArrayList<>();
-
-        for (ItemDBO item : itemDao) {
-            allExperimentItems.add(item);
+        if(item == null){
+            throw new databaseIdException("ID not found");
         }
+        return item;
+    }
 
-        return allExperimentItems;
+    public List<ItemDBO> getBySectionID(int sectionID) throws SQLException {
+        return itemDao.queryForEq("sectionID", sectionID);
+    }
+
+    public ItemDBO create(ItemDBO item) throws Exception {
+        itemDao.create(item);
+        return item;
+    }
+
+    public ItemDBO update(ItemDBO item) throws SQLException {
+        itemDao.update(item);
+        return item;
     }
 }

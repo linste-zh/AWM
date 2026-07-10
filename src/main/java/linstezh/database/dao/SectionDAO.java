@@ -3,12 +3,15 @@ package linstezh.database.dao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
+import linstezh.database.dbo.ExperimentDBO;
 import linstezh.database.dbo.SectionDBO;
+import linstezh.exceptions.databaseIdException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SectionDAO {
+public class SectionDAO implements DAO{
     private final Dao<SectionDBO, Integer> sectionDao;
     private ConnectionSource src;
 
@@ -17,27 +20,26 @@ public class SectionDAO {
         sectionDao = DaoManager.createDao(src, SectionDBO.class);
     }
 
-    public void create(SectionDBO experimentSection) throws Exception {
-        sectionDao.create(experimentSection);
-        System.out.println("Created item: " + experimentSection);
-    }
+    public SectionDBO getByID(int id) throws databaseIdException, SQLException {
+        SectionDBO section = sectionDao.queryForId(id);
 
-    public List<SectionDBO> getAll(){
-        ArrayList<SectionDBO> allSections = new ArrayList<>();
-
-        for (SectionDBO section : sectionDao) {
-            allSections.add(section);
+        if(section == null){
+            throw new databaseIdException("ID not found");
         }
-
-        return allSections;
+        return section;
     }
 
-    public List<SectionDBO> getByExperimentId(int experimentID) throws Exception {
-        return sectionDao.query(
-                sectionDao.queryBuilder()
-                        .where().eq("experimentID", experimentID)
-                        .prepare()
-        );
+    public List<SectionDBO> getByExperimentID(int experimentID) throws SQLException {
+        return sectionDao.queryForEq("experimentID", experimentID);
     }
 
+    public SectionDBO create(SectionDBO section) throws Exception {
+        sectionDao.create(section);
+        return section;
+    }
+
+    public SectionDBO update(SectionDBO section) throws SQLException {
+        sectionDao.update(section);
+        return section;
+    }
 }

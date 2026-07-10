@@ -4,7 +4,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "experimentItems")
-public class ExperimentItemDBO {
+public class ExperimentItemDBO implements DBO{
     @DatabaseField(generatedId = true)
     private int id;
 
@@ -25,11 +25,11 @@ public class ExperimentItemDBO {
         this.correctEvaluation = correctEvaluation;
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setID(int id) {
         this.id = id;
     }
 

@@ -4,11 +4,11 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import linstezh.database.dbo.ExperimentDBO;
+import linstezh.exceptions.databaseIdException;
 
 import java.sql.SQLException;
-import java.util.List;
 
-public class ExperimentDAO {
+public class ExperimentDAO implements DAO{
     private final Dao<ExperimentDBO, Integer> experimentDao;
     private ConnectionSource src;
 
@@ -17,19 +17,22 @@ public class ExperimentDAO {
         experimentDao = DaoManager.createDao(src, ExperimentDBO.class);
     }
 
-    public ExperimentDBO getByID(int id) throws SQLException {
-        List<ExperimentDBO> allWithID = experimentDao.query(
-                experimentDao.queryBuilder()
-                        .where().eq("id", id)
-                        .prepare()
-        );
+    public ExperimentDBO getByID(int id) throws databaseIdException, SQLException {
+        ExperimentDBO experiment = experimentDao.queryForId(id);
 
-        if(allWithID.size() > 1){
-            throw new SQLException("ID not unique");
-        }else if(allWithID.isEmpty()){
-            throw new SQLException("ID not found");
-        }else{
-            return allWithID.getFirst();
+        if(experiment == null){
+            throw new databaseIdException("ID not found");
         }
+        return experiment;
+    }
+
+    public ExperimentDBO create(ExperimentDBO experiment) throws Exception {
+        experimentDao.create(experiment);
+        return experiment;
+    }
+
+    public ExperimentDBO update(ExperimentDBO experiment) throws SQLException {
+        experimentDao.update(experiment);
+        return experiment;
     }
 }
