@@ -66,4 +66,9 @@ public class Item implements ItemInterface{
     public void setAffectiveValue(String affectiveValue) {
         this.affectiveValue = affectiveValue;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d (%s): %s (%s)", this.position, this.type, this.displayText, this.affectiveValue);
+    }
 }

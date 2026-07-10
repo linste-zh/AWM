@@ -81,4 +81,16 @@ public class Section implements SectionInterface{
     public void addItem(ItemInterface item){
         this.items.add(item);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+
+        string.append(this.position + ". " + this.name + "(" + this.id + ")\n");
+        for(ItemInterface item : this.items){
+            string.append("\t" + item + "\n");
+        }
+
+        return string.toString();
+    }
 }

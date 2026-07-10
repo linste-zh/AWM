@@ -41,4 +41,16 @@ public class Experiment {
     public void addSection(SectionInterface section){
         this.sections.add(section);
     }
+
+    @Override
+    public String toString(){
+        StringBuilder string = new StringBuilder();
+        string.append(this.name + "(" + this.id + ")\n");
+        string.append("*".repeat(10) + "\n");
+        for(SectionInterface section : this.sections){
+            string.append(section + "\n");
+            string.append("-".repeat(10) + "\n");
+        }
+        return string.toString();
+    }
 }

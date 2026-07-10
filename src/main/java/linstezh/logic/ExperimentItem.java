@@ -54,4 +54,9 @@ public class ExperimentItem extends Item{
     public void setCorrectEvaluation(boolean correctEvaluation) {
         this.correctEvaluation = correctEvaluation;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d (%s): %s (%s) -> %s // %s", this.getPosition(), this.getType(), this.getDisplayText(), this.getAffectiveValue(), this.correctEvaluation, this.memoryChunk);
+    }
 }
