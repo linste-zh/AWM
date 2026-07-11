@@ -5,8 +5,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class ExperimentStartScreen {
     private final InfoItemAdapter item;
@@ -20,26 +23,39 @@ public class ExperimentStartScreen {
 
     public Region createContent() {
         box.setPadding(new Insets(10, 10, 10, 10));
+        box.setSpacing(5);
 
         box.getChildren().add(header());
-        box.getChildren().add(nameInput());
         box.getChildren().add(infoField());
+        box.getChildren().add(nameInput());
         box.getChildren().add(consent());
         box.getChildren().add(start());
 
-        box.setAlignment(Pos.CENTER);
+        box.setAlignment(Pos.TOP_LEFT);
         return box;
     }
 
     private Node header() {
-        return new Label(this.manager.getHeader());
+        Label header = new Label(this.manager.getHeader());
+        header.setFont(new Font(25));
+        header.setAlignment(Pos.CENTER);
+        return header;
     }
 
     private Node nameInput(){
-        TextField textField = new TextField ();
-        textField.setPromptText("Participant ID");
+        Label prompt = new Label("Participant Name or ID: ");
+
+        TextField textField = new TextField();
+        textField.setPromptText("Name/ID");
         textField.setId("name_input");
-        return textField;
+        textField.setPrefWidth(100);
+        textField.setMaxWidth(100);
+        textField.setPrefHeight(3);
+        textField.setMaxHeight(3);
+
+        HBox hbox = new HBox(prompt, textField);
+        hbox.setSpacing(5);
+        return hbox;
     }
 
     private Node infoField(){
