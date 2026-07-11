@@ -8,7 +8,6 @@ import linstezh.logic.ActiveExperiment.ParticipantEvalResponse;
 import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
 import linstezh.logic.Experiment.Experiment;
 import linstezh.logic.Item.ExperimentItem;
-
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 
@@ -46,6 +45,7 @@ public class ExperimentManager{
             switch (section.getType()){
                 case SectionTypes.EXPERIMENT -> wm = new ExpSectionManager(section, this);
                 case SectionTypes.START -> wm = new StartSectionManager(section, this);
+                case SectionTypes.END -> wm = new EndSectionManager(section, this);
             }
             assert wm != null;  //todo: better check
             wm.display(primaryStage);
@@ -74,5 +74,9 @@ public class ExperimentManager{
     public void saveMemResponse(ExperimentItem item, String response){
         ParticipantMemResponse newPMR = new ParticipantMemResponse(item, currentParticipant, response);
         memResponses.add(newPMR);
+    }
+
+    public String saveResults(){
+        return "Document saved under xyz";
     }
 }

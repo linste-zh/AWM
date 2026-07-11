@@ -3,8 +3,8 @@ package linstezh;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import linstezh.database.DatabaseManager;
-import linstezh.logic.Experiment.Experiment;
 import linstezh.executionManagers.ExperimentManager;
+import linstezh.logic.Experiment.Experiment;
 
 public class App extends Application {
 

@@ -8,15 +8,16 @@ module linstezh {
 
     exports linstezh;  // your main package
     exports linstezh.database.dbo;
-    opens linstezh.database.dbo;
-    opens linstezh.logic;
     opens linstezh.database;
-    opens linstezh.visualisation;
-    opens linstezh.logic.Experiment;
+    opens linstezh.database.dbo;
+    opens linstezh.database.dao;
+    opens linstezh.database.mapper;
     opens linstezh.logic.Item;
-    opens linstezh.logic.ActiveExperiment;
     opens linstezh.logic.Section;
-    opens linstezh.executionManagers;
-    opens linstezh.visualisation.screens;
+    opens linstezh.logic.Experiment;
+    opens linstezh.logic.ActiveExperiment;
     opens linstezh.visualisation.adapters;
+    opens linstezh.visualisation.screens;
+    opens linstezh.executionManagers;
+    opens linstezh.exceptions;
 }

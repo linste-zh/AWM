@@ -6,11 +6,12 @@ import javafx.stage.Stage;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.visualisation.adapters.InfoItemAdapter;
+import linstezh.visualisation.screens.ExperimentEndScreen;
 import linstezh.visualisation.screens.ExperimentStartScreen;
 
 import java.util.List;
 
-public class StartSectionManager implements SectionManager {
+public class EndSectionManager implements SectionManager {
     private final SectionInterface section;
     private final ExperimentManager manager;
     private List<ItemInterface> items;
@@ -18,7 +19,7 @@ public class StartSectionManager implements SectionManager {
     private int nextItem = 0;
     private Stage primaryStage;
 
-    public StartSectionManager(SectionInterface section, ExperimentManager manager){
+    public EndSectionManager(SectionInterface section, ExperimentManager manager){
         this.section = section;
         this.manager = manager;
         items = section.getItems();
@@ -30,17 +31,13 @@ public class StartSectionManager implements SectionManager {
         loadNextScene();
     }
 
-    public String getHeader(){
-        return this.manager.getExperimentTitle();
-    }
-
-    public void submitParticipantName(String name){
-        this.manager.createParticipant(name);
+    public void requestCsvSave(){
+        this.manager.saveResults();
     }
 
     public void loadNextScene(){
         Region newScene = null;
-        newScene = new ExperimentStartScreen(new InfoItemAdapter(items.get(nextItem)), this).createContent();
+        newScene = new ExperimentEndScreen(new InfoItemAdapter(items.get(nextItem)), this).createContent();
         nextItem += 1;
         primaryStage.setScene(new Scene(newScene, 400, 200));
         primaryStage.show();
