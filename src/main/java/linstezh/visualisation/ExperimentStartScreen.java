@@ -3,9 +3,7 @@ package linstezh.visualisation;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -49,15 +47,34 @@ public class ExperimentStartScreen {
     }
 
     private Node consent(){
-        return new Label("placeholder");
+        RadioButton consentButton =  new RadioButton("I consent to participating in this study");
+        consentButton.setId("consent_button");
+        return consentButton;
     }
 
     private Node start() {
         Button results = new Button("Start Experiment");
         results.setOnAction(evt -> {
-            TextField textField = (TextField) box.lookup("#name_input");
-            manager.submitParticipantName(textField.getText());
-            manager.concludeSection();
+            RadioButton consentButton = (RadioButton) box.lookup("#consent_button");
+            if(consentButton.isSelected()){
+                TextField textField = (TextField) box.lookup("#name_input");
+                if(textField.getText() != ""){
+                    manager.submitParticipantName(textField.getText());
+                    manager.concludeSection();
+                }else{
+                    Alert a = new Alert(Alert.AlertType.WARNING);
+                    a.setTitle("Missing Name");
+                    a.setContentText("Please provide a participant name or ID.");
+                    a.show();
+                }
+            }else{
+                Alert a = new Alert(Alert.AlertType.WARNING);
+                a.setTitle("Consent not given");
+                a.setContentText("Please provide your consent to participate.");
+                a.show();
+            }
+
+
         });
         return results;
     }
