@@ -1,6 +1,5 @@
 package linstezh.logic;
 
-import javafx.application.Application;
 import javafx.stage.Stage;
 import linstezh.Main;
 import linstezh.database.DatabaseManager;
@@ -11,49 +10,71 @@ import linstezh.logic.Experiment.Experiment;
 import linstezh.logic.Item.ExperimentItem;
 
 import linstezh.logic.Section.SectionInterface;
-import linstezh.visualisation.SectionWindowManager;
+import linstezh.logic.Section.SectionTypes;
+import linstezh.visualisation.ExpSectionManager;
+import linstezh.visualisation.SectionManager;
+import linstezh.visualisation.StartSectionManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExperimentManager{
     final private Experiment experiment;
     final private Stage primaryStage;
-    private List<SectionInterface> experimentSections;
+    final private List<SectionInterface> experimentSections;
+    private final DatabaseManager db;
+    private int nextSection = 0;
     private Participant currentParticipant;
-    DatabaseManager db;
-    int nextSection = 0;
+    private final List<ParticipantEvalResponse> evalResponses;
+    private final List<ParticipantMemResponse> memResponses;
 
-    public ExperimentManager(Experiment experiment, DatabaseManager db, Stage primaryStage) throws Exception {
+    public ExperimentManager(Experiment experiment, DatabaseManager db, Stage primaryStage){
         this.experiment = experiment;
         this.primaryStage = primaryStage;
         this.db = db;
-        experimentSections = experiment.getSections(); //PLACEHOLDER
+        this.experimentSections = experiment.getSections();
+        evalResponses = new ArrayList<>();
+        memResponses = new ArrayList<>();
     }
 
-    public void start() throws Exception {
-        currentParticipant = new Participant("Trial Participant");
+    public void start(){
         nextSection = 0;
         nextSection();
     }
 
-    public void nextSection() throws Exception {
+    public void nextSection(){
         if(nextSection < experimentSections.size()){
-            SectionWindowManager wm = new SectionWindowManager(experimentSections.get(nextSection), this);
+            SectionManager wm = null;
+            SectionInterface section = experimentSections.get(nextSection);
+            switch (section.getType()){
+                case SectionTypes.EXPERIMENT -> wm = new ExpSectionManager(section, this);
+                case SectionTypes.START -> wm = new StartSectionManager(section, this);
+            }
+            assert wm != null;  //todo: better check
             wm.display(primaryStage);
             nextSection += 1;
         }else{
+            System.out.println(evalResponses);
+            System.out.println(memResponses);
             Main.finish();
         }
     }
 
-    public void saveEvalResponse(ExperimentItem item, boolean response) throws Exception {
-        System.out.println(item);
-        System.out.println(currentParticipant);
-        System.out.println(response);
-        ParticipantEvalResponse newPER = new ParticipantEvalResponse(item, currentParticipant, response);
+    public String getExperimentTitle(){
+        return this.experiment.getName();
     }
 
-    public void saveMemResponse(ExperimentItem item, String response) throws Exception {
+    public void createParticipant(String name){
+        currentParticipant = new Participant(name);
+    }
+
+    public void saveEvalResponse(ExperimentItem item, boolean response){
+        ParticipantEvalResponse newPER = new ParticipantEvalResponse(item, currentParticipant, response);
+        evalResponses.add(newPER);
+    }
+
+    public void saveMemResponse(ExperimentItem item, String response){
         ParticipantMemResponse newPMR = new ParticipantMemResponse(item, currentParticipant, response);
+        memResponses.add(newPMR);
     }
 }

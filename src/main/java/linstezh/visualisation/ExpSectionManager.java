@@ -7,13 +7,12 @@ import linstezh.logic.ExperimentManager;
 import linstezh.logic.Item.ExperimentItem;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Item.ItemTypes;
-import linstezh.logic.Section.Section;
 import linstezh.logic.Section.SectionInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SectionWindowManager {
+public class ExpSectionManager implements SectionManager{
     private final SectionInterface section;
     private final ExperimentManager manager;
     private List<ItemInterface> items;
@@ -21,7 +20,7 @@ public class SectionWindowManager {
     private int nextItem = 0;
     private Stage primaryStage;
     
-    public SectionWindowManager(SectionInterface experimentSection, ExperimentManager manager){
+    public ExpSectionManager(SectionInterface experimentSection, ExperimentManager manager){
         this.section = experimentSection;
         this.manager = manager;
         items = experimentSection.getItems();
@@ -67,13 +66,14 @@ public class SectionWindowManager {
             primaryStage.setScene(new Scene(newScene, 400, 200));
             primaryStage.show();
         }else{
+            System.out.println("Skipped item");
             nextItem += 1;
             loadNextScene();
         }
 
     }
 
-    public void concludeSection() throws Exception {
+    public void concludeSection(){
         manager.nextSection();
     }
 

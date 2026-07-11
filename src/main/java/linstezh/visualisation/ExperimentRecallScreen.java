@@ -12,10 +12,10 @@ import java.util.List;
 
 public class ExperimentRecallScreen {
     private final List<ExpItemAdapter> items;
-    private final SectionWindowManager manager;
+    private final ExpSectionManager manager;
     GridPane grid = new GridPane();
 
-    public ExperimentRecallScreen(List<ExpItemAdapter> items, SectionWindowManager manager){
+    public ExperimentRecallScreen(List<ExpItemAdapter> items, ExpSectionManager manager){
         this.items = items;
         this.manager = manager;
     }

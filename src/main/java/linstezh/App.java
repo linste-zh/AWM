@@ -19,7 +19,7 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         ExperimentManager manager = new ExperimentManager(experiment, db, primaryStage);
         manager.start();
     }

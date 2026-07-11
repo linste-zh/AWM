@@ -62,22 +62,6 @@ public class DatabaseManager {
         TableUtils.createTableIfNotExists(connectionSource, ExperimentItemDBO.class);
     }
 
-    /*public ExperimentDAO experiments(){
-        return experimentDAO;
-    }
-
-    public SectionDAO sections(){
-        return sectionDAO;
-    }
-
-    public ItemDAO items(){
-        return itemDAO;
-    }
-
-    public ExperimentItemDAO experimentItems(){
-        return experimentItemDAO;
-    }*/
-
     public List<Experiment> getAllExperiments() throws SQLException {
         List<ExperimentDBO> expDBOs = experimentDAO.getAll();
         List<Experiment> allExps = new ArrayList<>();
