@@ -33,6 +33,10 @@ public class StartSectionManager implements SectionManager{
         return this.manager.getExperimentTitle();
     }
 
+    public void submitParticipantName(String name){
+        this.manager.createParticipant(name);
+    }
+
     public void loadNextScene(){
         Region newScene = null;
         newScene = new ExperimentStartScreen(new InfoItemAdapter(items.get(nextItem)), this).createContent();

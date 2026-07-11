@@ -66,6 +66,7 @@ public class ExperimentManager{
 
     public void createParticipant(String name){
         currentParticipant = new Participant(name);
+        System.out.println(currentParticipant.getName());
     }
 
     public void saveEvalResponse(ExperimentItem item, boolean response){
