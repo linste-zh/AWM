@@ -1,22 +1,13 @@
 package linstezh.logic.ActiveExperiment;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 import linstezh.logic.Item.ExperimentItem;
 
-@DatabaseTable(tableName = "memResponses")
 public class ParticipantMemResponse {
-    @DatabaseField(generatedId = true)
-    private int id;
-
-    @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private ExperimentItem item;
-
-    @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Participant participant;
-
-    @DatabaseField(columnName = "chunkProvided")
     private String providedChunk;
+    private int contentScore;
+    private int positionScore;
 
     public ParticipantMemResponse(){}
 
@@ -24,14 +15,6 @@ public class ParticipantMemResponse {
         this.item = item;
         this.participant = participant;
         this.providedChunk = response;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public ExperimentItem getItem() {
@@ -56,5 +39,21 @@ public class ParticipantMemResponse {
 
     public void setProvidedChunk(String providedChunk) {
         this.providedChunk = providedChunk;
+    }
+
+    public int getContentScore() {
+        return contentScore;
+    }
+
+    public void setContentScore(int contentScore) {
+        this.contentScore = contentScore;
+    }
+
+    public int getPositionScore() {
+        return positionScore;
+    }
+
+    public void setPositionScore(int positionScore) {
+        this.positionScore = positionScore;
     }
 }

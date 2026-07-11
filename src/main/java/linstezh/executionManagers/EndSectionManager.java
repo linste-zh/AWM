@@ -7,7 +7,6 @@ import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.visualisation.adapters.InfoItemAdapter;
 import linstezh.visualisation.screens.ExperimentEndScreen;
-import linstezh.visualisation.screens.ExperimentStartScreen;
 
 import java.util.List;
 

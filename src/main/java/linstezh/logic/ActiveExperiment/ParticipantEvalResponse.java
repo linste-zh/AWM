@@ -1,22 +1,12 @@
 package linstezh.logic.ActiveExperiment;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 import linstezh.logic.Item.ExperimentItem;
 
-@DatabaseTable(tableName = "evalResponses")
 public class ParticipantEvalResponse {
-    @DatabaseField(generatedId = true)
-    private int id;
-
-    @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private ExperimentItem item;
-
-    @DatabaseField (canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Participant participant;
-
-    @DatabaseField(columnName = "evaluationProvided")
     private boolean providedEvaluation;
+    private int evalScore;
 
     public ParticipantEvalResponse(){}
 
@@ -24,14 +14,6 @@ public class ParticipantEvalResponse {
         this.item = item;
         this.participant = participant;
         this.providedEvaluation = eval;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public ExperimentItem getItem() {
@@ -50,11 +32,19 @@ public class ParticipantEvalResponse {
         this.participant = participant;
     }
 
-    public boolean isProvidedEvaluation() {
+    public boolean getProvidedEvaluation() {
         return providedEvaluation;
     }
 
     public void setProvidedEvaluation(boolean providedEvaluation) {
         this.providedEvaluation = providedEvaluation;
+    }
+
+    public int getEvalScore() {
+        return evalScore;
+    }
+
+    public void setEvalScore(int evalScore) {
+        this.evalScore = evalScore;
     }
 }
