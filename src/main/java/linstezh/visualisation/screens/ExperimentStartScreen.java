@@ -1,15 +1,15 @@
-package linstezh.visualisation;
+package linstezh.visualisation.screens;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import linstezh.executionManagers.StartSectionManager;
+import linstezh.visualisation.adapters.InfoItemAdapter;
 
 public class ExperimentStartScreen {
     private final InfoItemAdapter item;

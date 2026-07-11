@@ -16,4 +16,7 @@ module linstezh {
     opens linstezh.logic.Item;
     opens linstezh.logic.ActiveExperiment;
     opens linstezh.logic.Section;
+    opens linstezh.executionManagers;
+    opens linstezh.visualisation.screens;
+    opens linstezh.visualisation.adapters;
 }

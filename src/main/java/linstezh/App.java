@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import linstezh.database.DatabaseManager;
 import linstezh.logic.Experiment.Experiment;
-import linstezh.logic.ExperimentManager;
+import linstezh.executionManagers.ExperimentManager;
 
 public class App extends Application {
 

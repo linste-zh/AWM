@@ -1,15 +1,16 @@
-package linstezh.visualisation;
+package linstezh.executionManagers;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import linstezh.logic.ExperimentManager;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Section.SectionInterface;
+import linstezh.visualisation.screens.ExperimentStartScreen;
+import linstezh.visualisation.adapters.InfoItemAdapter;
 
 import java.util.List;
 
-public class StartSectionManager implements SectionManager{
+public class StartSectionManager implements SectionManager {
     private final SectionInterface section;
     private final ExperimentManager manager;
     private List<ItemInterface> items;

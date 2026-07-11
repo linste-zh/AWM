@@ -3,8 +3,6 @@ package linstezh;
 import javafx.application.Application;
 import linstezh.database.DatabaseManager;
 import linstezh.logic.Experiment.Experiment;
-import linstezh.logic.ExperimentManager;
-import linstezh.App;
 
 import java.util.List;
 

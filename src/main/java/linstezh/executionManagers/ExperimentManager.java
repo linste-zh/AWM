@@ -1,4 +1,4 @@
-package linstezh.logic;
+package linstezh.executionManagers;
 
 import javafx.stage.Stage;
 import linstezh.Main;
@@ -11,9 +11,6 @@ import linstezh.logic.Item.ExperimentItem;
 
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
-import linstezh.visualisation.ExpSectionManager;
-import linstezh.visualisation.SectionManager;
-import linstezh.visualisation.StartSectionManager;
 
 import java.util.ArrayList;
 import java.util.List;

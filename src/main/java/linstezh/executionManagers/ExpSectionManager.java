@@ -1,18 +1,20 @@
-package linstezh.visualisation;
+package linstezh.executionManagers;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import linstezh.logic.ExperimentManager;
 import linstezh.logic.Item.ExperimentItem;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Item.ItemTypes;
 import linstezh.logic.Section.SectionInterface;
+import linstezh.visualisation.adapters.ExpItemAdapter;
+import linstezh.visualisation.screens.ExperimentItemScreen;
+import linstezh.visualisation.screens.ExperimentRecallScreen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpSectionManager implements SectionManager{
+public class ExpSectionManager implements SectionManager {
     private final SectionInterface section;
     private final ExperimentManager manager;
     private List<ItemInterface> items;

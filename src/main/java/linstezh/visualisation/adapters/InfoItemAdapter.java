@@ -1,4 +1,4 @@
-package linstezh.visualisation;
+package linstezh.visualisation.adapters;
 
 import linstezh.logic.Item.ItemInterface;
 

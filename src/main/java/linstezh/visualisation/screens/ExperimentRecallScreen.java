@@ -1,4 +1,4 @@
-package linstezh.visualisation;
+package linstezh.visualisation.screens;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import linstezh.executionManagers.ExpSectionManager;
+import linstezh.visualisation.adapters.ExpItemAdapter;
 
 import java.util.List;
 

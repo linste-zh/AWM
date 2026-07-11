@@ -1,4 +1,4 @@
-package linstezh.visualisation;
+package linstezh.executionManagers;
 
 import javafx.stage.Stage;
 
