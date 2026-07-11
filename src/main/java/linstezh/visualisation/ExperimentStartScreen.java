@@ -27,7 +27,7 @@ public class ExperimentStartScreen {
     }
 
     private Node nameInput(){
-        return new Label("placeholder");
+        return new Label(this.item.readDisplayText());
     }
 
     private Node infoField(){

@@ -17,7 +17,7 @@ public class InfoItemAdapter {
         return baseItem;
     }
 
-    public String readEvalText(){
+    public String readDisplayText(){
         return displayText;
     }
 
