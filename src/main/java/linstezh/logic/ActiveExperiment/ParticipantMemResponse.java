@@ -2,12 +2,13 @@ package linstezh.logic.ActiveExperiment;
 
 import linstezh.logic.Item.ExperimentItem;
 
+import java.util.List;
+
 public class ParticipantMemResponse {
     private ExperimentItem item;
     private Participant participant;
     private String providedChunk;
-    private int contentScore;
-    private int positionScore;
+    private int memorisationScore;
 
     public ParticipantMemResponse(){}
 
@@ -15,6 +16,7 @@ public class ParticipantMemResponse {
         this.item = item;
         this.participant = participant;
         this.providedChunk = response;
+        this.memorisationScore = 0;
     }
 
     public ExperimentItem getItem() {
@@ -41,19 +43,12 @@ public class ParticipantMemResponse {
         this.providedChunk = providedChunk;
     }
 
-    public int getContentScore() {
-        return contentScore;
+    public int getMemorisationScore() {
+        return memorisationScore;
     }
 
-    public void setContentScore(int contentScore) {
-        this.contentScore = contentScore;
+    public void setMemorisationScore(int memorisationScore) {
+        this.memorisationScore = memorisationScore;
     }
 
-    public int getPositionScore() {
-        return positionScore;
-    }
-
-    public void setPositionScore(int positionScore) {
-        this.positionScore = positionScore;
-    }
 }

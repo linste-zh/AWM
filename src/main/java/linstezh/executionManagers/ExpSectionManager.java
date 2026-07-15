@@ -13,6 +13,8 @@ import linstezh.visualisation.screens.ExperimentRecallScreen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ExpSectionManager implements SectionManager {
     private final SectionInterface section;
@@ -34,13 +36,37 @@ public class ExpSectionManager implements SectionManager {
         loadNextScene();
     }
 
-    public void reportEval(ExpItemAdapter itemAdapter) throws Exception {
-        manager.saveEvalResponse(itemAdapter.getBaseItem(), itemAdapter.readCorrectEval());
+    public void reportEval(ExpItemAdapter itemAdapter){
+        int score = itemAdapter.readCorrectEval() == itemAdapter.readUserEval() ? 1 : 0;
+        manager.saveEvalResponse(itemAdapter.getBaseItem(), itemAdapter.readUserEval(), score);
     }
 
-    public void reportMemorisedChunks(List<ExpItemAdapter> itemAdapters) throws Exception {
-        for(int i = 0; i < itemAdapters.size(); i++){
-            manager.saveMemResponse(itemAdapters.get(i).getBaseItem(), itemAdapters.get(i).readUserMemoryChunk());
+    public void reportMemorisedChunks(List<ExpItemAdapter> itemAdapters){
+        List<ExpItemAdapter> unscoredItemAdapters = new ArrayList<>(itemAdapters);
+
+        //Score all correctly memorised chunks as 2
+        for (ExpItemAdapter itemAdapter : itemAdapters) {
+            if(Objects.equals(itemAdapter.readMemoryChunk(), itemAdapter.readUserMemoryChunk())){
+                itemAdapter.setScore(2);
+                unscoredItemAdapters.remove(itemAdapter);
+            }
+        }
+
+        //Check items that were not remembered correctly whether their chunk was noted in a different position, if so score as 1
+        List<String> orphanedChunks = unscoredItemAdapters.stream()
+                .map(ExpItemAdapter::readUserMemoryChunk)
+                .toList();
+        for(ExpItemAdapter itemAdapter : unscoredItemAdapters){
+            if(orphanedChunks.contains(itemAdapter.readMemoryChunk())){
+                itemAdapter.setScore(1);
+                orphanedChunks.remove(itemAdapter.readMemoryChunk());
+                unscoredItemAdapters.remove(itemAdapter);
+            }
+        }
+
+
+        for (ExpItemAdapter itemAdapter : itemAdapters) {
+            manager.saveMemResponse(itemAdapter.getBaseItem(), itemAdapter.readUserMemoryChunk(), itemAdapter.readScore());
         }
     }
 

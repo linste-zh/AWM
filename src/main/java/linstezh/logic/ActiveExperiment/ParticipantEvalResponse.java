@@ -47,4 +47,14 @@ public class ParticipantEvalResponse {
     public void setEvalScore(int evalScore) {
         this.evalScore = evalScore;
     }
+
+    public int calculateEvalScore(){
+        if(this.providedEvaluation == item.getCorrectEvaluation()){
+            this.evalScore = 1;
+        }else{
+            this.evalScore = 0;
+        }
+
+        return this.evalScore;
+    }
 }

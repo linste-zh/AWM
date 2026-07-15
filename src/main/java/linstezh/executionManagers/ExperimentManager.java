@@ -66,13 +66,15 @@ public class ExperimentManager{
         System.out.println(currentParticipant.getName());
     }
 
-    public void saveEvalResponse(ExperimentItem item, boolean response){
+    public void saveEvalResponse(ExperimentItem item, boolean response, int evalScore){
         ParticipantEvalResponse newPER = new ParticipantEvalResponse(item, currentParticipant, response);
+        newPER.setEvalScore(evalScore);
         evalResponses.add(newPER);
     }
 
-    public void saveMemResponse(ExperimentItem item, String response){
+    public void saveMemResponse(ExperimentItem item, String response, int memScore){
         ParticipantMemResponse newPMR = new ParticipantMemResponse(item, currentParticipant, response);
+        newPMR.setMemorisationScore(memScore);
         memResponses.add(newPMR);
     }
 

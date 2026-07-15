@@ -10,6 +10,7 @@ public class ExpItemAdapter {
     private final Integer position;
     private Boolean userEval;
     private String userMemoryChunk;
+    private int score;
 
     public ExpItemAdapter(ExperimentItem item){
         this.baseItem = item;
@@ -55,12 +56,11 @@ public class ExpItemAdapter {
         return userMemoryChunk;
     }
 
-    public Boolean isUserCorrect(){
-        return correctEval == userEval;
+    public void setScore(int score){
+        this.score = score;
     }
 
-    public Boolean didUserRemember(){
-        System.out.println("User reported " + userMemoryChunk + "; was supposed to report " + memoryChunk);
-        return userMemoryChunk.equals(memoryChunk);
+    public int readScore(){
+        return score;
     }
 }
