@@ -8,8 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import jdk.jfr.StackTrace;
 import linstezh.executionManagers.EndSectionManager;
 import linstezh.visualisation.adapters.InfoItemAdapter;
+
+import java.io.IOException;
 
 public class ExperimentEndScreen {
     private final InfoItemAdapter item;
@@ -49,7 +52,11 @@ public class ExperimentEndScreen {
     private Node downloadFiles() {
         Button results = new Button("Download CSV");
         results.setOnAction(evt -> {
-            manager.requestCsvSave();
+            try {
+                manager.requestCsvSave();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
         return results;
     }

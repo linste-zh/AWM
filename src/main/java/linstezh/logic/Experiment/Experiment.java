@@ -1,9 +1,12 @@
 package linstezh.logic.Experiment;
 
 import linstezh.logic.Section.SectionInterface;
+import linstezh.logic.Section.SectionTypes;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Experiment {
     private int id;
@@ -43,6 +46,12 @@ public class Experiment {
 
     public void addSection(SectionInterface section){
         this.sections.add(section);
+    }
+
+    public List<SectionInterface> getExperimentSections(){
+        return sections.stream()
+                .filter(section -> section.getType() == SectionTypes.EXPERIMENT)
+                .collect(Collectors.toList());
     }
 
     @Override

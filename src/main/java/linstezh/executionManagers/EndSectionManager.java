@@ -8,6 +8,7 @@ import linstezh.logic.Section.SectionInterface;
 import linstezh.visualisation.adapters.InfoItemAdapter;
 import linstezh.visualisation.screens.ExperimentEndScreen;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EndSectionManager implements SectionManager {
@@ -30,7 +31,7 @@ public class EndSectionManager implements SectionManager {
         loadNextScene();
     }
 
-    public void requestCsvSave(){
+    public void requestCsvSave() throws IOException {
         this.manager.saveResults();
     }
 

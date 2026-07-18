@@ -12,6 +12,7 @@ import linstezh.visualisation.screens.ExperimentItemScreen;
 import linstezh.visualisation.screens.ExperimentRecallScreen;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -55,12 +56,21 @@ public class ExpSectionManager implements SectionManager {
         //Check items that were not remembered correctly whether their chunk was noted in a different position, if so score as 1
         List<String> orphanedChunks = unscoredItemAdapters.stream()
                 .map(ExpItemAdapter::readUserMemoryChunk)
-                .toList();
-        for(ExpItemAdapter itemAdapter : unscoredItemAdapters){
+                .collect(Collectors.toList());
+        /*for(ExpItemAdapter itemAdapter : unscoredItemAdapters){
             if(orphanedChunks.contains(itemAdapter.readMemoryChunk())){
                 itemAdapter.setScore(1);
                 orphanedChunks.remove(itemAdapter.readMemoryChunk());
                 unscoredItemAdapters.remove(itemAdapter);
+            }
+        }*/
+        Iterator<ExpItemAdapter> iterator = unscoredItemAdapters.iterator();
+        while (iterator.hasNext()) {
+            ExpItemAdapter itemAdapter = iterator.next();
+            if (orphanedChunks.contains(itemAdapter.readMemoryChunk())) {
+                itemAdapter.setScore(1);
+                orphanedChunks.remove(itemAdapter.readMemoryChunk());
+                iterator.remove(); // safe removal during iteration
             }
         }
 

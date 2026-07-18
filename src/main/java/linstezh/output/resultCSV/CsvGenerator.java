@@ -1,13 +1,25 @@
 package linstezh.output.resultCSV;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 import linstezh.logic.ActiveExperiment.ParticipantEvalResponse;
 import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
 import linstezh.logic.Item.ExperimentItem;
+import linstezh.logic.Item.ItemInterface;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
+import java.util.List;
 
 public class CsvGenerator {
-    public static String[] generateRow(String experimentName, String participantName, Date date, String sectionName, ExperimentItem item){
+
+
+    public static String[] generateRow(String experimentName, String participantName, Date date, String sectionName, ItemInterface item){
         return new String[]{
                 experimentName,
                 participantName,
@@ -18,7 +30,7 @@ public class CsvGenerator {
                 item.getType().toString(),
                 item.getDisplayText(),
                 item.getAffectiveValue(),
-                Boolean.toString(item.getCorrectEvaluation()),
+                null,
                 null,
                 null,
                 null,
@@ -66,4 +78,20 @@ public class CsvGenerator {
                 "mem_score"
         };
     }
+
+    public static Path writeCsv(List<String[]> lines, Path path) throws IOException{
+        try (CSVWriter writer = new CSVWriter(new FileWriter(path.toString()))) {
+            writer.writeAll(lines);
+        }
+        return path;
+    }
+
+    public static List<String[]> readCSV(Path path) throws CsvException, IOException{
+        try (Reader reader = Files.newBufferedReader(path)) {
+            try (CSVReader csvReader = new CSVReader(reader)) {
+                return csvReader.readAll();
+            }
+        }
+    }
+
 }

@@ -67,9 +67,6 @@ public class ExperimentRecallScreen {
                 items.get(Integer.parseInt(textField.getId())).reportUserMemoryChunk(textField.getText());
             }
         }
-        for(ExpItemAdapter item : items){
-            item.didUserRemember();
-        }
 
         manager.reportMemorisedChunks(items);
         manager.concludeSection();

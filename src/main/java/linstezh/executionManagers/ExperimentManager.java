@@ -8,11 +8,21 @@ import linstezh.logic.ActiveExperiment.ParticipantEvalResponse;
 import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
 import linstezh.logic.Experiment.Experiment;
 import linstezh.logic.Item.ExperimentItem;
+import linstezh.logic.Item.ItemInterface;
+import linstezh.logic.Item.ItemTypes;
+import linstezh.logic.Section.Section;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
+import linstezh.output.resultCSV.CsvGenerator;
 
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExperimentManager{
     final private Experiment experiment;
@@ -78,7 +88,48 @@ public class ExperimentManager{
         memResponses.add(newPMR);
     }
 
-    public String saveResults(){
-        return "Document saved under xyz";
+    public ParticipantEvalResponse matchEvalResponse(ItemInterface item){
+        return evalResponses.stream()
+                .filter(res -> res.getItem() == item)
+                .reduce((first, second) -> first).
+                orElse(null);
+    }
+
+    public ParticipantMemResponse matchMemResponse(ItemInterface item){
+        return memResponses.stream()
+                .filter(res -> res.getItem() == item)
+                .reduce((first, second) -> first).
+                orElse(null);
+    }
+
+    public void saveResults() throws IOException {
+        List<String[]> csvRows = new ArrayList<>();
+        csvRows.add(CsvGenerator.generateHeaders());
+        for(SectionInterface section : experiment.getExperimentSections()){
+            for(ItemInterface item : section.getItems()){
+                if(item.getType() == ItemTypes.EXPERIMENT){
+                    ExperimentItem expItem = (ExperimentItem) item;
+                    csvRows.add(CsvGenerator.generateRow(
+                            experiment.getName(),
+                            currentParticipant.getName(),
+                            new Date(),
+                            section.getName(),
+                            expItem,
+                            matchEvalResponse(expItem),
+                            matchMemResponse(expItem)
+                    ));
+                }else{
+                    csvRows.add(CsvGenerator.generateRow(
+                            experiment.getName(),
+                            currentParticipant.getName(),
+                            new Date(),
+                            section.getName(),
+                            item
+                    ));
+                }
+            }
+        }
+        Path filePath = Paths.get(URI.create("file:///C://Users//stein//Documents//results.csv"));
+        CsvGenerator.writeCsv(csvRows, filePath);
     }
 }

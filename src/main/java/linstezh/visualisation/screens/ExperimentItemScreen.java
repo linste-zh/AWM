@@ -42,7 +42,6 @@ public class ExperimentItemScreen {
 
     private void setEval(Boolean value) throws Exception {
         item.reportUserEval(value);
-        System.out.println("User was: " + item.isUserCorrect());
         manager.reportEval(item);
         manager.loadNextScene();
     }
