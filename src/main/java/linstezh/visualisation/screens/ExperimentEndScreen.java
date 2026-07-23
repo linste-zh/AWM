@@ -8,10 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import jdk.jfr.StackTrace;
 import linstezh.executionManagers.EndSectionManager;
 import linstezh.visualisation.adapters.InfoItemAdapter;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ExperimentEndScreen {
@@ -53,7 +55,18 @@ public class ExperimentEndScreen {
         Button results = new Button("Download CSV");
         results.setOnAction(evt -> {
             try {
-                manager.requestCsvSave();
+                FileChooser fileChooser = new FileChooser();
+
+                //Set extension filter for text files
+                FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+                fileChooser.getExtensionFilters().add(csvFilter);
+
+                //Show save file dialog
+                File file = fileChooser.showSaveDialog(manager.getPrimaryStage());
+
+                if (file != null) {
+                    manager.requestCsvSave(file);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

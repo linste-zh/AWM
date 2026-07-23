@@ -8,6 +8,7 @@ import linstezh.logic.Section.SectionInterface;
 import linstezh.visualisation.adapters.InfoItemAdapter;
 import linstezh.visualisation.screens.ExperimentEndScreen;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,14 +26,18 @@ public class EndSectionManager implements SectionManager {
         items = section.getItems();
     }
 
+    public Stage getPrimaryStage(){
+        return primaryStage;
+    }
+
     public void display(Stage primaryStage) {
         this.primaryStage = primaryStage;
         nextItem = 0;
         loadNextScene();
     }
 
-    public void requestCsvSave() throws IOException {
-        this.manager.saveResults();
+    public void requestCsvSave(File file) throws IOException {
+        this.manager.saveResults(file);
     }
 
     public void loadNextScene(){
@@ -41,6 +46,10 @@ public class EndSectionManager implements SectionManager {
         nextItem += 1;
         primaryStage.setScene(new Scene(newScene, 400, 200));
         primaryStage.show();
+    }
+
+    public void saveDocument(){
+
     }
 
     public void concludeSection(){

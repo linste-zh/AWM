@@ -15,6 +15,7 @@ import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 import linstezh.output.resultCSV.CsvGenerator;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Path;
@@ -102,7 +103,7 @@ public class ExperimentManager{
                 orElse(null);
     }
 
-    public void saveResults() throws IOException {
+    public void saveResults(File file) throws IOException {
         List<String[]> csvRows = new ArrayList<>();
         csvRows.add(CsvGenerator.generateHeaders());
         for(SectionInterface section : experiment.getExperimentSections()){
@@ -129,7 +130,7 @@ public class ExperimentManager{
                 }
             }
         }
-        Path filePath = Paths.get(URI.create("file:///C://Users//stein//Documents//results.csv"));
+        Path filePath = Paths.get(file.getPath());
         CsvGenerator.writeCsv(csvRows, filePath);
     }
 }
