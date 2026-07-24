@@ -10,25 +10,23 @@ import linstezh.logic.Experiment.Experiment;
 import linstezh.logic.Item.ExperimentItem;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Item.ItemTypes;
-import linstezh.logic.Section.Section;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
-import linstezh.output.resultCSV.CsvGenerator;
+import linstezh.output.resultCSV.CsvDocumentGenerator;
+import linstezh.output.resultCSV.CsvResultsGenerator;
+import linstezh.output.resultCSV.CsvRowGenerator;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ExperimentManager{
     final private Experiment experiment;
     final private Stage primaryStage;
-    final private List<SectionInterface> experimentSections;
     private final DatabaseManager db;
     private int nextSection = 0;
     private Participant currentParticipant;
@@ -39,7 +37,6 @@ public class ExperimentManager{
         this.experiment = experiment;
         this.primaryStage = primaryStage;
         this.db = db;
-        this.experimentSections = experiment.getSections();
         evalResponses = new ArrayList<>();
         memResponses = new ArrayList<>();
     }
@@ -50,9 +47,9 @@ public class ExperimentManager{
     }
 
     public void nextSection(){
-        if(nextSection < experimentSections.size()){
+        if(nextSection < experiment.getSections().size()){
             SectionManager wm = null;
-            SectionInterface section = experimentSections.get(nextSection);
+            SectionInterface section = experiment.getSections().get(nextSection);
             switch (section.getType()){
                 case SectionTypes.EXPERIMENT -> wm = new ExpSectionManager(section, this);
                 case SectionTypes.START -> wm = new StartSectionManager(section, this);
@@ -68,8 +65,16 @@ public class ExperimentManager{
         }
     }
 
+    public List<SectionInterface> getSections(){
+        this.experiment.getSections();
+    }
+
     public String getExperimentTitle(){
         return this.experiment.getName();
+    }
+
+    public String getParticipantName(){
+        return this.currentParticipant.getName();
     }
 
     public void createParticipant(String name){
@@ -103,34 +108,11 @@ public class ExperimentManager{
                 orElse(null);
     }
 
-    public void saveResults(File file) throws IOException {
-        List<String[]> csvRows = new ArrayList<>();
-        csvRows.add(CsvGenerator.generateHeaders());
-        for(SectionInterface section : experiment.getExperimentSections()){
-            for(ItemInterface item : section.getItems()){
-                if(item.getType() == ItemTypes.EXPERIMENT){
-                    ExperimentItem expItem = (ExperimentItem) item;
-                    csvRows.add(CsvGenerator.generateRow(
-                            experiment.getName(),
-                            currentParticipant.getName(),
-                            new Date(),
-                            section.getName(),
-                            expItem,
-                            matchEvalResponse(expItem),
-                            matchMemResponse(expItem)
-                    ));
-                }else{
-                    csvRows.add(CsvGenerator.generateRow(
-                            experiment.getName(),
-                            currentParticipant.getName(),
-                            new Date(),
-                            section.getName(),
-                            item
-                    ));
-                }
-            }
-        }
+    public void saveResults(File file, CsvResultsGenerator resultGenerator) throws IOException {
+        List<String[]> csvRows = resultGenerator.generate(this);
+
         Path filePath = Paths.get(file.getPath());
-        CsvGenerator.writeCsv(csvRows, filePath);
+        CsvDocumentGenerator.writeCsv(csvRows, filePath);
     }
+
 }

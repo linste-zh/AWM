@@ -5,6 +5,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Section.SectionInterface;
+import linstezh.output.resultCSV.CsvItemResultsGenerator;
 import linstezh.visualisation.adapters.InfoItemAdapter;
 import linstezh.visualisation.screens.ExperimentEndScreen;
 
@@ -37,7 +38,7 @@ public class EndSectionManager implements SectionManager {
     }
 
     public void requestCsvSave(File file) throws IOException {
-        this.manager.saveResults(file);
+        this.manager.saveResults(file, new CsvItemResultsGenerator());
     }
 
     public void loadNextScene(){
@@ -55,5 +56,4 @@ public class EndSectionManager implements SectionManager {
     public void concludeSection(){
         manager.nextSection();
     }
-
 }

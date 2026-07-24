@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 
-public class CsvGenerator {
+public class CsvRowGenerator {
 
 
     public static String[] generateRow(String experimentName, String participantName, Date date, String sectionName, ItemInterface item){
@@ -78,20 +78,4 @@ public class CsvGenerator {
                 "mem_score"
         };
     }
-
-    public static Path writeCsv(List<String[]> lines, Path path) throws IOException{
-        try (CSVWriter writer = new CSVWriter(new FileWriter(path.toString()))) {
-            writer.writeAll(lines);
-        }
-        return path;
-    }
-
-    public static List<String[]> readCSV(Path path) throws CsvException, IOException{
-        try (Reader reader = Files.newBufferedReader(path)) {
-            try (CSVReader csvReader = new CSVReader(reader)) {
-                return csvReader.readAll();
-            }
-        }
-    }
-
 }
