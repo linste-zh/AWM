@@ -9,8 +9,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
-import jdk.jfr.StackTrace;
 import linstezh.executionManagers.EndSectionManager;
+import linstezh.output.resultCSV.CsvAggregatedResultsGenerator;
+import linstezh.output.resultCSV.CsvItemResultsGenerator;
 import linstezh.visualisation.adapters.InfoItemAdapter;
 
 import java.io.File;
@@ -32,7 +33,8 @@ public class ExperimentEndScreen {
 
         box.getChildren().add(header());
         box.getChildren().add(infoField());
-        box.getChildren().add(downloadFiles());
+        box.getChildren().add(downloadItemFile());
+        box.getChildren().add(downloadFAggregatedFile());
         box.getChildren().add(endExperiment());
 
         box.setAlignment(Pos.TOP_LEFT);
@@ -51,8 +53,8 @@ public class ExperimentEndScreen {
     }
 
 
-    private Node downloadFiles() {
-        Button results = new Button("Download CSV");
+    private Node downloadItemFile() {
+        Button results = new Button("Results by Item");
         results.setOnAction(evt -> {
             try {
                 FileChooser fileChooser = new FileChooser();
@@ -65,7 +67,30 @@ public class ExperimentEndScreen {
                 File file = fileChooser.showSaveDialog(manager.getPrimaryStage());
 
                 if (file != null) {
-                    manager.requestCsvSave(file);
+                    manager.requestCsvSave(file, new CsvItemResultsGenerator());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return results;
+    }
+
+    private Node downloadFAggregatedFile() {
+        Button results = new Button("Results by Section");
+        results.setOnAction(evt -> {
+            try {
+                FileChooser fileChooser = new FileChooser();
+
+                //Set extension filter for text files
+                FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+                fileChooser.getExtensionFilters().add(csvFilter);
+
+                //Show save file dialog
+                File file = fileChooser.showSaveDialog(manager.getPrimaryStage());
+
+                if (file != null) {
+                    manager.requestCsvSave(file, new CsvAggregatedResultsGenerator());
                 }
             } catch (IOException e) {
                 e.printStackTrace();

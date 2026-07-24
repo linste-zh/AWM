@@ -105,6 +105,20 @@ public class ExperimentManager{
                 orElse(null);
     }
 
+    public List<ParticipantEvalResponse> getEvalResponsesOfSection(SectionInterface section){
+        List<ItemInterface> itemsOfSection = section.getItems();
+        return evalResponses.stream()
+                .filter(res -> itemsOfSection.contains(res.getItem()))
+                .toList();
+    }
+
+    public List<ParticipantMemResponse> getMemResponsesOfSection(SectionInterface section){
+        List<ItemInterface> itemsOfSection = section.getItems();
+        return memResponses.stream()
+                .filter(res -> itemsOfSection.contains(res.getItem()))
+                .toList();
+    }
+
     public void saveResults(File file, CsvResultsGenerator resultGenerator) throws IOException {
         List<String[]> csvRows = resultGenerator.generate(this);
 

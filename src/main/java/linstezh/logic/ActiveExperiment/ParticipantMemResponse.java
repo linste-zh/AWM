@@ -2,8 +2,6 @@ package linstezh.logic.ActiveExperiment;
 
 import linstezh.logic.Item.ExperimentItem;
 
-import java.util.List;
-
 public class ParticipantMemResponse {
     private ExperimentItem item;
     private Participant participant;

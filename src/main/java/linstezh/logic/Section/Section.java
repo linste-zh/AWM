@@ -2,6 +2,7 @@ package linstezh.logic.Section;
 
 import linstezh.logic.Experiment.Experiment;
 import linstezh.logic.Item.ItemInterface;
+import linstezh.logic.Item.ItemTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,14 @@ public class Section implements SectionInterface{
 
     public void addItem(ItemInterface item){
         this.items.add(item);
+    }
+
+    public long maxEvalScore() {
+        return items.stream().filter(item -> item.getType() == ItemTypes.EXPERIMENT).count();
+    }
+
+    public long maxMemoryScore() {
+        return items.stream().filter(item -> item.getType() == ItemTypes.EXPERIMENT).count() * 2;
     }
 
     @Override

@@ -7,7 +7,6 @@ import linstezh.logic.Item.ItemTypes;
 import linstezh.logic.Section.SectionInterface;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CsvItemResultsGenerator implements CsvResultsGenerator{

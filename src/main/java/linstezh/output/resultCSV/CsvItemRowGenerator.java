@@ -5,8 +5,6 @@ import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
 import linstezh.logic.Item.ExperimentItem;
 import linstezh.logic.Item.ItemInterface;
 
-import java.util.Date;
-
 public class CsvItemRowGenerator {
 
 
@@ -15,7 +13,6 @@ public class CsvItemRowGenerator {
                 experimentName,
                 participantName,
                 sectionName,
-                Integer.toString(item.getID()),
                 Integer.toString(item.getPosition()),
                 item.getDisplayDate() != null ? item.getDisplayDate().toString() : null,
                 item.getType().toString(),
@@ -35,7 +32,6 @@ public class CsvItemRowGenerator {
                 experimentName,
                 participantName,
                 sectionName,
-                Integer.toString(item.getID()),
                 Integer.toString(item.getPosition()),
                 item.getDisplayDate() != null ? item.getDisplayDate().toString() : null,
                 item.getType().toString(),
@@ -55,7 +51,6 @@ public class CsvItemRowGenerator {
                 "experimentName",
                 "participantName",
                 "sectionName",
-                "id",
                 "position",
                 "displayTimestamp",
                 "type",
