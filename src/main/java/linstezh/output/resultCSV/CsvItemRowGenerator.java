@@ -1,32 +1,23 @@
 package linstezh.output.resultCSV;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
 import linstezh.logic.ActiveExperiment.ParticipantEvalResponse;
 import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
 import linstezh.logic.Item.ExperimentItem;
 import linstezh.logic.Item.ItemInterface;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Date;
-import java.util.List;
 
-public class CsvRowGenerator {
+public class CsvItemRowGenerator {
 
 
-    public static String[] generateRow(String experimentName, String participantName, Date date, String sectionName, ItemInterface item){
+    public static String[] generateRow(String experimentName, String participantName, String sectionName, ItemInterface item){
         return new String[]{
                 experimentName,
                 participantName,
-                date.toString(),
                 sectionName,
                 Integer.toString(item.getID()),
                 Integer.toString(item.getPosition()),
+                item.getDisplayDate() != null ? item.getDisplayDate().toString() : null,
                 item.getType().toString(),
                 item.getDisplayText(),
                 item.getAffectiveValue(),
@@ -39,14 +30,14 @@ public class CsvRowGenerator {
         };
     }
 
-    public static String[] generateRow(String experimentName, String participantName, Date date, String sectionName, ExperimentItem item, ParticipantEvalResponse evalRes, ParticipantMemResponse memRes){
+    public static String[] generateRow(String experimentName, String participantName, String sectionName, ExperimentItem item, ParticipantEvalResponse evalRes, ParticipantMemResponse memRes){
         return new String[]{
                 experimentName,
                 participantName,
-                date.toString(),
                 sectionName,
                 Integer.toString(item.getID()),
                 Integer.toString(item.getPosition()),
+                item.getDisplayDate() != null ? item.getDisplayDate().toString() : null,
                 item.getType().toString(),
                 item.getDisplayText(),
                 item.getAffectiveValue(),
@@ -63,10 +54,10 @@ public class CsvRowGenerator {
         return new String[]{
                 "experimentName",
                 "participantName",
-                "date",
                 "sectionName",
                 "id",
                 "position",
+                "displayTimestamp",
                 "type",
                 "displayText",
                 "affectiveValue",

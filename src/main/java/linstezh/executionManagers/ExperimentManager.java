@@ -9,19 +9,16 @@ import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
 import linstezh.logic.Experiment.Experiment;
 import linstezh.logic.Item.ExperimentItem;
 import linstezh.logic.Item.ItemInterface;
-import linstezh.logic.Item.ItemTypes;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 import linstezh.output.resultCSV.CsvDocumentGenerator;
 import linstezh.output.resultCSV.CsvResultsGenerator;
-import linstezh.output.resultCSV.CsvRowGenerator;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ExperimentManager{
@@ -66,7 +63,7 @@ public class ExperimentManager{
     }
 
     public List<SectionInterface> getSections(){
-        this.experiment.getSections();
+        return this.experiment.getSections();
     }
 
     public String getExperimentTitle(){

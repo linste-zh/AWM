@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CsvItemResultsGenerator implements CsvResultsGenerator{
+public class CsvAggregatedResultsGenerator implements CsvResultsGenerator{
     public List<String[]> generate(ExperimentManager manager) {
         List<String[]> csvRows = new ArrayList<>();
         csvRows.add(CsvItemRowGenerator.generateHeaders());

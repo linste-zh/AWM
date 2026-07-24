@@ -11,10 +11,7 @@ import linstezh.visualisation.adapters.ExpItemAdapter;
 import linstezh.visualisation.screens.ExperimentItemScreen;
 import linstezh.visualisation.screens.ExperimentRecallScreen;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ExpSectionManager implements SectionManager {
@@ -57,20 +54,14 @@ public class ExpSectionManager implements SectionManager {
         List<String> orphanedChunks = unscoredItemAdapters.stream()
                 .map(ExpItemAdapter::readUserMemoryChunk)
                 .collect(Collectors.toList());
-        /*for(ExpItemAdapter itemAdapter : unscoredItemAdapters){
-            if(orphanedChunks.contains(itemAdapter.readMemoryChunk())){
-                itemAdapter.setScore(1);
-                orphanedChunks.remove(itemAdapter.readMemoryChunk());
-                unscoredItemAdapters.remove(itemAdapter);
-            }
-        }*/
+
         Iterator<ExpItemAdapter> iterator = unscoredItemAdapters.iterator();
         while (iterator.hasNext()) {
             ExpItemAdapter itemAdapter = iterator.next();
             if (orphanedChunks.contains(itemAdapter.readMemoryChunk())) {
                 itemAdapter.setScore(1);
                 orphanedChunks.remove(itemAdapter.readMemoryChunk());
-                iterator.remove(); // safe removal during iteration
+                iterator.remove();
             }
         }
 
@@ -84,6 +75,7 @@ public class ExpSectionManager implements SectionManager {
         Region newScene = null;
         if(nextItem < items.size()) {
             currentItem = items.get(nextItem);
+            currentItem.setDisplayDate(new Date());
             if (currentItem.getType() == ItemTypes.EXPERIMENT){
                 ExpItemAdapter newItem = new ExpItemAdapter((ExperimentItem) currentItem);
                 newScene = new ExperimentItemScreen(newItem, this).createContent();

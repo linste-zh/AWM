@@ -2,6 +2,8 @@ package linstezh.logic.Item;
 
 import linstezh.logic.Section.Section;
 
+import java.util.Date;
+
 public class Item implements ItemInterface {
     private int id;
     private Section section;
@@ -9,6 +11,7 @@ public class Item implements ItemInterface {
     private int position;
     private String displayText;
     private String affectiveValue;
+    private Date displayDate;
 
     public Item(){};
 
@@ -51,6 +54,14 @@ public class Item implements ItemInterface {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public Date getDisplayDate() {
+        return displayDate;
+    }
+
+    public void setDisplayDate(Date displayDate) {
+        this.displayDate = displayDate;
     }
 
     public String getDisplayText() {
