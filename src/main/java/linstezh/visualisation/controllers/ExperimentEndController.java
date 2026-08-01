@@ -18,11 +18,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class ExperimentEndController {
-    private final InfoItemAdapter item;
-    private final EndSectionManager manager;
+    private InfoItemAdapter item;
+    private EndSectionManager manager;
     VBox box = new VBox();
 
-    public ExperimentEndController(InfoItemAdapter item, EndSectionManager manager){
+    public void init(InfoItemAdapter item, EndSectionManager manager){
         this.item = item;
         this.manager = manager;
     }

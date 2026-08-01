@@ -11,10 +11,10 @@ import linstezh.executionManagers.ExpSectionManager;
 import linstezh.visualisation.adapters.ImageDistractorItemAdapter;
 
 public class ImageDistractorController {
-    private final ImageDistractorItemAdapter item;
-    private final ExpSectionManager manager;
+    private ImageDistractorItemAdapter item;
+    private ExpSectionManager manager;
 
-    public ImageDistractorController(ImageDistractorItemAdapter item, ExpSectionManager manager){
+    public void init(ImageDistractorItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
     }

@@ -12,11 +12,11 @@ import linstezh.executionManagers.StartSectionManager;
 import linstezh.visualisation.adapters.InfoItemAdapter;
 
 public class ExperimentStartController {
-    private final InfoItemAdapter item;
-    private final StartSectionManager manager;
+    private InfoItemAdapter item;
+    private StartSectionManager manager;
     VBox box = new VBox();
 
-    public ExperimentStartController(InfoItemAdapter item, StartSectionManager manager){
+    public void init(InfoItemAdapter item, StartSectionManager manager){
         this.item = item;
         this.manager = manager;
     }

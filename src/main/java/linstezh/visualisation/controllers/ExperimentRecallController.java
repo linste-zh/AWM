@@ -13,11 +13,11 @@ import linstezh.visualisation.adapters.ExpItemAdapter;
 import java.util.List;
 
 public class ExperimentRecallController {
-    private final List<ExpItemAdapter> items;
-    private final ExpSectionManager manager;
+    private List<ExpItemAdapter> items;
+    private ExpSectionManager manager;
     GridPane grid = new GridPane();
 
-    public ExperimentRecallController(List<ExpItemAdapter> items, ExpSectionManager manager){
+    public void init(List<ExpItemAdapter> items, ExpSectionManager manager){
         this.items = items;
         this.manager = manager;
     }

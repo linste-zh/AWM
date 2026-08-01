@@ -1,5 +1,7 @@
 package linstezh.executionManagers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -15,6 +17,7 @@ import linstezh.visualisation.controllers.ExperimentRecallController;
 import linstezh.visualisation.controllers.ImageDistractorController;
 import linstezh.visualisation.controllers.TextDistractorController;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -75,48 +78,85 @@ public class ExpSectionManager implements SectionManager {
         }
     }
 
-    public void loadNextScene(){
-        Region newScene = null;
+    public void loadNextScene() {
         if(nextItem < items.size()) {
             currentItem = items.get(nextItem);
             currentItem.setDisplayDate(new Date());
             if (currentItem.getType() == ItemTypes.EXPERIMENT){
-                ExpItemAdapter newItem = new ExpItemAdapter((ExperimentItem) currentItem);
-                newScene = new ExperimentItemController(newItem, this).createContent();
-                nextItem += 1;
+                loadExperimentItemScreen((ExperimentItem) currentItem);
             }else if (currentItem.getType() == ItemTypes.DISTRACTOR_TXT) {
-                TextDistractorItemAdapter newTxtDistractor = new TextDistractorItemAdapter(currentItem);
-                newScene = new TextDistractorController(newTxtDistractor, this).createContent();
-                nextItem += 1;
+                loadTxtDistractorScreen(currentItem);
             }else if (currentItem.getType() == ItemTypes.DISTRACTOR_IMG) {
-                try{
-                    ImageDistractorItemAdapter newImgDistractor = new ImageDistractorItemAdapter(currentItem);
-                    newScene = new ImageDistractorController(newImgDistractor, this).createContent();
-                    nextItem += 1;
-                }catch(java.io.FileNotFoundException e){
-
-                }
+                loadImgDistractorScreen(currentItem);
             }
-
         }else{
+            loadRecallScreen();
+        }
+    }
+
+    public void loadExperimentItemScreen(ExperimentItem item){
+        try {
+            ExpItemAdapter newItem = new ExpItemAdapter(item);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/ExperimentItemScreen.fxml"));
+            Parent root = loader.load();
+            ExperimentItemController controller = loader.getController();
+            controller.init(newItem, this);
+            primaryStage.getScene().setRoot(root);
+            nextItem += 1;
+        }catch(IOException e){
+            nextItem += 1;  //todo: meaningful catch!
+            loadNextScene();
+        }
+    }
+
+    public void loadTxtDistractorScreen(ItemInterface item){
+        try {
+            TextDistractorItemAdapter newTxtDistractor = new TextDistractorItemAdapter(currentItem);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/TextDistractorScreen.fxml"));
+            Parent root = loader.load();
+            TextDistractorController controller = loader.getController();
+            controller.init(newTxtDistractor, this);
+            primaryStage.getScene().setRoot(root);
+            nextItem += 1;
+        }catch(IOException e){
+            nextItem += 1;  //todo: meaningful catch!
+            loadNextScene();
+        }
+    }
+
+    public void loadImgDistractorScreen(ItemInterface item){
+        try {
+            ImageDistractorItemAdapter newImgDistractor = new ImageDistractorItemAdapter(currentItem);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/ImageDistractorScreen.fxml"));
+            Parent root = loader.load();
+            ImageDistractorController controller = loader.getController();
+            controller.init(newImgDistractor, this);
+            primaryStage.getScene().setRoot(root);
+            nextItem += 1;
+        }catch(IOException e){
+            nextItem += 1; //todo: meaningful catch!
+            loadNextScene();
+        }
+    }
+
+    public void loadRecallScreen(){
+        try {
             List<ExpItemAdapter> adaptedItems = new ArrayList<>();
             for(ItemInterface item : items){
                 if(item.getType() == ItemTypes.EXPERIMENT) {
                     adaptedItems.add(new ExpItemAdapter((ExperimentItem) item));
                 }
             }
-            newScene = new ExperimentRecallController(adaptedItems, this).createContent();
-        }
 
-        if(newScene != null){
-            primaryStage.setScene(new Scene(newScene, 400, 200));
-            primaryStage.show();
-        }else{
-            System.out.println("Skipped item");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/ExperimentRecallScreen.fxml"));
+            Parent root = loader.load();
+            ExperimentRecallController controller = loader.getController();
+            controller.init(adaptedItems, this);
+            primaryStage.getScene().setRoot(root);
             nextItem += 1;
-            loadNextScene();
+        }catch(IOException e){
+            concludeSection(); //todo: meaningful catch!
         }
-
     }
 
     public void concludeSection(){

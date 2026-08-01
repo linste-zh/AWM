@@ -10,10 +10,10 @@ import linstezh.executionManagers.ExpSectionManager;
 import linstezh.visualisation.adapters.TextDistractorItemAdapter;
 
 public class TextDistractorController {
-    private final TextDistractorItemAdapter item;
-    private final ExpSectionManager manager;
+    private TextDistractorItemAdapter item;
+    private ExpSectionManager manager;
 
-    public TextDistractorController(TextDistractorItemAdapter item, ExpSectionManager manager){
+    public void init(TextDistractorItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
     }

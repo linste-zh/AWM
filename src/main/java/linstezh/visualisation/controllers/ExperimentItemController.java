@@ -10,10 +10,10 @@ import linstezh.executionManagers.ExpSectionManager;
 import linstezh.visualisation.adapters.ExpItemAdapter;
 
 public class ExperimentItemController {
-    private final ExpItemAdapter item;
-    private final ExpSectionManager manager;
+    private ExpItemAdapter item;
+    private ExpSectionManager manager;
 
-    public ExperimentItemController(ExpItemAdapter item, ExpSectionManager manager){
+    public void init(ExpItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
     }
