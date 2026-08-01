@@ -1,14 +1,9 @@
-package linstezh.visualisation.controllers;
+package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
-import linstezh.visualisation.adapters.ExpItemAdapter;
+import linstezh.ui.adapters.ExpItemAdapter;
 
 public class ExperimentItemController {
     @FXML

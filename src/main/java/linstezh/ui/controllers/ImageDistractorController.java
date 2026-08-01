@@ -1,15 +1,10 @@
-package linstezh.visualisation.controllers;
+package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
-import linstezh.visualisation.adapters.ImageDistractorItemAdapter;
+import linstezh.ui.adapters.ImageDistractorItemAdapter;
 
 public class ImageDistractorController {
     @FXML

@@ -2,16 +2,12 @@ package linstezh.executionManagers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.output.resultCSV.CsvResultsGenerator;
-import linstezh.visualisation.adapters.InfoItemAdapter;
-import linstezh.visualisation.adapters.TextDistractorItemAdapter;
-import linstezh.visualisation.controllers.ExperimentEndController;
-import linstezh.visualisation.controllers.TextDistractorController;
+import linstezh.ui.adapters.InfoItemAdapter;
+import linstezh.ui.controllers.ExperimentEndController;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,9 +42,10 @@ public class EndSectionManager implements SectionManager {
     }
 
     public void loadNextScene(){
+        currentItem = items.get(nextItem);
         try {
             InfoItemAdapter newInfoItem = new InfoItemAdapter(currentItem);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/ExperimentEndScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentEndScreen.fxml"));
             Parent root = loader.load();
             ExperimentEndController controller = loader.getController();
             controller.init(newInfoItem, this);

@@ -1,15 +1,11 @@
-package linstezh.visualisation.controllers;
+package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import linstezh.executionManagers.ExpSectionManager;
-import linstezh.visualisation.adapters.ExpItemAdapter;
+import linstezh.ui.adapters.ExpItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,21 +26,34 @@ public class ExperimentRecallController {
         for (int i = 0; i < items.size(); i++) {
             TextField tf = new TextField();
             inputFields.add(tf);
+            tf.setId(Integer.toString(items.get(i).getItemID()));
             GridPane.setConstraints(tf, 0, i);
             grid.getChildren().add(tf);
         }
     }
 
     @FXML
-    private void submitMemoryChunks() throws Exception {
+    private void submitMemoryChunks(){
         for(Node field : grid.getChildren()){
             if(field.getClass() == TextField.class){
                 TextField textField = (TextField) field;
-                items.get(Integer.parseInt(textField.getId())).reportUserMemoryChunk(textField.getText());
+                ExpItemAdapter item = findItem(textField.getId());
+                assert item != null;
+                item.reportUserMemoryChunk(textField.getText());
+                System.out.println(item);
             }
         }
 
         manager.reportMemorisedChunks(items);
         manager.concludeSection();
+    }
+
+    private ExpItemAdapter findItem(String id){
+        for(ExpItemAdapter item : items){
+            if(item.getItemID() == Integer.parseInt(id)){
+                return item;
+            }
+        }
+        return null;
     }
 }

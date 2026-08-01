@@ -45,15 +45,15 @@ public class ExperimentManager{
 
     public void nextSection(){
         if(nextSection < experiment.getSections().size()){
-            SectionManager wm = null;
+            SectionManager sectionManager = null;
             SectionInterface section = experiment.getSections().get(nextSection);
             switch (section.getType()){
-                case SectionTypes.EXPERIMENT -> wm = new ExpSectionManager(section, this);
-                case SectionTypes.START -> wm = new StartSectionManager(section, this);
-                case SectionTypes.END -> wm = new EndSectionManager(section, this);
+                case SectionTypes.EXPERIMENT -> sectionManager = new ExpSectionManager(section, this);
+                case SectionTypes.START -> sectionManager = new StartSectionManager(section, this);
+                case SectionTypes.END -> sectionManager = new EndSectionManager(section, this);
             }
-            assert wm != null;  //todo: better check
-            wm.display(primaryStage);
+            assert sectionManager != null;  //todo: better check
+            sectionManager.display(primaryStage);
             nextSection += 1;
         }else{
             System.out.println(evalResponses);

@@ -1,4 +1,4 @@
-package linstezh.visualisation.controllers;
+package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -6,7 +6,7 @@ import javafx.stage.FileChooser;
 import linstezh.executionManagers.EndSectionManager;
 import linstezh.output.resultCSV.CsvAggregatedResultsGenerator;
 import linstezh.output.resultCSV.CsvItemResultsGenerator;
-import linstezh.visualisation.adapters.InfoItemAdapter;
+import linstezh.ui.adapters.InfoItemAdapter;
 
 import java.io.File;
 import java.io.IOException;

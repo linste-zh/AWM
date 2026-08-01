@@ -1,9 +1,9 @@
-package linstezh.visualisation.controllers;
+package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import linstezh.executionManagers.ExpSectionManager;
-import linstezh.visualisation.adapters.TextDistractorItemAdapter;
+import linstezh.ui.adapters.TextDistractorItemAdapter;
 
 public class TextDistractorController {
     @FXML

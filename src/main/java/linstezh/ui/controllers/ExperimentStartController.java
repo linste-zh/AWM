@@ -1,9 +1,12 @@
-package linstezh.visualisation.controllers;
+package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import linstezh.executionManagers.StartSectionManager;
-import linstezh.visualisation.adapters.InfoItemAdapter;
+import linstezh.ui.adapters.InfoItemAdapter;
 
 import java.util.Objects;
 

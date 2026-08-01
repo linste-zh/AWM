@@ -2,20 +2,18 @@ package linstezh.executionManagers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import linstezh.logic.Item.ExperimentItem;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Item.ItemTypes;
 import linstezh.logic.Section.SectionInterface;
-import linstezh.visualisation.adapters.ExpItemAdapter;
-import linstezh.visualisation.adapters.ImageDistractorItemAdapter;
-import linstezh.visualisation.adapters.TextDistractorItemAdapter;
-import linstezh.visualisation.controllers.ExperimentItemController;
-import linstezh.visualisation.controllers.ExperimentRecallController;
-import linstezh.visualisation.controllers.ImageDistractorController;
-import linstezh.visualisation.controllers.TextDistractorController;
+import linstezh.ui.adapters.ExpItemAdapter;
+import linstezh.ui.adapters.ImageDistractorItemAdapter;
+import linstezh.ui.adapters.TextDistractorItemAdapter;
+import linstezh.ui.controllers.ExperimentItemController;
+import linstezh.ui.controllers.ExperimentRecallController;
+import linstezh.ui.controllers.ImageDistractorController;
+import linstezh.ui.controllers.TextDistractorController;
 
 import java.io.IOException;
 import java.util.*;
@@ -88,6 +86,10 @@ public class ExpSectionManager implements SectionManager {
                 loadTxtDistractorScreen(currentItem);
             }else if (currentItem.getType() == ItemTypes.DISTRACTOR_IMG) {
                 loadImgDistractorScreen(currentItem);
+            }else{
+                System.out.println("skipped item");
+                nextItem += 1;  //todo: meaningful catch!
+                loadNextScene();
             }
         }else{
             loadRecallScreen();
@@ -97,7 +99,7 @@ public class ExpSectionManager implements SectionManager {
     public void loadExperimentItemScreen(ExperimentItem item){
         try {
             ExpItemAdapter newItem = new ExpItemAdapter(item);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/ExperimentItemScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentItemScreen.fxml"));
             Parent root = loader.load();
             ExperimentItemController controller = loader.getController();
             controller.init(newItem, this);
@@ -112,7 +114,7 @@ public class ExpSectionManager implements SectionManager {
     public void loadTxtDistractorScreen(ItemInterface item){
         try {
             TextDistractorItemAdapter newTxtDistractor = new TextDistractorItemAdapter(currentItem);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/TextDistractorScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/TextDistractorScreen.fxml"));
             Parent root = loader.load();
             TextDistractorController controller = loader.getController();
             controller.init(newTxtDistractor, this);
@@ -127,7 +129,7 @@ public class ExpSectionManager implements SectionManager {
     public void loadImgDistractorScreen(ItemInterface item){
         try {
             ImageDistractorItemAdapter newImgDistractor = new ImageDistractorItemAdapter(currentItem);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/ImageDistractorScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ImageDistractorScreen.fxml"));
             Parent root = loader.load();
             ImageDistractorController controller = loader.getController();
             controller.init(newImgDistractor, this);
@@ -148,7 +150,7 @@ public class ExpSectionManager implements SectionManager {
                 }
             }
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../screens/ExperimentRecallScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentRecallScreen.fxml"));
             Parent root = loader.load();
             ExperimentRecallController controller = loader.getController();
             controller.init(adaptedItems, this);
@@ -160,6 +162,7 @@ public class ExpSectionManager implements SectionManager {
     }
 
     public void concludeSection(){
+        System.out.println("concluded section");
         manager.nextSection();
     }
 

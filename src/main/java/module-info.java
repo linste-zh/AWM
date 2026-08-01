@@ -18,8 +18,8 @@ module linstezh {
     opens linstezh.logic.Section;
     opens linstezh.logic.Experiment;
     opens linstezh.logic.ActiveExperiment;
-    opens linstezh.visualisation.adapters;
-    opens linstezh.visualisation.controllers;
+    opens linstezh.ui.adapters;
+    opens linstezh.ui.controllers;
     opens linstezh.executionManagers;
     opens linstezh.exceptions;
 }

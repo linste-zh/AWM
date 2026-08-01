@@ -1,9 +1,10 @@
-package linstezh.visualisation.adapters;
+package linstezh.ui.adapters;
 
 import linstezh.logic.Item.ExperimentItem;
 
 public class ExpItemAdapter {
     private final ExperimentItem baseItem;
+    private int itemID;
     private final String evalText;
     private final Boolean correctEval;
     private final String memoryChunk;
@@ -14,6 +15,7 @@ public class ExpItemAdapter {
 
     public ExpItemAdapter(ExperimentItem item){
         this.baseItem = item;
+        this.itemID = item.getID();
         this.evalText = item.getDisplayText();
         this.correctEval = item.getCorrectEvaluation();
         this.memoryChunk = item.getMemoryChunk();
@@ -22,6 +24,10 @@ public class ExpItemAdapter {
 
     public ExperimentItem getBaseItem() {
         return baseItem;
+    }
+
+    public int getItemID(){
+        return itemID;
     }
 
     public String readEvalText(){
