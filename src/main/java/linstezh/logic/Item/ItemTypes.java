@@ -7,5 +7,5 @@ public enum ItemTypes {
     TRIAL_COMBINED,
     EXPERIMENT,
     DISTRACTOR_TXT,
-    DISTRACTOR_VISUAL
+    DISTRACTOR_IMG
 }

@@ -8,8 +8,12 @@ import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Item.ItemTypes;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.visualisation.adapters.ExpItemAdapter;
+import linstezh.visualisation.adapters.ImageDistractorItemAdapter;
+import linstezh.visualisation.adapters.TextDistractorItemAdapter;
 import linstezh.visualisation.screens.ExperimentItemScreen;
 import linstezh.visualisation.screens.ExperimentRecallScreen;
+import linstezh.visualisation.screens.ImageDistractorScreen;
+import linstezh.visualisation.screens.TextDistractorScreen;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -80,6 +84,18 @@ public class ExpSectionManager implements SectionManager {
                 ExpItemAdapter newItem = new ExpItemAdapter((ExperimentItem) currentItem);
                 newScene = new ExperimentItemScreen(newItem, this).createContent();
                 nextItem += 1;
+            }else if (currentItem.getType() == ItemTypes.DISTRACTOR_TXT) {
+                TextDistractorItemAdapter newTxtDistractor = new TextDistractorItemAdapter(currentItem);
+                newScene = new TextDistractorScreen(newTxtDistractor, this).createContent();
+                nextItem += 1;
+            }else if (currentItem.getType() == ItemTypes.DISTRACTOR_IMG) {
+                try{
+                    ImageDistractorItemAdapter newImgDistractor = new ImageDistractorItemAdapter(currentItem);
+                    newScene = new ImageDistractorScreen(newImgDistractor, this).createContent();
+                    nextItem += 1;
+                }catch(java.io.FileNotFoundException e){
+
+                }
             }
 
         }else{
