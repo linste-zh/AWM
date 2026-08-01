@@ -1,5 +1,6 @@
 package linstezh.visualisation.controllers;
 
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -10,56 +11,31 @@ import javafx.scene.layout.Region;
 import linstezh.executionManagers.ExpSectionManager;
 import linstezh.visualisation.adapters.ExpItemAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExperimentRecallController {
+    @FXML
+    private GridPane grid;
+
     private List<ExpItemAdapter> items;
     private ExpSectionManager manager;
-    GridPane grid = new GridPane();
+    private List<TextField> inputFields = new ArrayList<>();
+
 
     public void init(List<ExpItemAdapter> items, ExpSectionManager manager){
         this.items = items;
         this.manager = manager;
-    }
 
-    public Region createContent() {
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(5);
-        grid.setHgap(5);
-
-        for(int i = 0; i < items.size(); i++){
-            TextField current = createInputBox(i);
-            GridPane.setConstraints(current, 0, i);
-            grid.getChildren().add(current);
+        for (int i = 0; i < items.size(); i++) {
+            TextField tf = new TextField();
+            inputFields.add(tf);
+            GridPane.setConstraints(tf, 0, i);
+            grid.getChildren().add(tf);
         }
-
-        Button submitButton = createSubmitButton();
-        GridPane.setConstraints(submitButton, 1, 0);
-        grid.getChildren().add(submitButton);
-
-        grid.setAlignment(Pos.CENTER);
-        return grid;
     }
 
-    private TextField createInputBox(Integer pos) {
-        TextField textField = new TextField ();
-        textField.setPromptText("Chunk " + pos);
-        textField.setId(pos.toString());
-        return textField;
-    }
-
-    private Button createSubmitButton(){
-        Button submit = new Button("Submit");
-        submit.setOnAction(evt -> {
-            try {
-                submitMemoryChunks();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-        return submit;
-    }
-
+    @FXML
     private void submitMemoryChunks() throws Exception {
         for(Node field : grid.getChildren()){
             if(field.getClass() == TextField.class){
