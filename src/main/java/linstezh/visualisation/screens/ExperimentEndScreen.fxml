@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="linstezh.visualisation.controllers.ExperimentEndController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox spacing="20" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="linstezh.visualisation.controllers.ExperimentEndController"
+      prefHeight="200" prefWidth="400">
+    <Label text="Thank you for participating" style="-fx-font-size: 25; -fx-alignment: center"/>
+    <Label fx:id="infoText"/>
+    <Button text="Results by Item" onAction="#downloadItemFile"/>
+    <Button text="Results by Section" onAction="#downloadFAggregatedFile"/>
+    <Button text="End Experiment" onAction="#endExperiment"/>
+</VBox>
