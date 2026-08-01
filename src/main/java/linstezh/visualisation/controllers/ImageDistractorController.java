@@ -1,5 +1,6 @@
 package linstezh.visualisation.controllers;
 
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,30 +12,20 @@ import linstezh.executionManagers.ExpSectionManager;
 import linstezh.visualisation.adapters.ImageDistractorItemAdapter;
 
 public class ImageDistractorController {
+    @FXML
+    private ImageView distractorImage;
+
     private ImageDistractorItemAdapter item;
     private ExpSectionManager manager;
 
     public void init(ImageDistractorItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
+        distractorImage.setImage(new Image(item.readDisplayImage()));
     }
 
-    public Region createContent() {
-        VBox results = new VBox(20, image(), nextButton());
-        results.setAlignment(Pos.CENTER);
-        return results;
-    }
-
-    private Node nextButton() {
-        Button results = new Button("next");
-        results.setOnAction(evt -> {
-            manager.loadNextScene();
-        });
-        return results;
-    }
-
-    private Node image() {
-        Image image = new Image(item.readDisplayImage());
-        return new ImageView(image);
+    @FXML
+    private void nextScene() {
+        manager.loadNextScene();
     }
 }

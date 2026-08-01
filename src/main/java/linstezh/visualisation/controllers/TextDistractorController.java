@@ -22,6 +22,4 @@ public class TextDistractorController {
     private void nextScene() {
         manager.loadNextScene();
     }
-
-
 }
