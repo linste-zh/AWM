@@ -1,5 +1,6 @@
 package linstezh.visualisation.controllers;
 
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -10,37 +11,30 @@ import linstezh.executionManagers.ExpSectionManager;
 import linstezh.visualisation.adapters.ExpItemAdapter;
 
 public class ExperimentItemController {
+    @FXML
+    private Label evalText;
+
     private ExpItemAdapter item;
     private ExpSectionManager manager;
+
 
     public void init(ExpItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
+        evalText.setText(item.readEvalText());
     }
 
-    public Region createContent() {
-        VBox results = new VBox(20, createEvalLabel(), evalButton(true), evalButton(false));
-        results.setAlignment(Pos.CENTER);
-        return results;
+    @FXML
+    private void clickTrue(){
+        setEval(true);
     }
 
-    private Node evalButton(Boolean value) {
-        Button results = new Button(value.toString());
-        results.setOnAction(evt -> {
-            try {
-                setEval(value);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-        return results;
+    @FXML
+    private void clickFalse(){
+        setEval(false);
     }
 
-    private Node createEvalLabel() {
-        return new Label(item.readEvalText());
-    }
-
-    private void setEval(Boolean value) throws Exception {
+    private void setEval(Boolean value){
         item.reportUserEval(value);
         manager.reportEval(item);
         manager.loadNextScene();
