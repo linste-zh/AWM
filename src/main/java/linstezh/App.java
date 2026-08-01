@@ -1,6 +1,8 @@
 package linstezh;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import linstezh.database.DatabaseManager;
 import linstezh.executionManagers.ExperimentManager;
@@ -20,6 +22,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage){
+        primaryStage.setScene(new Scene(new Pane(), 400, 200));
+        primaryStage.show();
+
         ExperimentManager manager = new ExperimentManager(experiment, db, primaryStage);
         manager.start();
     }

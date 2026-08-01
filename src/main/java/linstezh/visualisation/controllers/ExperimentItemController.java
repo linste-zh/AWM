@@ -1,4 +1,4 @@
-package linstezh.visualisation.screens;
+package linstezh.visualisation.controllers;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -9,11 +9,11 @@ import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
 import linstezh.visualisation.adapters.ExpItemAdapter;
 
-public class ExperimentItemScreen {
+public class ExperimentItemController {
     private final ExpItemAdapter item;
     private final ExpSectionManager manager;
 
-    public ExperimentItemScreen(ExpItemAdapter item, ExpSectionManager manager){
+    public ExperimentItemController(ExpItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
     }

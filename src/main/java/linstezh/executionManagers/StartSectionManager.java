@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.visualisation.adapters.InfoItemAdapter;
-import linstezh.visualisation.screens.ExperimentStartScreen;
+import linstezh.visualisation.controllers.ExperimentStartController;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class StartSectionManager implements SectionManager {
 
     public void loadNextScene(){
         Region newScene = null;
-        newScene = new ExperimentStartScreen(new InfoItemAdapter(items.get(nextItem)), this).createContent();
+        newScene = new ExperimentStartController(new InfoItemAdapter(items.get(nextItem)), this).createContent();
         nextItem += 1;
         primaryStage.setScene(new Scene(newScene, 400, 200));
         primaryStage.show();

@@ -10,10 +10,10 @@ import linstezh.logic.Section.SectionInterface;
 import linstezh.visualisation.adapters.ExpItemAdapter;
 import linstezh.visualisation.adapters.ImageDistractorItemAdapter;
 import linstezh.visualisation.adapters.TextDistractorItemAdapter;
-import linstezh.visualisation.screens.ExperimentItemScreen;
-import linstezh.visualisation.screens.ExperimentRecallScreen;
-import linstezh.visualisation.screens.ImageDistractorScreen;
-import linstezh.visualisation.screens.TextDistractorScreen;
+import linstezh.visualisation.controllers.ExperimentItemController;
+import linstezh.visualisation.controllers.ExperimentRecallController;
+import linstezh.visualisation.controllers.ImageDistractorController;
+import linstezh.visualisation.controllers.TextDistractorController;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -82,16 +82,16 @@ public class ExpSectionManager implements SectionManager {
             currentItem.setDisplayDate(new Date());
             if (currentItem.getType() == ItemTypes.EXPERIMENT){
                 ExpItemAdapter newItem = new ExpItemAdapter((ExperimentItem) currentItem);
-                newScene = new ExperimentItemScreen(newItem, this).createContent();
+                newScene = new ExperimentItemController(newItem, this).createContent();
                 nextItem += 1;
             }else if (currentItem.getType() == ItemTypes.DISTRACTOR_TXT) {
                 TextDistractorItemAdapter newTxtDistractor = new TextDistractorItemAdapter(currentItem);
-                newScene = new TextDistractorScreen(newTxtDistractor, this).createContent();
+                newScene = new TextDistractorController(newTxtDistractor, this).createContent();
                 nextItem += 1;
             }else if (currentItem.getType() == ItemTypes.DISTRACTOR_IMG) {
                 try{
                     ImageDistractorItemAdapter newImgDistractor = new ImageDistractorItemAdapter(currentItem);
-                    newScene = new ImageDistractorScreen(newImgDistractor, this).createContent();
+                    newScene = new ImageDistractorController(newImgDistractor, this).createContent();
                     nextItem += 1;
                 }catch(java.io.FileNotFoundException e){
 
@@ -105,7 +105,7 @@ public class ExpSectionManager implements SectionManager {
                     adaptedItems.add(new ExpItemAdapter((ExperimentItem) item));
                 }
             }
-            newScene = new ExperimentRecallScreen(adaptedItems, this).createContent();
+            newScene = new ExperimentRecallController(adaptedItems, this).createContent();
         }
 
         if(newScene != null){

@@ -1,4 +1,4 @@
-package linstezh.visualisation.screens;
+package linstezh.visualisation.controllers;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,12 +12,12 @@ import linstezh.visualisation.adapters.ExpItemAdapter;
 
 import java.util.List;
 
-public class ExperimentRecallScreen {
+public class ExperimentRecallController {
     private final List<ExpItemAdapter> items;
     private final ExpSectionManager manager;
     GridPane grid = new GridPane();
 
-    public ExperimentRecallScreen(List<ExpItemAdapter> items, ExpSectionManager manager){
+    public ExperimentRecallController(List<ExpItemAdapter> items, ExpSectionManager manager){
         this.items = items;
         this.manager = manager;
     }

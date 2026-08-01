@@ -19,7 +19,7 @@ module linstezh {
     opens linstezh.logic.Experiment;
     opens linstezh.logic.ActiveExperiment;
     opens linstezh.visualisation.adapters;
-    opens linstezh.visualisation.screens;
+    opens linstezh.visualisation.controllers;
     opens linstezh.executionManagers;
     opens linstezh.exceptions;
 }

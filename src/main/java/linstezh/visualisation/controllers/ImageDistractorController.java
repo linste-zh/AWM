@@ -1,23 +1,20 @@
-package linstezh.visualisation.screens;
+package linstezh.visualisation.controllers;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
-import linstezh.visualisation.adapters.ExpItemAdapter;
 import linstezh.visualisation.adapters.ImageDistractorItemAdapter;
-import linstezh.visualisation.adapters.TextDistractorItemAdapter;
 
-public class ImageDistractorScreen {
+public class ImageDistractorController {
     private final ImageDistractorItemAdapter item;
     private final ExpSectionManager manager;
 
-    public ImageDistractorScreen(ImageDistractorItemAdapter item, ExpSectionManager manager){
+    public ImageDistractorController(ImageDistractorItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
     }

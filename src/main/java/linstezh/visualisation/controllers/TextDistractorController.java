@@ -1,4 +1,4 @@
-package linstezh.visualisation.screens;
+package linstezh.visualisation.controllers;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -7,14 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
-import linstezh.visualisation.adapters.ExpItemAdapter;
 import linstezh.visualisation.adapters.TextDistractorItemAdapter;
 
-public class TextDistractorScreen {
+public class TextDistractorController {
     private final TextDistractorItemAdapter item;
     private final ExpSectionManager manager;
 
-    public TextDistractorScreen(TextDistractorItemAdapter item, ExpSectionManager manager){
+    public TextDistractorController(TextDistractorItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
     }

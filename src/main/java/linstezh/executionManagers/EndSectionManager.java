@@ -7,7 +7,7 @@ import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.output.resultCSV.CsvResultsGenerator;
 import linstezh.visualisation.adapters.InfoItemAdapter;
-import linstezh.visualisation.screens.ExperimentEndScreen;
+import linstezh.visualisation.controllers.ExperimentEndController;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class EndSectionManager implements SectionManager {
 
     public void loadNextScene(){
         Region newScene = null;
-        newScene = new ExperimentEndScreen(new InfoItemAdapter(items.get(nextItem)), this).createContent();
+        newScene = new ExperimentEndController(new InfoItemAdapter(items.get(nextItem)), this).createContent();
         nextItem += 1;
         primaryStage.setScene(new Scene(newScene, 400, 200));
         primaryStage.show();

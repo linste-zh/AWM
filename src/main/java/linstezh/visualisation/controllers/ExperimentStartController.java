@@ -1,4 +1,4 @@
-package linstezh.visualisation.screens;
+package linstezh.visualisation.controllers;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,12 +11,12 @@ import javafx.scene.text.Font;
 import linstezh.executionManagers.StartSectionManager;
 import linstezh.visualisation.adapters.InfoItemAdapter;
 
-public class ExperimentStartScreen {
+public class ExperimentStartController {
     private final InfoItemAdapter item;
     private final StartSectionManager manager;
     VBox box = new VBox();
 
-    public ExperimentStartScreen(InfoItemAdapter item, StartSectionManager manager){
+    public ExperimentStartController(InfoItemAdapter item, StartSectionManager manager){
         this.item = item;
         this.manager = manager;
     }

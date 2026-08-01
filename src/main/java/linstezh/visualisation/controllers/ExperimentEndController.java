@@ -1,4 +1,4 @@
-package linstezh.visualisation.screens;
+package linstezh.visualisation.controllers;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,12 +17,12 @@ import linstezh.visualisation.adapters.InfoItemAdapter;
 import java.io.File;
 import java.io.IOException;
 
-public class ExperimentEndScreen {
+public class ExperimentEndController {
     private final InfoItemAdapter item;
     private final EndSectionManager manager;
     VBox box = new VBox();
 
-    public ExperimentEndScreen(InfoItemAdapter item, EndSectionManager manager){
+    public ExperimentEndController(InfoItemAdapter item, EndSectionManager manager){
         this.item = item;
         this.manager = manager;
     }
