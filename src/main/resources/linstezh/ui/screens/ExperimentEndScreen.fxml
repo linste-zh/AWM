@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox spacing="20" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="linstezh.ui.controllers.ExperimentEndController"
-      prefHeight="200" prefWidth="400">
-    <Label text="Thank you for participating" style="-fx-font-size: 25; -fx-alignment: center"/>
-    <Label fx:id="infoText"/>
-    <Button text="Results by Item" onAction="#downloadItemFile"/>
-    <Button text="Results by Section" onAction="#downloadFAggregatedFile"/>
-    <Button text="End Experiment" onAction="#endExperiment"/>
-</VBox>
+
+<BorderPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentEndController">
+    <top>
+        <fx:include source="Header.fxml"/>
+    </top>
+    <center>
+        <VBox alignment="CENTER" prefHeight="200" prefWidth="400" spacing="20">
+            <Label style="-fx-font-size: 25; -fx-alignment: center" text="Thank you for participating" />
+            <Label fx:id="infoText" />
+            <Button onAction="#downloadItemFile" text="Results by Item" />
+            <Button onAction="#downloadFAggregatedFile" text="Results by Section" />
+            <Button onAction="#endExperiment" text="End Experiment" />
+        </VBox>
+    </center>
+    <bottom>
+        <fx:include source="Footer.fxml"/>
+    </bottom>
+</BorderPane>

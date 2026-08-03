@@ -3,11 +3,20 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-<VBox spacing="20" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="linstezh.ui.controllers.ExperimentItemController"
-      prefHeight="200" prefWidth="400">
-    <Label fx:id="evalText"/>
-    <Button text="True" onAction="#clickTrue"/>
-    <Button text="False" onAction="#clickFalse"/>
-</VBox>
+<?import javafx.scene.layout.BorderPane?>
 
+<BorderPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentItemController">
+    <top>
+        <fx:include source="Header.fxml"/>
+    </top>
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <Label fx:id="evalText"/>
+            <Button text="True" onAction="#clickTrue"/>
+            <Button text="False" onAction="#clickFalse"/>
+        </VBox>
+    </center>
+    <bottom>
+        <fx:include source="Footer.fxml"/>
+    </bottom>
+</BorderPane>
