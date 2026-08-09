@@ -6,27 +6,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentStartController">
-    <top>
-        <fx:include source="Header.fxml"/>
-    </top>
-    <center>
-        <VBox alignment="CENTER" prefHeight="200" prefWidth="400" spacing="20" >
-            <Label fx:id="title" style="-fx-font-size: 25; -fx-alignment: center" />
-            <Label fx:id="infoText" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                <children>
-                    <Label text="Participant Name or ID: " />
-                    <TextField fx:id="nameInput" />
-                </children>
-            </HBox>
-            <RadioButton fx:id="consentButton" text="I consent to participating in this study" />
-            <Button onAction="#start" text="Start" />
-        </VBox>
-    </center>
-    <bottom>
-        <fx:include source="Footer.fxml"/>
-    </bottom>
-</BorderPane>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentStartController">
+
+    <VBox alignment="CENTER" prefHeight="200" prefWidth="400" spacing="20" >
+        <Label fx:id="title" style="-fx-font-size: 25; -fx-alignment: center" />
+        <Label fx:id="infoText" />
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Label text="Participant Name or ID: " />
+                <TextField fx:id="nameInput" />
+            </children>
+        </HBox>
+        <RadioButton fx:id="consentButton" text="I consent to participating in this study" />
+        <Button onAction="#start" text="Start" />
+    </VBox>
+
+</AnchorPane>
 
 

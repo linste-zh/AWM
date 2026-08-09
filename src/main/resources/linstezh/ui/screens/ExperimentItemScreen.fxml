@@ -5,18 +5,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentItemController">
-    <top>
-        <fx:include source="Header.fxml"/>
-    </top>
-    <center>
-        <VBox spacing="20" alignment="CENTER">
-            <Label fx:id="evalText"/>
-            <Button text="True" onAction="#clickTrue"/>
-            <Button text="False" onAction="#clickFalse"/>
-        </VBox>
-    </center>
-    <bottom>
-        <fx:include source="Footer.fxml"/>
-    </bottom>
-</BorderPane>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentItemController">
+
+    <VBox spacing="20" alignment="CENTER">
+        <Label fx:id="evalText"/>
+        <Button text="True" onAction="#clickTrue"/>
+        <Button text="False" onAction="#clickFalse"/>
+    </VBox>
+
+</AnchorPane>

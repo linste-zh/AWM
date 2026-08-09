@@ -4,20 +4,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 
 
-<BorderPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.TextDistractorController">
-    <top>
-        <fx:include source="Header.fxml"/>
-    </top>
-    <center>
-        <VBox spacing="20" alignment="CENTER">
-            <Label fx:id="distractorText"/>
-            <Button text="next" onAction="#nextScene"/>
-        </VBox>
-    </center>
-    <bottom>
-        <fx:include source="Footer.fxml"/>
-    </bottom>
-</BorderPane>
+<AnchorPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.TextDistractorController">
+
+    <VBox spacing="20" alignment="CENTER">
+        <Label fx:id="distractorText"/>
+        <Button text="next" onAction="#nextScene"/>
+    </VBox>
+
+</AnchorPane>
 

@@ -6,18 +6,12 @@
 <?import javafx.scene.layout.BorderPane?>
 
 
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentRecallController">
 
-<BorderPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentRecallController">
-    <top>
-        <fx:include source="Header.fxml"/>
-    </top>
-    <center>
-        <VBox spacing="20" alignment="CENTER">
-            <GridPane fx:id="grid" vgap="5" hgap="5"/>
-            <Button text="Submit" onAction="#submitMemoryChunks"/>
-        </VBox>
-    </center>
-    <bottom>
-        <fx:include source="Footer.fxml"/>
-    </bottom>
-</BorderPane>
+    <VBox spacing="20" alignment="CENTER">
+        <GridPane fx:id="grid" vgap="5" hgap="5"/>
+        <Button text="Submit" onAction="#submitMemoryChunks"/>
+    </VBox>
+
+</AnchorPane>
