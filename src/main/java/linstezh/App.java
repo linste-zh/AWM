@@ -1,12 +1,17 @@
 package linstezh;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import linstezh.database.DatabaseManager;
 import linstezh.executionManagers.ExperimentManager;
 import linstezh.logic.Experiment.Experiment;
+import linstezh.ui.controllers.RootController;
+
+import java.io.IOException;
 
 public class App extends Application {
 
@@ -21,11 +26,14 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage){
-        primaryStage.setScene(new Scene(new Pane(), 400, 200));
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentScreenRoot.fxml"));
+        Parent root = rootLoader.load();
+        RootController rootController = rootLoader.getController();
+        primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
 
-        ExperimentManager manager = new ExperimentManager(experiment, db, primaryStage);
+        ExperimentManager manager = new ExperimentManager(experiment, db, primaryStage, rootController);
         manager.start();
     }
 

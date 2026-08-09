@@ -10,31 +10,32 @@ import linstezh.logic.Section.SectionInterface;
 import linstezh.ui.adapters.ExpItemAdapter;
 import linstezh.ui.adapters.ImageDistractorItemAdapter;
 import linstezh.ui.adapters.TextDistractorItemAdapter;
-import linstezh.ui.controllers.ExperimentItemController;
-import linstezh.ui.controllers.ExperimentRecallController;
-import linstezh.ui.controllers.ImageDistractorController;
-import linstezh.ui.controllers.TextDistractorController;
+import linstezh.ui.controllers.*;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class ExpSectionManager implements SectionManager {
-    private final SectionInterface section;
     private final ExperimentManager manager;
+    private final RootController rootController;
+    private final Stage primaryStage;
     private List<ItemInterface> items;
     private ItemInterface currentItem;
     private int nextItem = 0;
-    private Stage primaryStage;
-    
-    public ExpSectionManager(SectionInterface experimentSection, ExperimentManager manager){
-        this.section = experimentSection;
+
+    public ExpSectionManager(SectionInterface experimentSection, ExperimentManager manager, RootController rootController, Stage primaryStage){
         this.manager = manager;
+        this.rootController = rootController;
+        this.primaryStage = primaryStage;
         items = experimentSection.getItems();
     }
 
-    public void display(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public Stage getPrimaryStage(){
+        return primaryStage;
+    }
+
+    public void display() {
         nextItem = 0;
         loadNextScene();
     }
@@ -100,10 +101,10 @@ public class ExpSectionManager implements SectionManager {
         try {
             ExpItemAdapter newItem = new ExpItemAdapter(item);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentItemScreen.fxml"));
-            Parent root = loader.load();
+            Parent content = loader.load();
             ExperimentItemController controller = loader.getController();
             controller.init(newItem, this);
-            primaryStage.getScene().setRoot(root);
+            rootController.setContent(content);
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1;  //todo: meaningful catch!
@@ -115,10 +116,10 @@ public class ExpSectionManager implements SectionManager {
         try {
             TextDistractorItemAdapter newTxtDistractor = new TextDistractorItemAdapter(currentItem);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/TextDistractorScreen.fxml"));
-            Parent root = loader.load();
+            Parent content = loader.load();
             TextDistractorController controller = loader.getController();
             controller.init(newTxtDistractor, this);
-            primaryStage.getScene().setRoot(root);
+            rootController.setContent(content);
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1;  //todo: meaningful catch!
@@ -130,10 +131,10 @@ public class ExpSectionManager implements SectionManager {
         try {
             ImageDistractorItemAdapter newImgDistractor = new ImageDistractorItemAdapter(currentItem);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ImageDistractorScreen.fxml"));
-            Parent root = loader.load();
+            Parent content = loader.load();
             ImageDistractorController controller = loader.getController();
             controller.init(newImgDistractor, this);
-            primaryStage.getScene().setRoot(root);
+            rootController.setContent(content);
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1; //todo: meaningful catch!
@@ -151,10 +152,10 @@ public class ExpSectionManager implements SectionManager {
             }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentRecallScreen.fxml"));
-            Parent root = loader.load();
+            Parent content = loader.load();
             ExperimentRecallController controller = loader.getController();
             controller.init(adaptedItems, this);
-            primaryStage.getScene().setRoot(root);
+            rootController.setContent(content);
             nextItem += 1;
         }catch(IOException e){
             concludeSection(); //todo: meaningful catch!

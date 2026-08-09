@@ -13,6 +13,7 @@ import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 import linstezh.output.resultCSV.CsvDocumentGenerator;
 import linstezh.output.resultCSV.CsvResultsGenerator;
+import linstezh.ui.controllers.RootController;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,17 +24,19 @@ import java.util.List;
 
 public class ExperimentManager{
     final private Experiment experiment;
-    final private Stage primaryStage;
     private final DatabaseManager db;
+    final private Stage primaryStage;
+    final private RootController rootController;
     private int nextSection = 0;
     private Participant currentParticipant;
     private final List<ParticipantEvalResponse> evalResponses;
     private final List<ParticipantMemResponse> memResponses;
 
-    public ExperimentManager(Experiment experiment, DatabaseManager db, Stage primaryStage){
+    public ExperimentManager(Experiment experiment, DatabaseManager db, Stage primaryStage, RootController rootController){
         this.experiment = experiment;
-        this.primaryStage = primaryStage;
         this.db = db;
+        this.primaryStage = primaryStage;
+        this.rootController = rootController;
         evalResponses = new ArrayList<>();
         memResponses = new ArrayList<>();
     }
@@ -48,12 +51,12 @@ public class ExperimentManager{
             SectionManager sectionManager = null;
             SectionInterface section = experiment.getSections().get(nextSection);
             switch (section.getType()){
-                case SectionTypes.EXPERIMENT -> sectionManager = new ExpSectionManager(section, this);
-                case SectionTypes.START -> sectionManager = new StartSectionManager(section, this);
-                case SectionTypes.END -> sectionManager = new EndSectionManager(section, this);
+                case SectionTypes.EXPERIMENT -> sectionManager = new ExpSectionManager(section, this, rootController, primaryStage);
+                case SectionTypes.START -> sectionManager = new StartSectionManager(section, this, rootController, primaryStage);
+                case SectionTypes.END -> sectionManager = new EndSectionManager(section, this, rootController, primaryStage);
             }
             assert sectionManager != null;  //todo: better check
-            sectionManager.display(primaryStage);
+            sectionManager.display();
             nextSection += 1;
         }else{
             System.out.println(evalResponses);

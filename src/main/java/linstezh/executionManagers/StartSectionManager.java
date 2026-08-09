@@ -7,26 +7,31 @@ import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.ui.adapters.InfoItemAdapter;
 import linstezh.ui.controllers.ExperimentStartController;
+import linstezh.ui.controllers.RootController;
 
 import java.io.IOException;
 import java.util.List;
 
 public class StartSectionManager implements SectionManager {
-    private final SectionInterface section;
     private final ExperimentManager manager;
+    private final RootController rootController;
+    private final Stage primaryStage;
     private List<ItemInterface> items;
     private ItemInterface currentItem;
     private int nextItem = 0;
-    private Stage primaryStage;
 
-    public StartSectionManager(SectionInterface section, ExperimentManager manager){
-        this.section = section;
+    public StartSectionManager(SectionInterface section, ExperimentManager manager, RootController rootController, Stage primaryStage){
         this.manager = manager;
+        this.rootController = rootController;
+        this.primaryStage = primaryStage;
         items = section.getItems();
     }
 
-    public void display(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public Stage getPrimaryStage(){
+        return primaryStage;
+    }
+
+    public void display() {
         nextItem = 0;
         loadNextScene();
     }
@@ -44,10 +49,10 @@ public class StartSectionManager implements SectionManager {
         try {
             InfoItemAdapter newInfoItem = new InfoItemAdapter(currentItem);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentStartScreen.fxml"));
-            Parent root = loader.load();
+            Parent content = loader.load();
             ExperimentStartController controller = loader.getController();
             controller.init(newInfoItem, this);
-            primaryStage.getScene().setRoot(root);
+            rootController.setContent(content);
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1;  //todo: meaningful catch!
