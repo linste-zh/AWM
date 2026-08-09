@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<BorderPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.RootController"
-            fx:id="root">
+<BorderPane fx:id="root" minHeight="300.0" minWidth="400.0" stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.RootController">
     <top>
-        <fx:include fx:id="header" source="Header.fxml"/>
+        <fx:include fx:id="header" source="Header.fxml" minHeight="30.0"/>
     </top>
     <center>
-        <StackPane fx:id="mainArea"/>
+        <StackPane fx:id="mainArea" minHeight="200.0" alignment="CENTER"/>
     </center>
     <bottom>
-        <fx:include fx:id="footer" source="Footer.fxml"/>
+        <fx:include fx:id="footer" source="Footer.fxml" minHeight="15.0"/>
     </bottom>
 </BorderPane>

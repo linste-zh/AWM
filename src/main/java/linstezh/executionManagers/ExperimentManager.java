@@ -37,6 +37,7 @@ public class ExperimentManager{
         this.db = db;
         this.primaryStage = primaryStage;
         this.rootController = rootController;
+        rootController.getHeader().setTitle(experiment.getName());
         evalResponses = new ArrayList<>();
         memResponses = new ArrayList<>();
     }
@@ -48,13 +49,9 @@ public class ExperimentManager{
 
     public void nextSection(){
         if(nextSection < experiment.getSections().size()){
-            SectionManager sectionManager = null;
-            SectionInterface section = experiment.getSections().get(nextSection);
-            switch (section.getType()){
-                case SectionTypes.EXPERIMENT -> sectionManager = new ExpSectionManager(section, this, rootController, primaryStage);
-                case SectionTypes.START -> sectionManager = new StartSectionManager(section, this, rootController, primaryStage);
-                case SectionTypes.END -> sectionManager = new EndSectionManager(section, this, rootController, primaryStage);
-            }
+            rootController.getHeader().setSection(experiment.getSections().get(nextSection).getPosition());
+            rootController.getFooter().setProgress(experiment.getSections().get(nextSection).getPosition(), experiment.getSections().size());
+            SectionManager sectionManager = createSectionManager();
             assert sectionManager != null;  //todo: better check
             sectionManager.display();
             nextSection += 1;
@@ -63,6 +60,17 @@ public class ExperimentManager{
             System.out.println(memResponses);
             Main.finish();
         }
+    }
+
+    private SectionManager createSectionManager() {
+        SectionManager sectionManager = null;
+        SectionInterface section = experiment.getSections().get(nextSection);
+        switch (section.getType()){
+            case SectionTypes.EXPERIMENT -> sectionManager = new ExpSectionManager(section, this, rootController, primaryStage);
+            case SectionTypes.START -> sectionManager = new StartSectionManager(section, this, rootController, primaryStage);
+            case SectionTypes.END -> sectionManager = new EndSectionManager(section, this, rootController, primaryStage);
+        }
+        return sectionManager;
     }
 
     public List<SectionInterface> getSections(){
