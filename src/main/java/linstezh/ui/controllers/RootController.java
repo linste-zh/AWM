@@ -10,17 +10,17 @@ public class RootController {
     @FXML
     private StackPane mainArea;
 
-    @FXML private
-    BorderPane root;
+    @FXML
+    private BorderPane root;
 
-    @FXML private
-    Pane header;
+    @FXML
+    private Pane header;
 
     @FXML
     private HeaderController headerController;
 
-    @FXML private
-    Pane footer;
+    @FXML
+    private Pane footer;
 
     @FXML
     private FooterController footerController;

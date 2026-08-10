@@ -8,7 +8,7 @@
         <fx:include fx:id="header" source="Header.fxml" minHeight="30.0"/>
     </top>
     <center>
-        <StackPane fx:id="mainArea" minHeight="200.0" alignment="CENTER"/>
+        <StackPane fx:id="mainArea" minHeight="200.0"/>
     </center>
     <bottom>
         <fx:include fx:id="footer" source="Footer.fxml" minHeight="15.0"/>

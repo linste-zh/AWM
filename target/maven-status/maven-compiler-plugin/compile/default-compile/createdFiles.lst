@@ -1,7 +1,3 @@
-linstezh\visualisation\ExperimentItemScreen.class
-module-info.class
 linstezh\Main.class
 linstezh\database\dao\ItemDAO.class
-linstezh\visualisation\ExpItemAdapter.class
-linstezh\visualisation\WindowManager.class
-linstezh\logic\ExperimentItem.class
+module-info.class

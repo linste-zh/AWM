@@ -129,6 +129,7 @@ public class ExpSectionManager implements SectionManager {
     }
 
     public void loadImgDistractorScreen(ItemInterface item){
+        System.out.println("creating image");
         try {
             ImageDistractorItemAdapter newImgDistractor = new ImageDistractorItemAdapter(currentItem);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ImageDistractorScreen.fxml"));

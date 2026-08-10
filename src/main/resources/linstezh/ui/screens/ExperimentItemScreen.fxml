@@ -6,9 +6,12 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentItemController">
+<AnchorPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentItemController"
+            fx:id="contentArea" styleClass="contentArea"
+            AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
-    <VBox spacing="20" alignment="CENTER">
+    <VBox spacing="20" alignment="CENTER"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <Label fx:id="evalText"/>
         <Button text="True" onAction="#clickTrue"/>
         <Button text="False" onAction="#clickFalse"/>
