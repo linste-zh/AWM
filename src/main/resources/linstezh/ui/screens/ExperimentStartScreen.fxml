@@ -18,10 +18,8 @@
         <Label fx:id="title" style="-fx-font-size: 25; -fx-alignment: center" />
         <Label fx:id="infoText" />
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-            <children>
-                <Label text="Participant Name or ID: " />
-                <TextField fx:id="nameInput" />
-            </children>
+            <Label text="Participant Name or ID: "/>
+            <TextField fx:id="nameInput"/>
         </HBox>
         <RadioButton fx:id="consentButton" text="I consent to participating in this study" />
         <Button onAction="#start" text="Start" />

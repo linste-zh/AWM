@@ -1,7 +1,14 @@
 .contentAnchor{
-    AnchorPane.bottomAnchor="0";
-    AnchorPane.leftAnchor="0";
-    AnchorPane.rightAnchor="0";
-    AnchorPane.topAnchor="0";
+    -fx-padding: 20;
+    -fx-background-color: gray;
+}
 
+.headerPane{
+    -fx-background-color: #4646ec;
+    -fx-alignment: CENTER;
+}
+
+.footerPane{
+    -fx-background-color: #5c5ca5;
+    -fx-alignment: CENTER;
 }
