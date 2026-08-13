@@ -30,6 +30,12 @@ public class ExperimentStartController {
     private InfoItemAdapter item;
     private StartSectionManager manager;
 
+    @FXML
+    public void initialize() {
+        contentVBox.maxWidthProperty().bind(contentArea.widthProperty());
+        contentVBox.maxHeightProperty().bind(contentArea.heightProperty());
+    }
+
     public void init(InfoItemAdapter item, StartSectionManager manager){
         this.item = item;
         this.manager = manager;

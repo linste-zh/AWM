@@ -16,13 +16,14 @@
 .contentArea{
     -fx-alignment: CENTER;
     -fx-padding: 20;
-    
+
 }
 
 .contentVBox{
     -fx-alignment: CENTER;
     -fx-padding: 10;
-    -fx-spacing: 20;
+    -fx-spacing: 5;
+    -fx-fill-width: true;
 }
 
 .contentTitle{

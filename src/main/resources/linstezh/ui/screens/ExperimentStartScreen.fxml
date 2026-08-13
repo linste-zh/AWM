@@ -15,7 +15,7 @@
     <VBox fx:id="contentVBox" styleClass="contentVBox" userData="fillParent">
         <Label fx:id="title" styleClass="contentTitle"/>
         <Label fx:id="infoText" styleClass="textBox"/>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+        <HBox alignment="CENTER">
             <Label text="Participant Name or ID: "/>
             <TextField fx:id="nameInput"/>
         </HBox>
