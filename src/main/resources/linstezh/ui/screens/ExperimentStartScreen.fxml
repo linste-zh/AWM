@@ -9,26 +9,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../css/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentStartController"
-            fx:id="contentArea" styleClass="contentArea"
-            AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+<AnchorPane stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentStartController"
+            fx:id="contentArea" styleClass="contentArea" userData="fillParent">
 
-    <VBox spacing="20" alignment="CENTER"
-          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-        <Label fx:id="title" style="-fx-font-size: 25; -fx-alignment: center" />
-        <Label fx:id="infoText" />
+    <VBox fx:id="contentVBox" styleClass="contentVBox" userData="fillParent">
+        <Label fx:id="title" styleClass="contentTitle"/>
+        <Label fx:id="infoText" styleClass="textBox"/>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <Label text="Participant Name or ID: "/>
             <TextField fx:id="nameInput"/>
         </HBox>
         <RadioButton fx:id="consentButton" text="I consent to participating in this study" />
-        <Button onAction="#start" text="Start" />
-      <padding>
-         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </padding>
+        <Button styleClass="actionButton" onAction="#start" text="Start" />
     </VBox>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
 
 </AnchorPane>

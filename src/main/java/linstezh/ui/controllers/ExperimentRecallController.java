@@ -3,7 +3,9 @@ package linstezh.ui.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
 import linstezh.ui.adapters.ExpItemAdapter;
 
@@ -11,6 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExperimentRecallController {
+    @FXML
+    AnchorPane contentArea;
+    @FXML
+    VBox contentVBox;
+
     @FXML
     private GridPane grid;
 

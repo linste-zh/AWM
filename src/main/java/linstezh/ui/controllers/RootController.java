@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import linstezh.ui.displayTools.FXMLUtilities;
 
 public class RootController {
     @FXML
@@ -54,6 +55,7 @@ public class RootController {
 
     public void setContent(Parent content) {
         mainArea.getChildren().setAll(content);
+        FXMLUtilities.fillAllParents(root);
     }
 
 }

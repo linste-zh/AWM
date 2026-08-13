@@ -2,10 +2,17 @@ package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
 import linstezh.ui.adapters.ExpItemAdapter;
 
 public class ExperimentItemController {
+    @FXML
+    AnchorPane contentArea;
+    @FXML
+    VBox contentVBox;
+
     @FXML
     private Label evalText;
 

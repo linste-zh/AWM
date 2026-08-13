@@ -5,23 +5,29 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
 import linstezh.ui.adapters.ImageDistractorItemAdapter;
 
 public class ImageDistractorController {
     @FXML
-    private ImageView distractorImage;
+    AnchorPane contentArea;
+    @FXML
+    VBox contentVBox;
 
     @FXML
-    private AnchorPane contentArea;
+    private ImageView distractorImage;
 
     private ImageDistractorItemAdapter item;
     private ExpSectionManager manager;
 
     @FXML
     public void initialize() {
-        distractorImage.fitWidthProperty().bind(contentArea.widthProperty().multiply(0.9));
-        distractorImage.fitHeightProperty().bind(contentArea.heightProperty().multiply(0.9));
+        contentVBox.maxHeightProperty().bind(contentArea.heightProperty());
+        contentVBox.maxWidthProperty().bind(contentArea.widthProperty());
+
+        distractorImage.fitWidthProperty().bind(contentVBox.widthProperty().multiply(0.9));
+        distractorImage.fitHeightProperty().bind(contentVBox.heightProperty().multiply(0.9));
     }
 
     public void init(ImageDistractorItemAdapter item, ExpSectionManager manager){

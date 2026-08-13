@@ -1,0 +1,39 @@
+.contentAnchor{
+    -fx-padding: 20;
+    -fx-background-color: gray;
+}
+
+.headerPane{
+    -fx-background-color: #4646ec;
+    -fx-alignment: CENTER;
+}
+
+.footerPane{
+    -fx-background-color: #5c5ca5;
+    -fx-alignment: CENTER;
+}
+
+.contentArea{
+    -fx-alignment: CENTER;
+    -fx-padding: 20;
+    
+}
+
+.contentVBox{
+    -fx-alignment: CENTER;
+    -fx-padding: 10;
+    -fx-spacing: 20;
+}
+
+.contentTitle{
+    -fx-font-size: 25;
+    -fx-alignment: center;
+}
+
+.textBox{
+    -fx-border-color: black;
+}
+
+.actionButton{
+    -fx-background-color: grey;
+}

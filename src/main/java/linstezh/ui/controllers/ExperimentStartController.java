@@ -5,12 +5,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import linstezh.executionManagers.StartSectionManager;
 import linstezh.ui.adapters.InfoItemAdapter;
 
 import java.util.Objects;
 
 public class ExperimentStartController {
+    @FXML
+    AnchorPane contentArea;
+    @FXML
+    VBox contentVBox;
+
     @FXML
     Label title;
     @FXML
