@@ -11,7 +11,7 @@ import linstezh.ui.adapters.ImageDistractorItemAdapter;
 
 public class ImageDistractorController {
     @FXML
-    AnchorPane contentArea;
+    VBox contentArea;
     @FXML
     VBox contentVBox;
 

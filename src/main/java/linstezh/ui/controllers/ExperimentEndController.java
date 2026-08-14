@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class ExperimentEndController {
     @FXML
-    AnchorPane contentArea;
+    VBox contentArea;
     @FXML
     VBox contentVBox;
 

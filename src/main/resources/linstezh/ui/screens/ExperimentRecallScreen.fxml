@@ -7,7 +7,7 @@
 
 
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentRecallController"
+<VBox stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentRecallController"
             fx:id="contentArea" styleClass="contentArea" userData="fillParent">
 
     <VBox spacing="20" alignment="CENTER" userData="fillParent">
@@ -15,4 +15,4 @@
         <Button text="Submit" onAction="#submitMemoryChunks"/>
     </VBox>
 
-</AnchorPane>
+</VBox>

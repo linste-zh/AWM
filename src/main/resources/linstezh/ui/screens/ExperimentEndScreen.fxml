@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentEndController"
+<VBox stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentEndController"
             fx:id="contentArea" styleClass="contentArea" userData="fillParent">
 
     <VBox fx:id="contentVBox" styleClass="contentVBox" userData="fillParent">
@@ -16,4 +16,4 @@
         <Button onAction="#endExperiment" text="End Experiment" />
     </VBox>
 
-</AnchorPane>
+</VBox>

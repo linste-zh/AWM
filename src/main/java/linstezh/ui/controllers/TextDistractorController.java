@@ -9,7 +9,7 @@ import linstezh.ui.adapters.TextDistractorItemAdapter;
 
 public class TextDistractorController {
     @FXML
-    AnchorPane contentArea;
+    VBox contentArea;
     @FXML
     VBox contentVBox;
 

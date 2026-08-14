@@ -9,7 +9,7 @@ import linstezh.ui.adapters.ExpItemAdapter;
 
 public class ExperimentItemController {
     @FXML
-    AnchorPane contentArea;
+    VBox contentArea;
     @FXML
     VBox contentVBox;
 

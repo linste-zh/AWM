@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.TextDistractorController"
+<VBox stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.TextDistractorController"
             fx:id="contentArea" styleClass="contentArea" userData="fillParent">
 
     <VBox fx:id="contentVBox" styleClass="contentVBox" userData="fillParent">
@@ -15,5 +15,5 @@
         <Button text="next" onAction="#nextScene"/>
     </VBox>
 
-</AnchorPane>
+</VBox>
 
