@@ -36,8 +36,8 @@ public class ExperimentManager{
         this.experiment = experiment;
         this.db = db;
         this.primaryStage = primaryStage;
+        primaryStage.setTitle(experiment.getName());
         this.rootController = rootController;
-        rootController.getHeader().setTitle(experiment.getName());
         evalResponses = new ArrayList<>();
         memResponses = new ArrayList<>();
     }

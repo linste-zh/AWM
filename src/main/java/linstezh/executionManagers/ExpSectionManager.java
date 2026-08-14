@@ -104,6 +104,7 @@ public class ExpSectionManager implements SectionManager {
             Parent content = loader.load();
             ExperimentItemController controller = loader.getController();
             controller.init(newItem, this);
+            rootController.getHeader().setItem(currentItem.getPosition());
             rootController.setContent(content);
             nextItem += 1;
         }catch(IOException e){

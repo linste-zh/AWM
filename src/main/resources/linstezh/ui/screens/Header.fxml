@@ -11,8 +11,9 @@
     <HBox alignment="CENTER_LEFT" spacing="10.0"
           AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
           AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
-        <Label fx:id="title"/>
-        <Label fx:id="section"/>
-        <Label fx:id="item"/>
+        <Label styleClass="headerText" text="Section: "/>
+        <Label fx:id="section" text="X"/>
+        <Label text="Item"/>
+        <Label fx:id="item" text="Y"/>
     </HBox>
 </AnchorPane>
