@@ -8,11 +8,16 @@ import javafx.scene.layout.Region;
 public class FXMLUtilities {
     public static void applyProperties(Node node){
         Object h = node.getProperties().get("heightPercent");
+        Object mh = node.getProperties().get("maxHeightPercent");
         Object w = node.getProperties().get("widthPercent");
         Object fp = node.getProperties().get("fillParent");
 
         if (h != null && node.getParent() != null) {
             setHeightPerc(node, h.toString());
+        }
+
+        if (mh != null && node.getParent() != null) {
+            setMaxHeightPerc(node, mh.toString());
         }
 
         if (w != null && node.getParent() != null) {
@@ -55,6 +60,19 @@ public class FXMLUtilities {
         }
     }
 
+    public static void setMaxHeightPerc(Node node, String value){
+        try{
+            double height = Double.parseDouble(value);
+
+            Region reg = (Region) node;
+            Region parent = (Region) node.getParent();
+
+            reg.maxHeightProperty().bind(parent.heightProperty().multiply(height));
+        } catch (Error e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void setWidthPerc(Node node, String value){
         try{
             double width = Double.parseDouble(value);
@@ -67,4 +85,5 @@ public class FXMLUtilities {
             e.printStackTrace();
         }
     }
+
 }

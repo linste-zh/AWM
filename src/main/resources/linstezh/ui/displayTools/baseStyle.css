@@ -1,3 +1,7 @@
+.root{
+    -fx-font-size: 16;
+}
+
 .contentAnchor{
     -fx-padding: 20;
     -fx-background-color: gray;
@@ -16,7 +20,7 @@
 .contentArea{
     -fx-alignment: CENTER;
     -fx-padding: 20;
-
+    -fx-font-size: 16;
 }
 
 .contentVBox{
@@ -25,13 +29,14 @@
 }
 
 .contentTitle{
-    -fx-font-size: 25;
+    -fx-font-size: 40;
     -fx-alignment: center;
     -fx-fill-width: true;
 }
 
 .textBox{
     -fx-border-color: black;
+    -fx-fill-width: true;
 }
 
 .actionButton{
