@@ -5,12 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ImageDistractorController"
-            fx:id="contentArea" styleClass="contentArea" userData="fillParent">
+<VBox stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ImageDistractorController"
+            fx:id="contentArea" styleClass="contentArea">
+    <properties fillParent="true"/>
 
-    <VBox fx:id="contentVBox" styleClass="contentVBox" userData="fillParent">
-        <ImageView fx:id="distractorImage" preserveRatio="true" />
+    <VBox fx:id="contentVBox" styleClass="contentVBox">
+        <properties fillParent="true"/>
+        <ImageView fx:id="distractorImage" preserveRatio="true"/>
         <Button onAction="#nextScene" text="next" />
     </VBox>
 
-</AnchorPane>
+</VBox>

@@ -31,8 +31,8 @@ public class App extends Application {
         Parent root = rootLoader.load();
         RootController rootController = rootLoader.getController();
         primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.setMinWidth(400);
-        primaryStage.setMinHeight(300);
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(600);
         primaryStage.show();
 
         ExperimentManager manager = new ExperimentManager(experiment, db, primaryStage, rootController);

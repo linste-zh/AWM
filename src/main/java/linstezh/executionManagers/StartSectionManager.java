@@ -56,6 +56,7 @@ public class StartSectionManager implements SectionManager {
             rootController.getHeader().setItem(currentItem.getPosition());
             nextItem += 1;
         }catch(IOException e){
+            e.printStackTrace();
             nextItem += 1;  //todo: meaningful catch!
             loadNextScene();
         }

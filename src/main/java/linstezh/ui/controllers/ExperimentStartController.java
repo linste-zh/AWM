@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class ExperimentStartController {
     @FXML
-    AnchorPane contentArea;
+    VBox contentArea;
     @FXML
     VBox contentVBox;
 

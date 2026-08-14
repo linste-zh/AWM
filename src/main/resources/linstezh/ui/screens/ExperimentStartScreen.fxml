@@ -9,13 +9,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentStartController"
-            fx:id="contentArea" styleClass="contentArea" userData="fillParent">
+<VBox stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentStartController"
+            fx:id="contentArea" styleClass="contentArea">
+    <properties fillParent="true"/>
 
-    <VBox fx:id="contentVBox" styleClass="contentVBox" userData="fillParent">
-        <Label fx:id="title" styleClass="contentTitle"/>
-        <Label fx:id="infoText" styleClass="textBox"/>
-        <HBox alignment="CENTER">
+    <VBox fx:id="contentVBox" styleClass="contentVBox">
+        <properties fillParent="true"/>
+
+        <Label fx:id="title" styleClass="contentTitle"><properties widthPercent="1.0"/></Label>
+        <Label fx:id="infoText" styleClass="textBox"><properties heightPercent="0.5" widthPercent="1.0"/></Label>
+        <HBox>
             <Label text="Participant Name or ID: "/>
             <TextField fx:id="nameInput"/>
         </HBox>
@@ -23,4 +26,4 @@
         <Button styleClass="actionButton" onAction="#start" text="Start" />
     </VBox>
 
-</AnchorPane>
+</VBox>

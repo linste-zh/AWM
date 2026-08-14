@@ -20,15 +20,14 @@
 }
 
 .contentVBox{
-    -fx-alignment: CENTER;
     -fx-padding: 10;
     -fx-spacing: 5;
-    -fx-fill-width: true;
 }
 
 .contentTitle{
     -fx-font-size: 25;
     -fx-alignment: center;
+    -fx-fill-width: true;
 }
 
 .textBox{
