@@ -41,8 +41,14 @@
 .textBox{
     -fx-border-color: black;
     -fx-fill-width: true;
+    -fx-cursor: hand;
 }
 
 .actionButton{
-    -fx-background-color: grey;
+    -fx-background-color: lightgrey;
+    -fx-cursor: hand;
+}
+
+.actionButton:hover{
+    -fx-background-color: #03a9f4;
 }
