@@ -1,7 +1,7 @@
 package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
 import linstezh.ui.adapters.TextDistractorItemAdapter;
@@ -13,7 +13,7 @@ public class TextDistractorController {
     VBox contentVBox;
 
     @FXML
-    private Label distractorText;
+    private TextArea distractorText;
 
     private TextDistractorItemAdapter item;
     private ExpSectionManager manager;

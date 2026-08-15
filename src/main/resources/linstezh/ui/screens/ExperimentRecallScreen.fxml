@@ -17,7 +17,8 @@
             <properties widthPercent="1.0" maxHeightPercent="0.8"/>
         </GridPane>
         <AnchorPane prefHeight="10.0" prefWidth="10.0">
-            <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" onAction="#submitMemoryChunks" styleClass="actionButton" text="Submit" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" onAction="#submitMemoryChunks" styleClass="actionButton"
+                    text="Submit" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
         </AnchorPane>
     </VBox>
 
