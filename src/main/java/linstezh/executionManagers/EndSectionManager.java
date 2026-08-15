@@ -51,7 +51,7 @@ public class EndSectionManager implements SectionManager {
             ExperimentEndController controller = loader.getController();
             controller.init(newInfoItem, this);
             rootController.setContent(content);
-            rootController.getHeader().setItem(currentItem.getPosition());
+            /*rootController.getHeader().setItem(currentItem.getPosition());*/
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1;  //todo: meaningful catch!

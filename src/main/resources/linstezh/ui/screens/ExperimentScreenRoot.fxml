@@ -7,8 +7,8 @@
       xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="linstezh.ui.controllers.RootController">
 
-    <fx:include fx:id="header" source="Header.fxml"
-                minHeight="50.0" maxHeight="50.0" prefHeight="50.0"/>
+    <!--fx:include fx:id="header" source="Header.fxml"
+                minHeight="50.0" maxHeight="50.0" prefHeight="50.0"/!-->
 
     <ScrollPane fx:id="scrollPane" fitToWidth="true" fitToHeight="false"
                 hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"

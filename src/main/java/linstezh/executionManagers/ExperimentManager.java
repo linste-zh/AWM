@@ -49,7 +49,7 @@ public class ExperimentManager{
 
     public void nextSection(){
         if(nextSection < experiment.getSections().size()){
-            rootController.getHeader().setSection(experiment.getSections().get(nextSection).getPosition());
+            /*rootController.getHeader().setSection(experiment.getSections().get(nextSection).getPosition());*/
             rootController.getFooter().setProgress(experiment.getSections().get(nextSection).getPosition(), experiment.getSections().size());
             SectionManager sectionManager = createSectionManager();
             assert sectionManager != null;  //todo: better check
@@ -87,7 +87,7 @@ public class ExperimentManager{
 
     public void createParticipant(String name){
         currentParticipant = new Participant(name);
-        System.out.println(currentParticipant.getName());
+        primaryStage.setTitle(experiment.getName() + " - " + name);
     }
 
     public void saveEvalResponse(ExperimentItem item, boolean response, int evalScore){

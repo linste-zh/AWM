@@ -53,7 +53,7 @@ public class StartSectionManager implements SectionManager {
             ExperimentStartController controller = loader.getController();
             controller.init(newInfoItem, this);
             rootController.setContent(content);
-            rootController.getHeader().setItem(currentItem.getPosition());
+            /*rootController.getHeader().setItem(currentItem.getPosition());*/
             nextItem += 1;
         }catch(IOException e){
             e.printStackTrace();

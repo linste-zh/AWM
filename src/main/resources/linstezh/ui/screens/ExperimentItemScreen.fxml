@@ -17,7 +17,7 @@
             <properties widthPercent="1.0" maxHeightPercent="0.8"/>
         </TextArea>
 
-        <Label alignment="CENTER" text="Label">
+        <Label alignment="CENTER" text="Is this grammatically correct?">
             <properties widthPercent="1.0" />
         </Label>
 

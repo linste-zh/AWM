@@ -104,7 +104,7 @@ public class ExpSectionManager implements SectionManager {
             Parent content = loader.load();
             ExperimentItemController controller = loader.getController();
             controller.init(newItem, this);
-            rootController.getHeader().setItem(currentItem.getPosition());
+            /*rootController.getHeader().setItem(currentItem.getPosition());*/
             rootController.setContent(content);
             nextItem += 1;
         }catch(IOException e){
@@ -121,7 +121,7 @@ public class ExpSectionManager implements SectionManager {
             TextDistractorController controller = loader.getController();
             controller.init(newTxtDistractor, this);
             rootController.setContent(content);
-            rootController.getHeader().setItem(currentItem.getPosition());
+            /*rootController.getHeader().setItem(currentItem.getPosition());*/
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1;  //todo: meaningful catch!
@@ -138,7 +138,7 @@ public class ExpSectionManager implements SectionManager {
             ImageDistractorController controller = loader.getController();
             controller.init(newImgDistractor, this);
             rootController.setContent(content);
-            rootController.getHeader().setItem(currentItem.getPosition());
+            /*rootController.getHeader().setItem(currentItem.getPosition());*/
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1; //todo: meaningful catch!
@@ -160,7 +160,7 @@ public class ExpSectionManager implements SectionManager {
             ExperimentRecallController controller = loader.getController();
             controller.init(adaptedItems, this);
             rootController.setContent(content);
-            rootController.getHeader().setItem("Recall");
+            /*rootController.getHeader().setItem("Recall");*/
             nextItem += 1;
         }catch(IOException e){
             concludeSection(); //todo: meaningful catch!
