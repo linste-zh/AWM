@@ -2,6 +2,7 @@ package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import linstezh.executionManagers.EndSectionManager;
@@ -19,7 +20,7 @@ public class ExperimentEndController {
     VBox contentVBox;
 
     @FXML
-    Label infoText;
+    TextArea infoText;
 
     private InfoItemAdapter item;
     private EndSectionManager manager;
