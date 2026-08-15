@@ -2,8 +2,8 @@ package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
@@ -31,10 +31,16 @@ public class ExperimentRecallController {
         this.manager = manager;
 
         for (int i = 0; i < items.size(); i++) {
+            Label label = new Label();
+            label.setId(Integer.toString(items.get(i).getItemID()));
+            label.setText("Chunk " + (i+1) + ": ");
+            GridPane.setConstraints(label, 0, i);
+            grid.getChildren().add(label);
+
             TextField tf = new TextField();
-            inputFields.add(tf);
             tf.setId(Integer.toString(items.get(i).getItemID()));
-            GridPane.setConstraints(tf, 0, i);
+            inputFields.add(tf);
+            GridPane.setConstraints(tf, 1, i);
             grid.getChildren().add(tf);
         }
     }

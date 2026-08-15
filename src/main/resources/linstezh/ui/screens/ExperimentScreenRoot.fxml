@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<!--BorderPane fx:id="root" minHeight="600.0" minWidth="800.0" stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.RootController">
-    <top>
-        <fx:include fx:id="header" prefHeight="50.0" minHeight="50.0" maxHeight="50.0" source="Header.fxml" />
-    </top>
-    <bottom>
-        <fx:include fx:id="footer" prefHeight="25.0" minHeight="25.0" maxHeight="25.0" source="Footer.fxml" />
-    </bottom>
-    <center>
-        <ScrollPane fx:id="scrollPane" fitToWidth="true" fitToHeight="false"
-                    hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
-                    BorderPane.fillHeight="true">
-            <VBox fx:id="mainArea" minHeight="525.0" alignment="CENTER"/>
-        </ScrollPane>
-    </center>
-</BorderPane!-->
-
 <VBox fx:id="root" styleClass="root" minHeight="600.0" minWidth="800.0"
       stylesheets="@../displayTools/baseStyle.css"
       xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"

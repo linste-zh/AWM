@@ -5,17 +5,22 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<VBox fx:id="contentArea" styleClass="contentArea" stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentItemController">
+    <properties fillParent="true" />
 
-<VBox fx:id="contentArea" styleClass="contentArea" stylesheets="@../displayTools/baseStyle.css" userData="fillParent" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentItemController">
+    <VBox fx:id="contentVBox" styleClass="contentVBox" alignment="CENTER">
+        <properties fillParent="true"/>
 
-    <VBox fx:id="contentVBox" styleClass="contentVBox" userData="fillParent">
-        <TextArea fx:id="evalText" editable="false" styleClass="textBox" text="Example Info Example Info Example Info Example Info Example Info Example Info Example Info" wrapText="true">
-            <properties maxHeightPercent="0.8" widthPercent="1.0" />
+        <TextArea fx:id="evalText" styleClass="textBox"
+                  wrapText="true" editable="false"
+                  text="Example Info Example Info Example Info Example Info Example Info Example Info Example Info">
+            <properties widthPercent="1.0" maxHeightPercent="0.8"/>
         </TextArea>
+
         <Label alignment="CENTER" text="Label">
             <properties widthPercent="1.0" />
         </Label>
+
         <HBox alignment="CENTER" spacing="30.0">
             <Button onAction="#clickTrue" text="True"/>
             <Button onAction="#clickFalse" text="False"/>

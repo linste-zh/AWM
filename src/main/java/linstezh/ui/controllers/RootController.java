@@ -3,7 +3,9 @@ package linstezh.ui.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import linstezh.ui.displayTools.FXMLUtilities;
 
 public class RootController {

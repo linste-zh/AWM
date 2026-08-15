@@ -2,7 +2,6 @@ package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import linstezh.executionManagers.StartSectionManager;
 import linstezh.ui.adapters.InfoItemAdapter;
