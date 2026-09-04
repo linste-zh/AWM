@@ -1,0 +1,142 @@
+package linstezh.executionManagers;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+import linstezh.logic.Item.ExperimentItem;
+import linstezh.logic.Item.ItemInterface;
+import linstezh.logic.Item.ItemTypes;
+import linstezh.logic.Section.SectionInterface;
+import linstezh.ui.adapters.ExpItemAdapter;
+import linstezh.ui.adapters.ImageDistractorItemAdapter;
+import linstezh.ui.adapters.TextDistractorItemAdapter;
+import linstezh.ui.controllers.*;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class TrialSectionManager implements SectionManager {
+    private final ExperimentManager manager;
+    private final RootController rootController;
+    private final Stage primaryStage;
+    private List<ItemInterface> items;
+    private ItemInterface currentItem;
+    private int nextItem = 0;
+
+    public TrialSectionManager(SectionInterface trialSection, ExperimentManager manager, RootController rootController, Stage primaryStage){
+        this.manager = manager;
+        this.rootController = rootController;
+        this.primaryStage = primaryStage;
+        items = trialSection.getItems();
+    }
+
+    public Stage getPrimaryStage(){
+        return primaryStage;
+    }
+
+    public void display() {
+        nextItem = 0;
+        loadNextScene();
+    }
+
+    public void reportEval(ExpItemAdapter itemAdapter){
+        int score = itemAdapter.readCorrectEval() == itemAdapter.readUserEval() ? 1 : 0;
+        manager.saveEvalResponse(itemAdapter.getBaseItem(), itemAdapter.readUserEval(), score);
+    }
+
+    public void reportMemorisedChunks(List<ExpItemAdapter> itemAdapters){
+        List<ExpItemAdapter> unscoredItemAdapters = new ArrayList<>(itemAdapters);
+
+        //Score all correctly memorised chunks as 2
+        for (ExpItemAdapter itemAdapter : itemAdapters) {
+            if(Objects.equals(itemAdapter.readMemoryChunk(), itemAdapter.readUserMemoryChunk())){
+                itemAdapter.setScore(2);
+                unscoredItemAdapters.remove(itemAdapter);
+            }
+        }
+
+        //Check items that were not remembered correctly whether their chunk was noted in a different position, if so score as 1
+        List<String> orphanedChunks = unscoredItemAdapters.stream()
+                .map(ExpItemAdapter::readUserMemoryChunk)
+                .collect(Collectors.toList());
+
+        Iterator<ExpItemAdapter> iterator = unscoredItemAdapters.iterator();
+        while (iterator.hasNext()) {
+            ExpItemAdapter itemAdapter = iterator.next();
+            if (orphanedChunks.contains(itemAdapter.readMemoryChunk())) {
+                itemAdapter.setScore(1);
+                orphanedChunks.remove(itemAdapter.readMemoryChunk());
+                iterator.remove();
+            }
+        }
+
+
+        for (ExpItemAdapter itemAdapter : itemAdapters) {
+            manager.saveMemResponse(itemAdapter.getBaseItem(), itemAdapter.readUserMemoryChunk(), itemAdapter.readScore());
+        }
+    }
+
+    public void loadNextScene() {
+
+    }
+
+    public void loadTrialInfoScreen(ItemInterface item){
+
+    }
+
+    public void loadTrialFeedbackScreen(ItemInterface item){
+
+    }
+
+    public void loadTrialCombinedScreen(ExperimentItem item){
+        try {
+            ExpItemAdapter newItem = new ExpItemAdapter(item);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentItemScreen.fxml"));
+            Parent content = loader.load();
+            ExperimentItemController controller = loader.getController();
+            controller.init(newItem, this);
+            /*rootController.getHeader().setItem(currentItem.getPosition());*/
+            rootController.setContent(content);
+            nextItem += 1;
+        }catch(IOException e){
+            nextItem += 1;  //todo: meaningful catch!
+            loadNextScene();
+        }
+    }
+
+    public void loadEvalTrialScreen(ItemInterface item){
+
+    }
+
+    public void loadMemoTrialScreen(){
+
+    }
+
+    public void loadTrialRecallScreen(){
+        try {
+            List<ExpItemAdapter> adaptedItems = new ArrayList<>();
+            for(ItemInterface item : items){
+                if(item.getType() == ItemTypes.EXPERIMENT) {
+                    adaptedItems.add(new ExpItemAdapter((ExperimentItem) item));
+                }
+            }
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentRecallScreen.fxml"));
+            Parent content = loader.load();
+            ExperimentRecallController controller = loader.getController();
+            controller.init(adaptedItems, this);
+            rootController.setContent(content);
+            /*rootController.getHeader().setItem("Recall");*/
+            nextItem += 1;
+        }catch(IOException e){
+            concludeSection(); //todo: meaningful catch!
+        }
+    }
+
+    public void concludeSection(){
+        System.out.println("concluded section");
+        manager.nextSection();
+    }
+
+}
