@@ -2,9 +2,7 @@ package linstezh.logic.Item;
 
 public enum ItemTypes {
     INFORMATION,
-    TRIAL_MEMO,
-    TRIAL_EVAL,
-    TRIAL_COMBINED,
+    TRIAL,
     EXPERIMENT,
     DISTRACTOR_TXT,
     DISTRACTOR_IMG
