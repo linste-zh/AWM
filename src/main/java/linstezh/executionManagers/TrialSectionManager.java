@@ -61,4 +61,11 @@ public class TrialSectionManager extends ExpSectionManager {
         }
     }
 
+    public void restartSection(){
+        nextItem = 0;
+        recallOutstanding = true;
+        feedbackOutstanding = true;
+        loadNextScene();
+    }
+
 }

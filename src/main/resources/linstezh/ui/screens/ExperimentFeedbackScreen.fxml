@@ -28,7 +28,9 @@
         </HBox>
 
         <HBox alignment="CENTER" spacing="30.0">
-            <Button onAction="#nextScene" styleClass="actionButton" text="next" />
+            <Button onAction="#restartSection" styleClass="actionButton" text="Retry Trial" />
+
+            <Button onAction="#nextScene" styleClass="actionButton" text="Start Experiment" />
         </HBox>
     </VBox>
 

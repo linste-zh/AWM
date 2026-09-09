@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
+import linstezh.executionManagers.TrialSectionManager;
 import linstezh.ui.adapters.InfoItemAdapter;
 
 public class ExperimentFeedbackController {
@@ -22,9 +23,9 @@ public class ExperimentFeedbackController {
 
 
     private InfoItemAdapter item;
-    private ExpSectionManager manager;
+    private TrialSectionManager manager;
 
-    public void init(int evalScore, int maxEvalScore, int memScore, int maxMemScore, ExpSectionManager manager){
+    public void init(int evalScore, int maxEvalScore, int memScore, int maxMemScore, TrialSectionManager manager){
         this.item = item;
         this.manager = manager;
         title.setText("TRIAL FEEDBACK (Hardcoded, fix)");
@@ -35,5 +36,10 @@ public class ExperimentFeedbackController {
     @FXML
     private void nextScene() {
         manager.loadNextScene();
+    }
+
+    @FXML
+    private void restartSection() {
+        manager.restartSection();
     }
 }
