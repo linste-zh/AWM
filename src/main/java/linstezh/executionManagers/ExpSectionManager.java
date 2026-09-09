@@ -18,13 +18,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ExpSectionManager implements SectionManager {
-    private final ExperimentManager manager;
-    private final RootController rootController;
-    private final Stage primaryStage;
-    private List<ItemInterface> items;
-    private ItemInterface currentItem;
-    private int nextItem = 0;
-    private boolean recallOutstanding = true;
+    protected final ExperimentManager manager;
+    protected final RootController rootController;
+    protected final Stage primaryStage;
+    protected List<ItemInterface> items;
+    protected ItemInterface currentItem;
+    protected int nextItem = 0;
+    protected boolean recallOutstanding = true;
 
     public ExpSectionManager(SectionInterface experimentSection, ExperimentManager manager, RootController rootController, Stage primaryStage){
         this.manager = manager;
@@ -44,21 +44,25 @@ public class ExpSectionManager implements SectionManager {
 
     public void loadNextScene() {
         if(nextItem < items.size()) {
-            currentItem = items.get(nextItem);
-            currentItem.setDisplayDate(new Date());
-
-            switch(currentItem.getType()){
-                case ItemTypes.EXPERIMENT ->  loadExperimentItemScreen((ExperimentItem) currentItem);
-                case ItemTypes.DISTRACTOR_TXT -> loadTxtDistractorScreen(currentItem);
-                case ItemTypes.DISTRACTOR_IMG -> loadImgDistractorScreen(currentItem);
-                case ItemTypes.INFORMATION -> loadInformationScreen(currentItem);
-            }
-
+            loadNextItem();
         }else if(recallOutstanding){
             loadRecallScreen();
         }else{
             concludeSection();
         }
+    }
+
+    public void loadNextItem(){
+        currentItem = items.get(nextItem);
+        currentItem.setDisplayDate(new Date());
+
+        switch(currentItem.getType()){
+            case ItemTypes.EXPERIMENT ->  loadExperimentItemScreen((ExperimentItem) currentItem);
+            case ItemTypes.DISTRACTOR_TXT -> loadTxtDistractorScreen(currentItem);
+            case ItemTypes.DISTRACTOR_IMG -> loadImgDistractorScreen(currentItem);
+            case ItemTypes.INFORMATION -> loadInformationScreen(currentItem);
+        }
+
     }
 
     public void loadExperimentItemScreen(ExperimentItem item){
@@ -184,6 +188,7 @@ public class ExpSectionManager implements SectionManager {
         }
 
         recallOutstanding = false;
+        System.out.println("recall completed");
     }
 
     public void concludeSection(){

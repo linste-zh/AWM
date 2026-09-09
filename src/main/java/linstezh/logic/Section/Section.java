@@ -87,12 +87,12 @@ public class Section implements SectionInterface{
         this.items.add(item);
     }
 
-    public long maxEvalScore() {
-        return items.stream().filter(item -> item.getType() == ItemTypes.EXPERIMENT).count();
+    public int maxEvalScore() {
+        return (int) items.stream().filter(item -> item.getType() == ItemTypes.EXPERIMENT).count();
     }
 
-    public long maxMemoryScore() {
-        return items.stream().filter(item -> item.getType() == ItemTypes.EXPERIMENT).count() * 2;
+    public int maxMemoryScore() {
+        return (int) items.stream().filter(item -> item.getType() == ItemTypes.EXPERIMENT).count() * 2;
     }
 
     @Override

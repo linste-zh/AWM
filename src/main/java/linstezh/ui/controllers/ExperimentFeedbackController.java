@@ -1,0 +1,42 @@
+package linstezh.ui.controllers;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+import linstezh.executionManagers.ExpSectionManager;
+import linstezh.ui.adapters.InfoItemAdapter;
+
+public class ExperimentFeedbackController {
+    @FXML
+    VBox contentArea;
+    @FXML
+    VBox contentVBox;
+
+    @FXML
+    private Label title;
+    @FXML
+    private Label evalScore;
+    @FXML
+    private Label memScore;
+    @FXML
+    private TextArea infoText;
+
+    private InfoItemAdapter item;
+    private ExpSectionManager manager;
+
+    public void init(int evalScore, int maxEvalScore, int memScore, int maxMemScore, ExpSectionManager manager){
+        this.item = item;
+        this.manager = manager;
+        title.setText("TRIAL FEEDBACK (Hardcoded, fix)");
+        this.evalScore.setText(evalScore + "/" + maxEvalScore);
+        this.memScore.setText(memScore + "/" + maxMemScore);
+
+        infoText.setText("info text, maybe, idk");
+    }
+
+    @FXML
+    private void nextScene() {
+        manager.loadNextScene();
+    }
+}

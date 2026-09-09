@@ -11,6 +11,6 @@ public interface SectionInterface {
     int getPosition();
     String getName();
     List<ItemInterface> getItems();
-    long maxEvalScore();
-    long maxMemoryScore();
+    int maxEvalScore();
+    int maxMemoryScore();
 }
