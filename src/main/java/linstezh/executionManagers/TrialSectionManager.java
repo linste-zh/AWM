@@ -34,8 +34,6 @@ public class TrialSectionManager extends ExpSectionManager {
         }else if(super.recallOutstanding){
             loadRecallScreen();
         }else if(feedbackOutstanding){
-            System.out.println("entered feedback stage");
-
             List<ParticipantEvalResponse> evalResponses = manager.getEvalResponsesOfSection(trialSection);
             List<ParticipantMemResponse> memResponses = manager.getMemResponsesOfSection(trialSection);
             int evalScore = CsvAggregatedRowGenerator.calculateEvaluationsScore(evalResponses);

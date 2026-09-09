@@ -22,8 +22,8 @@ public class CsvItemResultsGenerator implements CsvResultsGenerator{
                             manager.getParticipantName(),
                             section.getName(),
                             expItem,
-                            manager.matchEvalResponse(expItem),
-                            manager.matchMemResponse(expItem)
+                            manager.getEvalResponseOfItem(expItem),
+                            manager.getMemResponseOfItem(expItem)
                     ));
                 } else {
                     csvRows.add(CsvItemRowGenerator.generateRow(

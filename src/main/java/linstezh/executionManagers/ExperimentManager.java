@@ -9,6 +9,7 @@ import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
 import linstezh.logic.Experiment.Experiment;
 import linstezh.logic.Item.ExperimentItem;
 import linstezh.logic.Item.ItemInterface;
+import linstezh.logic.Item.ItemTypes;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 import linstezh.output.resultCSV.CsvDocumentGenerator;
@@ -19,7 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ExperimentManager{
@@ -29,8 +30,10 @@ public class ExperimentManager{
     final private RootController rootController;
     private int nextSection = 0;
     private Participant currentParticipant;
-    private final List<ParticipantEvalResponse> evalResponses;
-    private final List<ParticipantMemResponse> memResponses;
+    //private final List<ParticipantEvalResponse> evalResponses;
+    //private final List<ParticipantMemResponse> memResponses;
+    private final HashMap<ItemInterface, ParticipantEvalResponse> evalResponses;
+    private final HashMap<ItemInterface, ParticipantMemResponse> memResponses;
 
     public ExperimentManager(Experiment experiment, DatabaseManager db, Stage primaryStage, RootController rootController){
         this.experiment = experiment;
@@ -38,8 +41,8 @@ public class ExperimentManager{
         this.primaryStage = primaryStage;
         primaryStage.setTitle(experiment.getName());
         this.rootController = rootController;
-        evalResponses = new ArrayList<>();
-        memResponses = new ArrayList<>();
+        evalResponses = new HashMap<>();
+        memResponses = new HashMap<>();
     }
 
     public void start(){
@@ -94,40 +97,36 @@ public class ExperimentManager{
     public void saveEvalResponse(ExperimentItem item, boolean response, int evalScore){
         ParticipantEvalResponse newPER = new ParticipantEvalResponse(item, currentParticipant, response);
         newPER.setEvalScore(evalScore);
-        evalResponses.add(newPER);
+        evalResponses.put(item, newPER);
     }
 
     public void saveMemResponse(ExperimentItem item, String response, int memScore){
         ParticipantMemResponse newPMR = new ParticipantMemResponse(item, currentParticipant, response);
         newPMR.setMemorisationScore(memScore);
-        memResponses.add(newPMR);
+        memResponses.put(item, newPMR);
     }
 
-    public ParticipantEvalResponse matchEvalResponse(ItemInterface item){
-        return evalResponses.stream()
-                .filter(res -> res.getItem() == item)
-                .reduce((first, second) -> first).
-                orElse(null);
+    public ParticipantEvalResponse getEvalResponseOfItem(ItemInterface item){
+        return evalResponses.get(item);
     }
 
-    public ParticipantMemResponse matchMemResponse(ItemInterface item){
-        return memResponses.stream()
-                .filter(res -> res.getItem() == item)
-                .reduce((first, second) -> first).
-                orElse(null);
+    public ParticipantMemResponse getMemResponseOfItem(ItemInterface item){
+        return memResponses.get(item);
     }
 
     public List<ParticipantEvalResponse> getEvalResponsesOfSection(SectionInterface section){
         List<ItemInterface> itemsOfSection = section.getItems();
-        return evalResponses.stream()
-                .filter(res -> itemsOfSection.contains(res.getItem()))
+        return itemsOfSection.stream()
+                .filter(item -> item.getType() == ItemTypes.EXPERIMENT)
+                .map(evalResponses::get)
                 .toList();
     }
 
     public List<ParticipantMemResponse> getMemResponsesOfSection(SectionInterface section){
         List<ItemInterface> itemsOfSection = section.getItems();
-        return memResponses.stream()
-                .filter(res -> itemsOfSection.contains(res.getItem()))
+        return itemsOfSection.stream()
+                .filter(item -> item.getType() == ItemTypes.EXPERIMENT)
+                .map(memResponses::get)
                 .toList();
     }
 
