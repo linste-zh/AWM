@@ -19,8 +19,7 @@ public class ExperimentFeedbackController {
     private Label evalScore;
     @FXML
     private Label memScore;
-    @FXML
-    private TextArea infoText;
+
 
     private InfoItemAdapter item;
     private ExpSectionManager manager;
@@ -31,8 +30,6 @@ public class ExperimentFeedbackController {
         title.setText("TRIAL FEEDBACK (Hardcoded, fix)");
         this.evalScore.setText(evalScore + "/" + maxEvalScore);
         this.memScore.setText(memScore + "/" + maxMemScore);
-
-        infoText.setText("info text, maybe, idk");
     }
 
     @FXML

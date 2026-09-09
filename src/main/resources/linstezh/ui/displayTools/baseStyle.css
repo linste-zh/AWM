@@ -52,3 +52,8 @@
 .actionButton:hover{
     -fx-background-color: #03a9f4;
 }
+
+.score{
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+}
