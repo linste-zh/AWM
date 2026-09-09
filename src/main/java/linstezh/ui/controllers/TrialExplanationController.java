@@ -1,6 +1,7 @@
 package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
@@ -13,6 +14,9 @@ public class TrialExplanationController {
     VBox contentVBox;
 
     @FXML
+    private Label title;
+
+    @FXML
     private TextArea distractorText;
 
     private TextDistractorItemAdapter item;
@@ -21,6 +25,7 @@ public class TrialExplanationController {
     public void init(TextDistractorItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
+
         distractorText.setText(item.readDisplayText());
     }
 

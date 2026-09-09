@@ -6,28 +6,23 @@
       fx:id="contentArea" styleClass="contentArea">
     <properties fillParent="true" />
 
-    <VBox fx:id="contentVBox" styleClass="contentVBox">
-        <properties fillParent="true" />
+    <VBox fx:id="contentVBox" styleClass="contentVBox" alignment="CENTER">
+        <properties fillParent="true"/>
 
-        <Label fx:id="title" alignment="CENTER" styleClass="contentTitle" text="Thank you for participating" wrapText="true">
+        <Label fx:id="title" alignment="CENTER" styleClass="contentTitle" text="Example Title" wrapText="true">
             <properties widthPercent="1.0" />
         </Label>
 
-        <TextArea fx:id="infoText" styleClass="textBox"
+        <TextArea fx:id="distractorText" styleClass="textBox"
                   wrapText="true" editable="false"
                   text="Example Info Example Info Example Info Example Info Example Info Example Info Example Info">
             <properties widthPercent="1.0" maxHeightPercent="0.8"/>
         </TextArea>
 
         <HBox alignment="CENTER" spacing="30.0">
-            <Button onAction="#downloadItemFile" text="Results by Item" styleClass="actionButton"/>
-            <Button onAction="#downloadFAggregatedFile" text="Results by Section" styleClass="actionButton"/>
+            <Button text="continue" onAction="#nextScene" styleClass="actionButton"/>
         </HBox>
 
-        <AnchorPane prefHeight="10.0" prefWidth="10.0">
-            <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" onAction="#endExperiment" styleClass="actionButton"
-                    text="End Experiment" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
-        </AnchorPane>
     </VBox>
 
 </VBox>

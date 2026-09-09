@@ -89,12 +89,12 @@ public class TrialSectionManager implements SectionManager {
 
     }
 
-    public void loadTrialCombinedScreen(ExperimentItem item){
+    public void loadTrialCombinedScreen(TrialItem item){
         try {
             ExpItemAdapter newItem = new ExpItemAdapter(item);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentItemScreen.fxml"));
             Parent content = loader.load();
-            ExperimentItemController controller = loader.getController();
+            TrialItemController controller = loader.getController();
             controller.init(newItem, this);
             /*rootController.getHeader().setItem(currentItem.getPosition());*/
             rootController.setContent(content);
@@ -117,8 +117,8 @@ public class TrialSectionManager implements SectionManager {
         try {
             List<ExpItemAdapter> adaptedItems = new ArrayList<>();
             for(ItemInterface item : items){
-                if(item.getType() == ItemTypes.EXPERIMENT) {
-                    adaptedItems.add(new ExpItemAdapter((ExperimentItem) item));
+                if(item.getType() == ItemTypes.TRIAL_MEMO || item.getType() == ItemTypes.TRIAL_COMBINED) {
+                    adaptedItems.add(new TrialItemAdapter((ExperimentItem) item));
                 }
             }
 
