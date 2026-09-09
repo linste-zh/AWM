@@ -22,4 +22,6 @@ public class TrialSectionManager extends ExpSectionManager {
         super(experimentSection, manager, rootController, primaryStage);
     }
 
+
+
 }

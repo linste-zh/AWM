@@ -45,17 +45,14 @@ public class ExpSectionManager implements SectionManager {
         if(nextItem < items.size()) {
             currentItem = items.get(nextItem);
             currentItem.setDisplayDate(new Date());
-            if (currentItem.getType() == ItemTypes.EXPERIMENT){
-                loadExperimentItemScreen((ExperimentItem) currentItem);
-            }else if (currentItem.getType() == ItemTypes.DISTRACTOR_TXT) {
-                loadTxtDistractorScreen(currentItem);
-            }else if (currentItem.getType() == ItemTypes.DISTRACTOR_IMG) {
-                loadImgDistractorScreen(currentItem);
-            }else{
-                System.out.println("skipped item");
-                nextItem += 1;  //todo: meaningful catch!
-                loadNextScene();
+
+            switch(currentItem.getType()){
+                case ItemTypes.EXPERIMENT ->  loadExperimentItemScreen((ExperimentItem) currentItem);
+                case ItemTypes.DISTRACTOR_TXT -> loadTxtDistractorScreen(currentItem);
+                case ItemTypes.DISTRACTOR_IMG -> loadImgDistractorScreen(currentItem);
+                case ItemTypes.INFORMATION -> loadInformationScreen(currentItem);
             }
+
         }else if(recallOutstanding){
             loadRecallScreen();
         }else{
@@ -84,6 +81,21 @@ public class ExpSectionManager implements SectionManager {
         manager.saveEvalResponse(itemAdapter.getBaseItem(), itemAdapter.readUserEval(), score);
     }
 
+    public void loadInformationScreen(ItemInterface item){
+        try {
+            TextDistractorItemAdapter newTxtDistractor = new TextDistractorItemAdapter(currentItem);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/InfoScreen.fxml"));
+            Parent content = loader.load();
+            TextDistractorController controller = loader.getController();
+            controller.init(newTxtDistractor, this);
+            rootController.setContent(content);
+            /*rootController.getHeader().setItem(currentItem.getPosition());*/
+            nextItem += 1;
+        }catch(IOException e){
+            nextItem += 1;  //todo: meaningful catch!
+            loadNextScene();
+        }
+    }
 
     public void loadTxtDistractorScreen(ItemInterface item){
         try {
