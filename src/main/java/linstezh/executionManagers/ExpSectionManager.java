@@ -9,6 +9,7 @@ import linstezh.logic.Item.ItemTypes;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.ui.adapters.ExpItemAdapter;
 import linstezh.ui.adapters.ImageDistractorItemAdapter;
+import linstezh.ui.adapters.InfoItemAdapter;
 import linstezh.ui.adapters.TextDistractorItemAdapter;
 import linstezh.ui.controllers.*;
 
@@ -83,11 +84,11 @@ public class ExpSectionManager implements SectionManager {
 
     public void loadInformationScreen(ItemInterface item){
         try {
-            TextDistractorItemAdapter newTxtDistractor = new TextDistractorItemAdapter(currentItem);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/InfoScreen.fxml"));
+            InfoItemAdapter newInfo = new InfoItemAdapter(currentItem);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentInfoScreen.fxml"));
             Parent content = loader.load();
-            TextDistractorController controller = loader.getController();
-            controller.init(newTxtDistractor, this);
+            ExperimentInfoController controller = loader.getController();
+            controller.init(newInfo, this);
             rootController.setContent(content);
             /*rootController.getHeader().setItem(currentItem.getPosition());*/
             nextItem += 1;

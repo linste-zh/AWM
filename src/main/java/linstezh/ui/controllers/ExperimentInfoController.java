@@ -5,9 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import linstezh.executionManagers.ExpSectionManager;
-import linstezh.ui.adapters.TextDistractorItemAdapter;
+import linstezh.ui.adapters.InfoItemAdapter;
 
-public class ExperimentInformationController {
+public class ExperimentInfoController {
     @FXML
     VBox contentArea;
     @FXML
@@ -18,10 +18,10 @@ public class ExperimentInformationController {
     @FXML
     private TextArea infoText;
 
-    private TextDistractorItemAdapter item;
+    private InfoItemAdapter item;
     private ExpSectionManager manager;
 
-    public void init(TextDistractorItemAdapter item, ExpSectionManager manager){
+    public void init(InfoItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
         title.setText("TRIAL (Hardcoded, fix)");
