@@ -23,6 +23,7 @@ public class ExpSectionManager implements SectionManager {
     private List<ItemInterface> items;
     private ItemInterface currentItem;
     private int nextItem = 0;
+    private boolean recallOutstanding = true;
 
     public ExpSectionManager(SectionInterface experimentSection, ExperimentManager manager, RootController rootController, Stage primaryStage){
         this.manager = manager;
@@ -40,43 +41,6 @@ public class ExpSectionManager implements SectionManager {
         loadNextScene();
     }
 
-    public void reportEval(ExpItemAdapter itemAdapter){
-        int score = itemAdapter.readCorrectEval() == itemAdapter.readUserEval() ? 1 : 0;
-        manager.saveEvalResponse(itemAdapter.getBaseItem(), itemAdapter.readUserEval(), score);
-    }
-
-    public void reportMemorisedChunks(List<ExpItemAdapter> itemAdapters){
-        List<ExpItemAdapter> unscoredItemAdapters = new ArrayList<>(itemAdapters);
-
-        //Score all correctly memorised chunks as 2
-        for (ExpItemAdapter itemAdapter : itemAdapters) {
-            if(Objects.equals(itemAdapter.readMemoryChunk(), itemAdapter.readUserMemoryChunk())){
-                itemAdapter.setScore(2);
-                unscoredItemAdapters.remove(itemAdapter);
-            }
-        }
-
-        //Check items that were not remembered correctly whether their chunk was noted in a different position, if so score as 1
-        List<String> orphanedChunks = unscoredItemAdapters.stream()
-                .map(ExpItemAdapter::readUserMemoryChunk)
-                .collect(Collectors.toList());
-
-        Iterator<ExpItemAdapter> iterator = unscoredItemAdapters.iterator();
-        while (iterator.hasNext()) {
-            ExpItemAdapter itemAdapter = iterator.next();
-            if (orphanedChunks.contains(itemAdapter.readMemoryChunk())) {
-                itemAdapter.setScore(1);
-                orphanedChunks.remove(itemAdapter.readMemoryChunk());
-                iterator.remove();
-            }
-        }
-
-
-        for (ExpItemAdapter itemAdapter : itemAdapters) {
-            manager.saveMemResponse(itemAdapter.getBaseItem(), itemAdapter.readUserMemoryChunk(), itemAdapter.readScore());
-        }
-    }
-
     public void loadNextScene() {
         if(nextItem < items.size()) {
             currentItem = items.get(nextItem);
@@ -92,8 +56,10 @@ public class ExpSectionManager implements SectionManager {
                 nextItem += 1;  //todo: meaningful catch!
                 loadNextScene();
             }
-        }else{
+        }else if(recallOutstanding){
             loadRecallScreen();
+        }else{
+            concludeSection();
         }
     }
 
@@ -112,6 +78,12 @@ public class ExpSectionManager implements SectionManager {
             loadNextScene();
         }
     }
+
+    public void reportEval(ExpItemAdapter itemAdapter){
+        int score = itemAdapter.readCorrectEval() == itemAdapter.readUserEval() ? 1 : 0;
+        manager.saveEvalResponse(itemAdapter.getBaseItem(), itemAdapter.readUserEval(), score);
+    }
+
 
     public void loadTxtDistractorScreen(ItemInterface item){
         try {
@@ -167,8 +139,41 @@ public class ExpSectionManager implements SectionManager {
         }
     }
 
+    public void reportMemorisedChunks(List<ExpItemAdapter> itemAdapters){
+        List<ExpItemAdapter> unscoredItemAdapters = new ArrayList<>(itemAdapters);
+
+        //Score all correctly memorised chunks as 2
+        for (ExpItemAdapter itemAdapter : itemAdapters) {
+            if(Objects.equals(itemAdapter.readMemoryChunk(), itemAdapter.readUserMemoryChunk())){
+                itemAdapter.setScore(2);
+                unscoredItemAdapters.remove(itemAdapter);
+            }
+        }
+
+        //Check items that were not remembered correctly whether their chunk was noted in a different position, if so score as 1
+        List<String> orphanedChunks = unscoredItemAdapters.stream()
+                .map(ExpItemAdapter::readUserMemoryChunk)
+                .collect(Collectors.toList());
+
+        Iterator<ExpItemAdapter> iterator = unscoredItemAdapters.iterator();
+        while (iterator.hasNext()) {
+            ExpItemAdapter itemAdapter = iterator.next();
+            if (orphanedChunks.contains(itemAdapter.readMemoryChunk())) {
+                itemAdapter.setScore(1);
+                orphanedChunks.remove(itemAdapter.readMemoryChunk());
+                iterator.remove();
+            }
+        }
+
+
+        for (ExpItemAdapter itemAdapter : itemAdapters) {
+            manager.saveMemResponse(itemAdapter.getBaseItem(), itemAdapter.readUserMemoryChunk(), itemAdapter.readScore());
+        }
+
+        recallOutstanding = false;
+    }
+
     public void concludeSection(){
-        System.out.println("concluded section");
         manager.nextSection();
     }
 

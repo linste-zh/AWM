@@ -66,6 +66,7 @@ public class ExperimentManager{
         SectionManager sectionManager = null;
         SectionInterface section = experiment.getSections().get(nextSection);
         switch (section.getType()){
+            case SectionTypes.TRIAL -> sectionManager = new TrialSectionManager(section, this, rootController, primaryStage);
             case SectionTypes.EXPERIMENT -> sectionManager = new ExpSectionManager(section, this, rootController, primaryStage);
             case SectionTypes.START -> sectionManager = new StartSectionManager(section, this, rootController, primaryStage);
             case SectionTypes.END -> sectionManager = new EndSectionManager(section, this, rootController, primaryStage);

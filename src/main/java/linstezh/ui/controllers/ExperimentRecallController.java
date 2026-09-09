@@ -58,7 +58,7 @@ public class ExperimentRecallController {
         }
 
         manager.reportMemorisedChunks(items);
-        manager.concludeSection();
+        manager.loadNextScene();
     }
 
     private ExpItemAdapter findItem(String id){

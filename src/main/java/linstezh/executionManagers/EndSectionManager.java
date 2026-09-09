@@ -43,19 +43,23 @@ public class EndSectionManager implements SectionManager {
     }
 
     public void loadNextScene(){
-        currentItem = items.get(nextItem);
-        try {
-            InfoItemAdapter newInfoItem = new InfoItemAdapter(currentItem);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentEndScreen.fxml"));
-            Parent content = loader.load();
-            ExperimentEndController controller = loader.getController();
-            controller.init(newInfoItem, this);
-            rootController.setContent(content);
-            /*rootController.getHeader().setItem(currentItem.getPosition());*/
-            nextItem += 1;
-        }catch(IOException e){
-            nextItem += 1;  //todo: meaningful catch!
-            loadNextScene();
+        if(nextItem < items.size()) {
+            currentItem = items.get(nextItem);
+            try {
+                InfoItemAdapter newInfoItem = new InfoItemAdapter(currentItem);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentEndScreen.fxml"));
+                Parent content = loader.load();
+                ExperimentEndController controller = loader.getController();
+                controller.init(newInfoItem, this);
+                rootController.setContent(content);
+                /*rootController.getHeader().setItem(currentItem.getPosition());*/
+                nextItem += 1;
+            } catch (IOException e) {
+                nextItem += 1;  //todo: meaningful catch!
+                loadNextScene();
+            }
+        }else{
+            concludeSection();
         }
     }
 

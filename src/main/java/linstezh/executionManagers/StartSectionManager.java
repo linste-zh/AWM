@@ -45,20 +45,24 @@ public class StartSectionManager implements SectionManager {
     }
 
     public void loadNextScene(){
-        currentItem = items.get(nextItem);
-        try {
-            InfoItemAdapter newInfoItem = new InfoItemAdapter(currentItem);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentStartScreen.fxml"));
-            Parent content = loader.load();
-            ExperimentStartController controller = loader.getController();
-            controller.init(newInfoItem, this);
-            rootController.setContent(content);
-            /*rootController.getHeader().setItem(currentItem.getPosition());*/
-            nextItem += 1;
-        }catch(IOException e){
-            e.printStackTrace();
-            nextItem += 1;  //todo: meaningful catch!
-            loadNextScene();
+        if(nextItem < items.size()) {
+            currentItem = items.get(nextItem);
+            try {
+                InfoItemAdapter newInfoItem = new InfoItemAdapter(currentItem);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentStartScreen.fxml"));
+                Parent content = loader.load();
+                ExperimentStartController controller = loader.getController();
+                controller.init(newInfoItem, this);
+                rootController.setContent(content);
+                /*rootController.getHeader().setItem(currentItem.getPosition());*/
+                nextItem += 1;
+            } catch (IOException e) {
+                e.printStackTrace();
+                nextItem += 1;  //todo: meaningful catch!
+                loadNextScene();
+            }
+        }else{
+            concludeSection();
         }
     }
 

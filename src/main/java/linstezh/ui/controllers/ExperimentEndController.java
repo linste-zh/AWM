@@ -72,6 +72,6 @@ public class ExperimentEndController {
 
     @FXML
     private void endExperiment() {
-        manager.concludeSection();
+        manager.loadNextScene();
     }
 }

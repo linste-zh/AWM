@@ -45,7 +45,7 @@ public class ExperimentStartController {
         if(consentButton.isSelected()){
             if(!Objects.equals(nameInput.getText(), "")){
                 manager.submitParticipantName(nameInput.getText());
-                manager.concludeSection();
+                manager.loadNextScene();
             }else{
                 Alert a = new Alert(Alert.AlertType.WARNING);
                 a.setTitle("Missing Name");
