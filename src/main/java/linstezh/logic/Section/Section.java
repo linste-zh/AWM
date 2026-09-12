@@ -5,9 +5,11 @@ import linstezh.logic.Item.ItemInterface;
 import linstezh.logic.Item.ItemTypes;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class Section implements SectionInterface{
+public class Section implements SectionInterface, Comparable<SectionInterface> {
     private int id;
 
     private Experiment experiment;
@@ -47,8 +49,7 @@ public class Section implements SectionInterface{
     }
 
     public int getExperimentID(){
-        //return experiment.getID();
-        return 0; //placeholder
+        return experiment.getID();
     }
 
     public SectionTypes getType() {
@@ -79,6 +80,12 @@ public class Section implements SectionInterface{
         return items;
     }
 
+    public List<ItemInterface> sortItems(){
+        Collections.sort(items);
+
+        return(items);
+    }
+
     public void setItems(List<ItemInterface> items) {
         this.items = items;
     }
@@ -106,5 +113,10 @@ public class Section implements SectionInterface{
 
 
         return string.toString();
+    }
+
+    @Override
+    public int compareTo(SectionInterface other) {
+        return Integer.compare(this.getPosition(), other.getPosition());
     }
 }

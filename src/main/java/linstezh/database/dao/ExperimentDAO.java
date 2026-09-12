@@ -24,6 +24,7 @@ public class ExperimentDAO implements DAO{
         if(experiment == null){
             throw new databaseIdException("ID not found");
         }
+
         return experiment;
     }
 

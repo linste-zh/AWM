@@ -1,9 +1,11 @@
 package linstezh.logic.Experiment;
 
+import linstezh.logic.Section.Section;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +47,12 @@ public class Experiment {
 
     public void addSection(SectionInterface section){
         this.sections.add(section);
+    }
+
+    public List<SectionInterface> sortSections(){
+        Collections.sort(sections);
+
+        return(sections);
     }
 
     public List<SectionInterface> getExperimentSections(){

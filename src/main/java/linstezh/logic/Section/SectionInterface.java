@@ -4,7 +4,7 @@ import linstezh.logic.Item.ItemInterface;
 
 import java.util.List;
 
-public interface SectionInterface {
+public interface SectionInterface extends Comparable<SectionInterface>{
     int getID();
     int getExperimentID();
     SectionTypes getType();
@@ -13,4 +13,5 @@ public interface SectionInterface {
     List<ItemInterface> getItems();
     int maxEvalScore();
     int maxMemoryScore();
+    int compareTo(SectionInterface other);
 }

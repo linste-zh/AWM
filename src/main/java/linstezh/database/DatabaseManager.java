@@ -81,7 +81,9 @@ public class DatabaseManager {
             for(ItemDBO itemDBO : sectionItems){
                 section.addItem(transformItemDBO(itemDBO, section));
             }
+            section.sortItems();
         }
+        experiment.sortSections();
 
         return experiment;
     }

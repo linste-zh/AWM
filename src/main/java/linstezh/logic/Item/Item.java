@@ -1,10 +1,11 @@
 package linstezh.logic.Item;
 
 import linstezh.logic.Section.Section;
+import linstezh.logic.Section.SectionInterface;
 
 import java.util.Date;
 
-public class Item implements ItemInterface {
+public class Item implements ItemInterface, Comparable<ItemInterface> {
     private int id;
     private Section section;
     private ItemTypes type;
@@ -83,5 +84,10 @@ public class Item implements ItemInterface {
     @Override
     public String toString() {
         return String.format("%d (%s): %s (%s)", this.position, this.type, this.displayText, this.affectiveValue);
+    }
+
+    @Override
+    public int compareTo(ItemInterface other) {
+        return Integer.compare(this.getPosition(), other.getPosition());
     }
 }
