@@ -96,7 +96,7 @@ public class ExpSectionManager implements SectionManager {
     }
 
     public void reportEval(ExpItemAdapter itemAdapter){
-        int score = itemAdapter.readCorrectEval() == itemAdapter.readUserEval() ? 1 : 0;
+        int score = Objects.equals(itemAdapter.readCorrectEval(), itemAdapter.readUserEval()) ? 1 : 0;
         manager.saveEvalResponse(itemAdapter.getBaseItem(), itemAdapter.readUserEval(), score);
     }
 
@@ -220,7 +220,7 @@ public class ExpSectionManager implements SectionManager {
         public void run() {
             Platform.runLater(() -> {
                 System.out.println("Timer ran out for " + item);
-                manager.saveEvalResponse(item, false, 0);  //todo: change boolean to string for NA value
+                manager.saveEvalResponse(item, "NA", 0);  //todo: change boolean to string for NA value
 
                 loadNextScene();
             });

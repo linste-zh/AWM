@@ -61,11 +61,11 @@ public class CsvAggregatedRowGenerator {
         return items.stream().map(ItemInterface::getAffectiveValue).toList();
     }
 
-    public static List<Boolean> extractCorrectEvaluations(List<ItemInterface> items){
+    public static List<String> extractCorrectEvaluations(List<ItemInterface> items){
         return items.stream().filter(item -> item.getType() == ItemTypes.EXPERIMENT).map(item -> (ExperimentItem) item).map(ExperimentItem::getCorrectEvaluation).toList();
     }
 
-    public static List<Boolean> extractProvidedEvaluations(List<ParticipantEvalResponse> responses){
+    public static List<String> extractProvidedEvaluations(List<ParticipantEvalResponse> responses){
         return responses.stream().map(ParticipantEvalResponse::getProvidedEvaluation).toList();
     }
 

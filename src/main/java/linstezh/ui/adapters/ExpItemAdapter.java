@@ -6,10 +6,10 @@ public class ExpItemAdapter {
     private final ExperimentItem baseItem;
     private int itemID;
     private final String evalText;
-    private final Boolean correctEval;
+    private final String correctEval;
     private final String memoryChunk;
     private final Integer position;
-    private Boolean userEval;
+    private String userEval;
     private String userMemoryChunk;
     private int score;
 
@@ -38,7 +38,7 @@ public class ExpItemAdapter {
         return memoryChunk;
     }
 
-    public Boolean readCorrectEval(){
+    public String readCorrectEval(){
         return correctEval;
     }
 
@@ -46,11 +46,11 @@ public class ExpItemAdapter {
         return position;
     }
 
-    public void reportUserEval(boolean eval){
+    public void reportUserEval(String eval){
         userEval = eval;
     }
 
-    public boolean readUserEval(){
+    public String readUserEval(){
         return userEval;
     }
 

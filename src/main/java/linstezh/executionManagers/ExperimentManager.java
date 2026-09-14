@@ -94,7 +94,7 @@ public class ExperimentManager{
         primaryStage.setTitle(experiment.getName() + " - " + name);
     }
 
-    public void saveEvalResponse(ExperimentItem item, boolean response, int evalScore){
+    public void saveEvalResponse(ExperimentItem item, String response, int evalScore){
         ParticipantEvalResponse newPER = new ParticipantEvalResponse(item, currentParticipant, response);
         newPER.setEvalScore(evalScore);
         evalResponses.put(item, newPER);

@@ -15,11 +15,11 @@ public class ExperimentItemDBO implements DBO{
     private String memoryChunk;
 
     @DatabaseField(columnName = "correctEvaluation")
-    private boolean correctEvaluation;
+    private String correctEvaluation;
 
     public ExperimentItemDBO(){}
 
-    public ExperimentItemDBO(ItemDBO baseItemID, String memoryChunk, boolean correctEvaluation){
+    public ExperimentItemDBO(ItemDBO baseItemID, String memoryChunk, String correctEvaluation){
         this.baseItemID = baseItemID;
         this.memoryChunk = memoryChunk;
         this.correctEvaluation = correctEvaluation;
@@ -49,11 +49,11 @@ public class ExperimentItemDBO implements DBO{
         this.memoryChunk = memoryChunk;
     }
 
-    public boolean getCorrectEvaluation() {
+    public String getCorrectEvaluation() {
         return correctEvaluation;
     }
 
-    public void setCorrectEvaluation(boolean correctEvaluation) {
+    public void setCorrectEvaluation(String correctEvaluation) {
         this.correctEvaluation = correctEvaluation;
     }
 }

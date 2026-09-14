@@ -27,15 +27,15 @@ public class ExperimentItemController {
 
     @FXML
     private void clickTrue(){
-        setEval(true);
+        setEval("yes");
     }
 
     @FXML
     private void clickFalse(){
-        setEval(false);
+        setEval("no");
     }
 
-    private void setEval(Boolean value){
+    private void setEval(String value){
         item.reportUserEval(value);
         manager.reportEval(item);
         manager.loadNextScene();

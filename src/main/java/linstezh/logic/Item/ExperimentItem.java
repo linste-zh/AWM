@@ -7,7 +7,7 @@ public class ExperimentItem extends Item {
     private int id;
     private int baseItemID;
     private String memoryChunk;
-    private boolean correctEvaluation;
+    private String correctEvaluation;
 
     public ExperimentItem(){};
 
@@ -15,7 +15,7 @@ public class ExperimentItem extends Item {
         super(baseItem.getID(), baseItem.getSection(), baseItem.getType(), baseItem.getPosition(), baseItem.getDisplayText(), baseItem.getAffectiveValue());
     }
 
-    public ExperimentItem(int id, int baseItemID, Section section, ItemTypes type, int position, String displayText, String affectiveValue, String memoryChunk, boolean correctEvaluation) {
+    public ExperimentItem(int id, int baseItemID, Section section, ItemTypes type, int position, String displayText, String affectiveValue, String memoryChunk, String correctEvaluation) {
         super(baseItemID, section, type, position, displayText, affectiveValue);
         this.id = id;
         this.baseItemID = baseItemID;
@@ -49,11 +49,11 @@ public class ExperimentItem extends Item {
         this.memoryChunk = memoryChunk;
     }
 
-    public boolean getCorrectEvaluation() {
+    public String getCorrectEvaluation() {
         return correctEvaluation;
     }
 
-    public void setCorrectEvaluation(boolean correctEvaluation) {
+    public void setCorrectEvaluation(String correctEvaluation) {
         this.correctEvaluation = correctEvaluation;
     }
 

@@ -5,12 +5,12 @@ import linstezh.logic.Item.ExperimentItem;
 public class ParticipantEvalResponse {
     private ExperimentItem item;
     private Participant participant;
-    private boolean providedEvaluation;
+    private String providedEvaluation;
     private int evalScore;
 
     public ParticipantEvalResponse(){}
 
-    public ParticipantEvalResponse(ExperimentItem item, Participant participant, Boolean eval){
+    public ParticipantEvalResponse(ExperimentItem item, Participant participant, String eval){
         this.item = item;
         this.participant = participant;
         this.providedEvaluation = eval;
@@ -32,11 +32,11 @@ public class ParticipantEvalResponse {
         this.participant = participant;
     }
 
-    public boolean getProvidedEvaluation() {
+    public String getProvidedEvaluation() {
         return providedEvaluation;
     }
 
-    public void setProvidedEvaluation(boolean providedEvaluation) {
+    public void setProvidedEvaluation(String providedEvaluation) {
         this.providedEvaluation = providedEvaluation;
     }
 
