@@ -29,6 +29,8 @@ public class TrialSectionManager extends ExpSectionManager {
     }
 
     public void loadNextScene() {
+        resetTimer();
+
         if(nextItem < items.size()) {
             loadNextItem();
         }else if(super.recallOutstanding){

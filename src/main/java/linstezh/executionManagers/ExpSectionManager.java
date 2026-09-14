@@ -1,5 +1,6 @@
 package linstezh.executionManagers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ public class ExpSectionManager implements SectionManager {
     protected ItemInterface currentItem;
     protected int nextItem = 0;
     protected boolean recallOutstanding = true;
+    protected Timer timer;
 
     public ExpSectionManager(SectionInterface experimentSection, ExperimentManager manager, RootController rootController, Stage primaryStage){
         this.manager = manager;
@@ -43,12 +45,22 @@ public class ExpSectionManager implements SectionManager {
     }
 
     public void loadNextScene() {
+        resetTimer();
+
         if(nextItem < items.size()) {
             loadNextItem();
         }else if(recallOutstanding){
             loadRecallScreen();
         }else{
             concludeSection();
+        }
+    }
+
+    public void resetTimer(){
+        System.out.println("called scene load: " + nextItem);
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
         }
     }
 
@@ -74,6 +86,8 @@ public class ExpSectionManager implements SectionManager {
             controller.init(newItem, this);
             /*rootController.getHeader().setItem(currentItem.getPosition());*/
             rootController.setContent(content);
+            timer = new Timer(true);
+            timer.schedule(new TimerExceeded(item), 3000);
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1;  //todo: meaningful catch!
@@ -195,4 +209,23 @@ public class ExpSectionManager implements SectionManager {
         manager.nextSection();
     }
 
+    private class TimerExceeded extends TimerTask{
+        private ExperimentItem item;
+
+        public TimerExceeded(ExperimentItem item){
+            this.item = item;
+        }
+
+        @Override
+        public void run() {
+            Platform.runLater(() -> {
+                System.out.println("Timer ran out for " + item);
+                manager.saveEvalResponse(item, false, 0);  //todo: change boolean to string for NA value
+
+                loadNextScene();
+            });
+        }
+    }
+
 }
+
