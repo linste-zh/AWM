@@ -22,4 +22,8 @@ public class CsvAggregatedResultsGenerator implements CsvResultsGenerator{
         return csvRows;
     }
 
+    public String resultsType(){
+        return "aggregated";
+    }
+
 }

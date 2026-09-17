@@ -7,6 +7,7 @@ module linstezh {
     requires ormlite.jdbc;
     requires com.opencsv;
     requires jdk.jfr;
+    requires java.compiler;
 
     exports linstezh;  // your main package
     exports linstezh.database.dbo;

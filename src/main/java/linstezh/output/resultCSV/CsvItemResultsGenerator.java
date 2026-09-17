@@ -38,4 +38,8 @@ public class CsvItemResultsGenerator implements CsvResultsGenerator{
         return csvRows;
     }
 
+    public String resultsType(){
+        return "itemised";
+    }
+
 }

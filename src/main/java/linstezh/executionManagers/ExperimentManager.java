@@ -1,5 +1,6 @@
 package linstezh.executionManagers;
 
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import linstezh.Main;
 import linstezh.database.DatabaseManager;
@@ -20,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -132,11 +135,29 @@ public class ExperimentManager{
                 .toList();
     }
 
-    public void saveResults(File file, CsvResultsGenerator resultGenerator) throws IOException {
-        List<String[]> csvRows = resultGenerator.generate(this);
+    public void saveResults(CsvResultsGenerator resultGenerator) throws IOException {
+        FileChooser fileChooser = new FileChooser();
 
-        Path filePath = Paths.get(file.getPath());
-        CsvDocumentGenerator.writeCsv(csvRows, filePath);
+        File baseDir = new File(experiment.getExpDirPath());
+        fileChooser.setInitialDirectory(baseDir);
+        System.out.println(fileChooser.getInitialDirectory());
+
+        LocalDate today = LocalDate.now();
+
+        fileChooser.setInitialFileName(today + "_" + currentParticipant.getName() + "_" + resultGenerator.resultsType() + ".csv");
+
+        //Set extension filter for text files
+        FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(csvFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(primaryStage);
+
+        if (file != null) {
+            List<String[]> csvRows = resultGenerator.generate(this);
+
+            Path filePath = Paths.get(file.getPath());
+            CsvDocumentGenerator.writeCsv(csvRows, filePath);
+        }
     }
-
 }

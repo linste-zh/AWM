@@ -33,18 +33,7 @@ public class ExperimentEndController {
     @FXML
     private void downloadItemFile() {
         try {
-            FileChooser fileChooser = new FileChooser();
-
-            //Set extension filter for text files
-            FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-            fileChooser.getExtensionFilters().add(csvFilter);
-
-            //Show save file dialog
-            File file = fileChooser.showSaveDialog(manager.getPrimaryStage());
-
-            if (file != null) {
-                manager.requestCsvSave(file, new CsvItemResultsGenerator());
-            }
+            manager.requestCsvSave(new CsvItemResultsGenerator());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,18 +42,7 @@ public class ExperimentEndController {
     @FXML
     private void downloadFAggregatedFile() {
         try {
-            FileChooser fileChooser = new FileChooser();
-
-            //Set extension filter for text files
-            FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-            fileChooser.getExtensionFilters().add(csvFilter);
-
-            //Show save file dialog
-            File file = fileChooser.showSaveDialog(manager.getPrimaryStage());
-
-            if (file != null) {
-                manager.requestCsvSave(file, new CsvAggregatedResultsGenerator());
-            }
+            manager.requestCsvSave(new CsvAggregatedResultsGenerator());
         } catch (IOException e) {
             e.printStackTrace();
         }

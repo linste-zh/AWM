@@ -44,8 +44,8 @@ public class EndSectionManager implements SectionManager {
         return section.getName();
     }
 
-    public void requestCsvSave(File file, CsvResultsGenerator resultGenerator) throws IOException {
-        this.manager.saveResults(file, resultGenerator);
+    public void requestCsvSave(CsvResultsGenerator resultGenerator) throws IOException {
+        this.manager.saveResults(resultGenerator);
     }
 
     public void loadNextScene(){

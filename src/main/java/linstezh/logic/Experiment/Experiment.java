@@ -3,6 +3,10 @@ package linstezh.logic.Experiment;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 
+import javax.lang.model.element.UnknownDirectiveException;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,12 +17,14 @@ public class Experiment {
     private String name;
     private List<SectionInterface> sections = new ArrayList<>();
     private int timerValue;
+    private String expDirPath;
 
     public Experiment(){}
 
     public Experiment(int id, String name){
         this.id = id;
         this.name = name;
+        this.expDirPath = createExpDir();
     }
 
     public int getID() {
@@ -67,6 +73,35 @@ public class Experiment {
         return sections.stream()
                 .filter(section -> section.getType() == SectionTypes.EXPERIMENT)
                 .collect(Collectors.toList());
+    }
+
+    public String getExpDirPath(){
+        if (expDirPath == null){
+            expDirPath = createExpDir();
+        }
+
+        return expDirPath;
+    }
+
+    private String createExpDir(){
+        String basePath = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "AWM_Experiments"; //todo: not generalisable, find proper approach!
+
+        String directoryPath = basePath + File.separator + name;
+        File directory = new File(directoryPath);
+
+        System.out.println(directoryPath);
+
+        if (!directory.exists()) {
+            if (directory.mkdirs()) {
+                System.out.println("Directory created successfully.");
+            } else {
+                throw new Error("Failed to create directory.");
+            }
+        } else {
+            System.out.println("Directory already exists.");
+        }
+
+        return directoryPath;
     }
 
     @Override
