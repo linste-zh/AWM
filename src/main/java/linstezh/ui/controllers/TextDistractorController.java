@@ -24,8 +24,4 @@ public class TextDistractorController {
         distractorText.setText(item.readDisplayText());
     }
 
-    @FXML
-    private void nextScene() {
-        manager.loadNextScene();
-    }
 }

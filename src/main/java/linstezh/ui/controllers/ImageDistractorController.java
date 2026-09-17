@@ -34,8 +34,4 @@ public class ImageDistractorController {
         distractorImage.setImage(new Image(item.readDisplayImage()));
     }
 
-    @FXML
-    private void nextScene() {
-        manager.loadNextScene();
-    }
 }
