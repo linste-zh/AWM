@@ -30,8 +30,6 @@ public class ExperimentManager{
     final private RootController rootController;
     private int nextSection = 0;
     private Participant currentParticipant;
-    //private final List<ParticipantEvalResponse> evalResponses;
-    //private final List<ParticipantMemResponse> memResponses;
     private final HashMap<ItemInterface, ParticipantEvalResponse> evalResponses;
     private final HashMap<ItemInterface, ParticipantMemResponse> memResponses;
 
@@ -92,6 +90,10 @@ public class ExperimentManager{
     public void createParticipant(String name){
         currentParticipant = new Participant(name);
         primaryStage.setTitle(experiment.getName() + " - " + name);
+    }
+
+    public int getTimerValue(){
+        return experiment.getTimerValue();
     }
 
     public void saveEvalResponse(ExperimentItem item, String response, int evalScore){

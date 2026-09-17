@@ -12,6 +12,7 @@ public class Experiment {
     private int id;
     private String name;
     private List<SectionInterface> sections = new ArrayList<>();
+    private int timerValue;
 
     public Experiment(){}
 
@@ -46,6 +47,14 @@ public class Experiment {
 
     public void addSection(SectionInterface section){
         this.sections.add(section);
+    }
+
+    public int getTimerValue() {
+        return timerValue;
+    }
+
+    public void setTimerValue(int timerValue) {
+        this.timerValue = timerValue;
     }
 
     public List<SectionInterface> sortSections(){

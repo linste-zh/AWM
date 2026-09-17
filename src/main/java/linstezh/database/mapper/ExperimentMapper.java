@@ -11,6 +11,7 @@ public class ExperimentMapper {
         ExperimentDBO dbo = new ExperimentDBO();
         dbo.setID(experiment.getID());
         dbo.setName(experiment.getName());
+        dbo.setTimerValue(experiment.getTimerValue());
         return dbo;
     }
 
@@ -19,6 +20,7 @@ public class ExperimentMapper {
 
         exp.setID(experimentDBO.getID());
         exp.setName(experimentDBO.getName());
+        exp.setTimerValue(experimentDBO.getTimerValue());
 
         return exp;
     }
