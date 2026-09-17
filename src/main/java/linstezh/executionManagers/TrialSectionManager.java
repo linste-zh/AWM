@@ -14,12 +14,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class TrialSectionManager extends ExpSectionManager {
-    private final SectionInterface trialSection;
     private boolean feedbackOutstanding = true;
 
     public TrialSectionManager(SectionInterface trialSection, ExperimentManager manager, RootController rootController, Stage primaryStage){
         super(trialSection, manager, rootController, primaryStage);
-        this.trialSection = trialSection;
     }
 
     public void loadNextScene() {
@@ -30,12 +28,12 @@ public class TrialSectionManager extends ExpSectionManager {
         }else if(super.recallOutstanding){
             loadRecallScreen();
         }else if(feedbackOutstanding){
-            List<ParticipantEvalResponse> evalResponses = manager.getEvalResponsesOfSection(trialSection);
-            List<ParticipantMemResponse> memResponses = manager.getMemResponsesOfSection(trialSection);
+            List<ParticipantEvalResponse> evalResponses = manager.getEvalResponsesOfSection(section);
+            List<ParticipantMemResponse> memResponses = manager.getMemResponsesOfSection(section);
             int evalScore = CsvAggregatedRowGenerator.calculateEvaluationsScore(evalResponses);
-            int maxEvalScore = trialSection.maxEvalScore();
+            int maxEvalScore = section.maxEvalScore();
             int memScore = CsvAggregatedRowGenerator.calculateMemoryScore(memResponses);
-            int maxMemScore = trialSection.maxMemoryScore();
+            int maxMemScore = section.maxMemoryScore();
 
             try{
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ExperimentFeedbackScreen.fxml"));

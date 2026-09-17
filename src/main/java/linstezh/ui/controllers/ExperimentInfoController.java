@@ -24,7 +24,7 @@ public class ExperimentInfoController {
     public void init(InfoItemAdapter item, ExpSectionManager manager){
         this.item = item;
         this.manager = manager;
-        title.setText("TRIAL (Hardcoded, fix)");
+        title.setText(manager.getSectionTitle() + " INFORMATION");
         infoText.setText(item.readDisplayText());
     }
 

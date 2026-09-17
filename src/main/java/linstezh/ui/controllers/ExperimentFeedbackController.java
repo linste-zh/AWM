@@ -26,7 +26,7 @@ public class ExperimentFeedbackController {
     public void init(int evalScore, int maxEvalScore, int memScore, int maxMemScore, TrialSectionManager manager){
         this.item = item;
         this.manager = manager;
-        title.setText("TRIAL FEEDBACK (Hardcoded, fix)");
+        title.setText(manager.getSectionTitle() + " FEEDBACK");
         this.evalScore.setText(evalScore + "/" + maxEvalScore);
         this.memScore.setText(memScore + "/" + maxMemScore);
     }

@@ -7,4 +7,5 @@ public interface SectionManager {
     void loadNextScene();
     void concludeSection();
     Stage getPrimaryStage();
+    String getSectionTitle();
 }

@@ -22,6 +22,7 @@ public class ExpSectionManager implements SectionManager {
     protected final ExperimentManager manager;
     protected final RootController rootController;
     protected final Stage primaryStage;
+    protected final SectionInterface section;
     protected List<ItemInterface> items;
     protected ItemInterface currentItem;
     protected int nextItem = 0;
@@ -32,11 +33,16 @@ public class ExpSectionManager implements SectionManager {
         this.manager = manager;
         this.rootController = rootController;
         this.primaryStage = primaryStage;
+        this.section = experimentSection;
         items = experimentSection.getItems();
     }
 
     public Stage getPrimaryStage(){
         return primaryStage;
+    }
+
+    public String getSectionTitle(){
+        return section.getName();
     }
 
     public void display() {

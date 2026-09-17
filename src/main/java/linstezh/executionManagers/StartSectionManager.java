@@ -16,6 +16,7 @@ public class StartSectionManager implements SectionManager {
     private final ExperimentManager manager;
     private final RootController rootController;
     private final Stage primaryStage;
+    private final SectionInterface section;
     private List<ItemInterface> items;
     private ItemInterface currentItem;
     private int nextItem = 0;
@@ -24,11 +25,16 @@ public class StartSectionManager implements SectionManager {
         this.manager = manager;
         this.rootController = rootController;
         this.primaryStage = primaryStage;
+        this.section = section;
         items = section.getItems();
     }
 
     public Stage getPrimaryStage(){
         return primaryStage;
+    }
+
+    public String getSectionTitle(){
+        return section.getName();
     }
 
     public void display() {
