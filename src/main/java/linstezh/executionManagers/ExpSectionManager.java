@@ -69,15 +69,22 @@ public class ExpSectionManager implements SectionManager {
         currentItem.setDisplayDate(new Date());
 
         switch(currentItem.getType()){
-            case ItemTypes.EXPERIMENT ->  loadExperimentItemScreen((ExperimentItem) currentItem);
-            case ItemTypes.DISTRACTOR_TXT -> loadTxtDistractorScreen(currentItem);
-            case ItemTypes.DISTRACTOR_IMG -> loadImgDistractorScreen(currentItem);
+            case ItemTypes.EXPERIMENT ->  {
+                loadExperimentItemScreen((ExperimentItem) currentItem);
+                timer = new Timer(true);
+                timer.schedule(new TimerExceeded(currentItem), manager.getTimerValue());
+            }
+            case ItemTypes.DISTRACTOR_TXT -> {
+                loadTxtDistractorScreen(currentItem);
+                timer = new Timer(true);
+                timer.schedule(new TimerExceeded(currentItem), manager.getTimerValue());
+            }
+            case ItemTypes.DISTRACTOR_IMG -> {
+                loadImgDistractorScreen(currentItem);
+                timer = new Timer(true);
+                timer.schedule(new TimerExceeded(currentItem), manager.getTimerValue());
+            }
             case ItemTypes.INFORMATION -> loadInformationScreen(currentItem);
-        }
-
-        if(true){
-            timer = new Timer(true);
-            timer.schedule(new TimerExceeded(currentItem), 3000);
         }
 
     }

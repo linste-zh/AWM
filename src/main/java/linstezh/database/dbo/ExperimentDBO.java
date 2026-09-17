@@ -12,7 +12,7 @@ public class ExperimentDBO implements DBO {
     @DatabaseField(columnName = "name", canBeNull = false)
     private String name;
 
-    @DatabaseField(columnName = "timerValue", defaultValue = "5")
+    @DatabaseField(columnName = "timerValue", defaultValue = "5000")
     private int timerValue;
 
     public ExperimentDBO(){}
