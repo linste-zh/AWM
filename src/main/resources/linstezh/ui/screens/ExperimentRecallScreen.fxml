@@ -13,6 +13,10 @@
             <properties widthPercent="1.0" />
         </Label>
 
+        <Label alignment="CENTER" styleClass="instructions" text="Please recall the memorised chunks in order.">
+            <properties widthPercent="1.0" />
+        </Label>
+
         <GridPane fx:id="grid" alignment="TOP_CENTER" hgap="5" vgap="5">
             <properties widthPercent="1.0" maxHeightPercent="0.8"/>
         </GridPane>

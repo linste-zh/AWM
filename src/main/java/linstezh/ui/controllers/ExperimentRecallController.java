@@ -2,6 +2,8 @@ package linstezh.ui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -11,6 +13,7 @@ import linstezh.ui.adapters.ExpItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ExperimentRecallController {
     @FXML
@@ -53,7 +56,21 @@ public class ExperimentRecallController {
                 ExpItemAdapter item = findItem(textField.getId());
                 assert item != null;
                 item.reportUserMemoryChunk(textField.getText());
-                System.out.println(item);
+            }
+        }
+
+        for(ExpItemAdapter item : items){
+            if(item.readUserMemoryChunk().isBlank()){
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                a.setTitle("Empty items");
+                a.setContentText("For some item(s), not chunk was reported. Do you want to continue anyway?");
+
+                Optional<ButtonType> closeResponse = a.showAndWait();
+                if (!ButtonType.OK.equals(closeResponse.get())) {
+                    return;
+                }else{
+                    break;
+                }
             }
         }
 
