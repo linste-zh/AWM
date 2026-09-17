@@ -6,7 +6,6 @@ import linstezh.logic.Item.ItemTypes;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Section implements SectionInterface, Comparable<SectionInterface> {

@@ -5,19 +5,13 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import linstezh.logic.ActiveExperiment.ParticipantEvalResponse;
 import linstezh.logic.ActiveExperiment.ParticipantMemResponse;
-import linstezh.logic.Item.ExperimentItem;
-import linstezh.logic.Item.ItemInterface;
-import linstezh.logic.Item.ItemTypes;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.output.resultCSV.CsvAggregatedRowGenerator;
-import linstezh.ui.adapters.ExpItemAdapter;
-import linstezh.ui.adapters.ImageDistractorItemAdapter;
-import linstezh.ui.adapters.TextDistractorItemAdapter;
-import linstezh.ui.controllers.*;
+import linstezh.ui.controllers.ExperimentFeedbackController;
+import linstezh.ui.controllers.RootController;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class TrialSectionManager extends ExpSectionManager {
     private final SectionInterface trialSection;

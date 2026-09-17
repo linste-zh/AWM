@@ -75,6 +75,11 @@ public class ExpSectionManager implements SectionManager {
             case ItemTypes.INFORMATION -> loadInformationScreen(currentItem);
         }
 
+        if(true){
+            timer = new Timer(true);
+            timer.schedule(new TimerExceeded(currentItem), 3000);
+        }
+
     }
 
     public void loadExperimentItemScreen(ExperimentItem item){
@@ -86,8 +91,6 @@ public class ExpSectionManager implements SectionManager {
             controller.init(newItem, this);
             /*rootController.getHeader().setItem(currentItem.getPosition());*/
             rootController.setContent(content);
-            timer = new Timer(true);
-            timer.schedule(new TimerExceeded(item), 3000);
             nextItem += 1;
         }catch(IOException e){
             nextItem += 1;  //todo: meaningful catch!
@@ -210,9 +213,9 @@ public class ExpSectionManager implements SectionManager {
     }
 
     private class TimerExceeded extends TimerTask{
-        private ExperimentItem item;
+        private ItemInterface item;
 
-        public TimerExceeded(ExperimentItem item){
+        public TimerExceeded(ItemInterface item){
             this.item = item;
         }
 
@@ -220,7 +223,10 @@ public class ExpSectionManager implements SectionManager {
         public void run() {
             Platform.runLater(() -> {
                 System.out.println("Timer ran out for " + item);
-                manager.saveEvalResponse(item, "NA", 0);  //todo: change boolean to string for NA value
+
+                if(item.getType() == ItemTypes.EXPERIMENT){
+                    manager.saveEvalResponse((ExperimentItem) item, "NA", 0);
+                }
 
                 loadNextScene();
             });

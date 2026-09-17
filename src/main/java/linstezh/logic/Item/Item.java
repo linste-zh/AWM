@@ -1,7 +1,6 @@
 package linstezh.logic.Item;
 
 import linstezh.logic.Section.Section;
-import linstezh.logic.Section.SectionInterface;
 
 import java.util.Date;
 

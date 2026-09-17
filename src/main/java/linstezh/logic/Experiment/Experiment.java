@@ -1,6 +1,5 @@
 package linstezh.logic.Experiment;
 
-import linstezh.logic.Section.Section;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 
