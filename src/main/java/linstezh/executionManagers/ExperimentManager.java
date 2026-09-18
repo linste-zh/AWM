@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,8 +59,6 @@ public class ExperimentManager{
             sectionManager.display();
             nextSection += 1;
         }else{
-            System.out.println(evalResponses);
-            System.out.println(memResponses);
             Main.finish();
         }
     }
@@ -140,7 +137,6 @@ public class ExperimentManager{
 
         File baseDir = new File(experiment.getExpDirPath());
         fileChooser.setInitialDirectory(baseDir);
-        System.out.println(fileChooser.getInitialDirectory());
 
         LocalDate today = LocalDate.now();
 

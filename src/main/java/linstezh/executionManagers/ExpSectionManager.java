@@ -63,7 +63,6 @@ public class ExpSectionManager implements SectionManager {
     }
 
     public void resetTimer(){
-        System.out.println("called scene load: " + nextItem);
         if (timer != null) {
             timer.cancel();
             timer = null;
@@ -149,7 +148,6 @@ public class ExpSectionManager implements SectionManager {
     }
 
     public void loadImgDistractorScreen(ItemInterface item){
-        System.out.println("creating image");
         try {
             ImageDistractorItemAdapter newImgDistractor = new ImageDistractorItemAdapter(currentItem);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/linstezh/ui/screens/ImageDistractorScreen.fxml"));
@@ -218,7 +216,6 @@ public class ExpSectionManager implements SectionManager {
         }
 
         recallOutstanding = false;
-        System.out.println("recall completed");
     }
 
     public void concludeSection(){
@@ -235,8 +232,6 @@ public class ExpSectionManager implements SectionManager {
         @Override
         public void run() {
             Platform.runLater(() -> {
-                System.out.println("Timer ran out for " + item);
-
                 if(item.getType() == ItemTypes.EXPERIMENT){
                     manager.saveEvalResponse((ExperimentItem) item, "NA", 0);
                 }

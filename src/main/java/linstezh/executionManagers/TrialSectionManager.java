@@ -44,7 +44,6 @@ public class TrialSectionManager extends ExpSectionManager {
 
                 feedbackOutstanding = false;
             }catch(IOException e){
-                System.out.println("exception hit");
                 concludeSection(); //todo: meaningful catch!
             }
 

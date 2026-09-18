@@ -10,7 +10,6 @@ import linstezh.ui.adapters.InfoItemAdapter;
 import linstezh.ui.controllers.ExperimentEndController;
 import linstezh.ui.controllers.RootController;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 

@@ -3,10 +3,7 @@ package linstezh.logic.Experiment;
 import linstezh.logic.Section.SectionInterface;
 import linstezh.logic.Section.SectionTypes;
 
-import javax.lang.model.element.UnknownDirectiveException;
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -14,6 +14,5 @@ public class FooterController {
     public void setProgress(int currentSection, int totalSections){
         progressText.setText(currentSection + "/" + totalSections);
         progressBar.setProgress((double) currentSection / totalSections);
-        System.out.println(currentSection + "/" + totalSections);
     }
 }
