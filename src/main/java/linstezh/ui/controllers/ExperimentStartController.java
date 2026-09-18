@@ -3,8 +3,10 @@ package linstezh.ui.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebView;
 import linstezh.executionManagers.StartSectionManager;
 import linstezh.ui.adapters.InfoItemAdapter;
+import linstezh.ui.displayTools.FXMLUtilities;
 
 import java.util.Objects;
 
@@ -17,7 +19,7 @@ public class ExperimentStartController {
     @FXML
     Label title;
     @FXML
-    TextArea infoText;
+    WebView infoText;
     @FXML
     TextField nameInput;
     @FXML
@@ -30,6 +32,11 @@ public class ExperimentStartController {
     public void initialize() {
         contentVBox.maxWidthProperty().bind(contentArea.widthProperty());
         contentVBox.maxHeightProperty().bind(contentArea.heightProperty());
+
+        contentVBox.widthProperty().addListener((obs, old, val) ->
+                infoText.setPrefWidth(val.doubleValue()));
+        contentVBox.heightProperty().addListener((obs, old, val) ->
+                infoText.setPrefHeight(val.doubleValue() * 0.6));
     }
 
     public void init(InfoItemAdapter item, StartSectionManager manager){
@@ -37,7 +44,10 @@ public class ExperimentStartController {
         this.manager = manager;
 
         title.setText(this.manager.getHeader());
-        infoText.setText(item.readDisplayText());
+
+        String infoTextHTML = FXMLUtilities.parseMarkdownToHTML(item.readDisplayText());
+
+        infoText.getEngine().loadContent(infoTextHTML);
         infoText.setFocusTraversable(false);
     }
 

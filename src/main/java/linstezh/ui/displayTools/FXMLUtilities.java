@@ -4,6 +4,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebView;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 
 public class FXMLUtilities {
     public static void applyProperties(Node node){
@@ -84,6 +88,14 @@ public class FXMLUtilities {
         } catch (Error e) {
             e.printStackTrace();
         }
+    }
+
+    public static String parseMarkdownToHTML(String mdText){
+        Parser parser = Parser.builder().build();
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+
+        return "<html><body style='font-family:sans-serif; font-size:14px; padding:8px;'>"
+                    + renderer.render(parser.parse(mdText)) + "</body></html>";
     }
 
 }

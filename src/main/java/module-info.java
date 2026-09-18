@@ -8,6 +8,8 @@ module linstezh {
     requires com.opencsv;
     requires jdk.jfr;
     requires java.compiler;
+    requires javafx.web;
+    requires org.commonmark;
 
     exports linstezh;  // your main package
     exports linstezh.database.dbo;
