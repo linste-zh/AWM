@@ -26,6 +26,7 @@ public class ExperimentInfoController {
         this.manager = manager;
         title.setText(manager.getSectionTitle() + " INFORMATION");
         infoText.setText(item.readDisplayText());
+        infoText.setFocusTraversable(false);
     }
 
     @FXML

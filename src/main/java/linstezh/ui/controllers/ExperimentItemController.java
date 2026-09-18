@@ -23,6 +23,7 @@ public class ExperimentItemController {
         this.item = item;
         this.manager = manager;
         evalText.setText(item.readEvalText());
+        evalText.setFocusTraversable(false);
     }
 
     @FXML

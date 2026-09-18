@@ -22,6 +22,7 @@ public class TextDistractorController {
         this.item = item;
         this.manager = manager;
         distractorText.setText(item.readDisplayText());
+        distractorText.setFocusTraversable(false);
     }
 
 }

@@ -26,6 +26,7 @@ public class ExperimentEndController {
         this.item = item;
         this.manager = manager;
         infoText.setText(item.readDisplayText());
+        infoText.setFocusTraversable(false);
     }
 
     @FXML

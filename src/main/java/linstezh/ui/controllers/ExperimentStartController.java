@@ -38,6 +38,7 @@ public class ExperimentStartController {
 
         title.setText(this.manager.getHeader());
         infoText.setText(item.readDisplayText());
+        infoText.setFocusTraversable(false);
     }
 
     @FXML
