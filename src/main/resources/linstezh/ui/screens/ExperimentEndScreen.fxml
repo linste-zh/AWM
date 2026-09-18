@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
 <VBox stylesheets="@../displayTools/baseStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="linstezh.ui.controllers.ExperimentEndController"
       fx:id="contentArea" styleClass="contentArea">
     <properties fillParent="true" />
@@ -13,11 +14,7 @@
             <properties widthPercent="1.0" />
         </Label>
 
-        <TextArea fx:id="infoText" styleClass="textBox"
-                  wrapText="true" editable="false"
-                  text="Example Info Example Info Example Info Example Info Example Info Example Info Example Info">
-            <properties widthPercent="1.0" maxHeightPercent="0.8"/>
-        </TextArea>
+        <WebView fx:id="infoText"/>
 
         <HBox alignment="CENTER" spacing="30.0">
             <Button onAction="#downloadItemFile" text="Results by Item" styleClass="actionButton"/>

@@ -46,7 +46,6 @@ public class ExperimentStartController {
         title.setText(this.manager.getHeader());
 
         String infoTextHTML = FXMLUtilities.parseMarkdownToHTML(item.readDisplayText());
-
         infoText.getEngine().loadContent(infoTextHTML);
         infoText.setFocusTraversable(false);
     }
